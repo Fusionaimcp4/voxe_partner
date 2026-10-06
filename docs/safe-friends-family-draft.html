@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAFE – Friends & Family Draft | Voxe Investor</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/images/icon-192.png" />
+  <meta name="theme-color" content="#0b0f0e" />
+  <style>
+    .safe-doc { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .safe-doc h1 { font-size: 1.5rem; font-weight: 700; color: var(--accent-color); margin-bottom: 0.25rem; }
+    .safe-doc .subtitle { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; }
+    .safe-doc h2 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--text-primary); }
+    .safe-doc h3 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: var(--text-primary); }
+    .safe-doc p { margin-bottom: 1rem; line-height: 1.7; }
+    .safe-doc .intro { margin-bottom: 2rem; }
+    .safe-doc ul { margin: 0.75rem 0 1rem; padding-left: 1.5rem; }
+    .safe-doc li { margin-bottom: 0.35rem; line-height: 1.6; }
+    .safe-doc .clause { margin-bottom: 1.5rem; }
+    .safe-doc .sig-blocks-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
+    .safe-doc .sig-block { width: 48%; min-width: 260px; padding-top: 0; margin-top: 0; border-top: none; }
+    .safe-doc .sig-block h3 { margin-bottom: 1rem; }
+    .safe-doc .sig-line { margin-bottom: 1.25rem; font-size: 0.95rem; }
+    .safe-doc .placeholder { color: var(--text-secondary); border-bottom: 1px dashed var(--border-color); }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-color); text-decoration: none; margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .back-link:hover { text-decoration: underline; }
+    .print-only { display: none; }
+    @media print {
+      body { background: #fff; color: #111; }
+      .safe-doc { max-width: 100%; padding: 0; }
+      .safe-doc h1 { color: #111; }
+      .safe-doc .subtitle { color: #444; }
+      .safe-doc h2, .safe-doc h3 { color: #111; }
+      .safe-doc .placeholder { color: #444; border-color: #999; }
+      .no-print { display: none !important; }
+      .print-only { display: block; }
+      .sig-blocks-row { border-color: #ccc; }
+      .sig-block { border: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="no-print">
+    <nav class="container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/icon-192.png" alt="Voxe Logo" />
+        <span>VOXE</span>
+      </a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="safe-doc">
+      <a href="../friends-family.html" class="back-link no-print">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Friends & Family SAFE
+      </a>
+      <p class="print-only"><strong>DRAFT – For discussion only. Do not sign without legal review.</strong></p>
+
+      <h1>SAFE (Simple Agreement for Future Equity)</h1>
+      <p class="subtitle">Friends & Family Round – Voxe</p>
+
+      <p class="intro">This SAFE (this “Agreement”) is made as of <span id="effective-date"></span> (the “Effective Date”) between:</p>
+      <p><span class="placeholder">[Investor Name]</span>, an individual (the “Investor”), and</p>
+      <p>Blockchain Technology International LLC, a Texas limited liability company doing business as “Voxe Desk” (the “Company”).</p>
+      <p>The Company and the Investor agree as follows:</p>
+
+      <h2>1. Purchase Amount; Friends & Family Pool</h2>
+
+      <div class="clause">
+        <h3>1.1 Purchase Amount.</h3>
+        <p>The Investor is investing US $<span class="placeholder">[Investment Amount]</span> (the “Purchase Amount”) in the Company on the terms set out in this Agreement.</p>
+      </div>
+
+      <div class="clause">
+        <h3>1.2 Friends & Family Pool.</h3>
+        <p>This SAFE is part of a limited friends & family round in which:</p>
+        <ul>
+          <li>The Company will accept up to an aggregate of US $50,000 in SAFE investments (the “Pool Amount”), and</li>
+          <li>The SAFE investors in this pool will collectively be entitled to receive equity representing 10% of the Company’s fully diluted equity, as described in Section 3 (the “Pool Equity”).</li>
+        </ul>
+      </div>
+
+      <div class="clause">
+        <h3>1.3 Pro Rata Share of Pool.</h3>
+        <p>The Investor’s economic interest in the Pool Equity is based on the proportion of the Investor’s Purchase Amount to the total Pool Amount. As a simple example:</p>
+        <p>If the Investor contributes US $5,000, and the Pool Amount is fully subscribed at US $50,000, the Investor’s economic interest in the Pool Equity is 10% of the Pool Equity, i.e., approximately 1% of the Company (10% of the 10% pool).</p>
+        <p>The exact number of shares and percentage ownership will be determined at the time of conversion under Section 3, according to this Agreement and the Company’s capitalization at that time.</p>
+      </div>
+
+      <h2>2. Nature of this SAFE</h2>
+
+      <div class="clause">
+        <h3>2.1 Not a Loan.</h3>
+        <p>This SAFE is not a loan. It does not accrue interest and does not have a fixed maturity date.</p>
+      </div>
+
+      <div class="clause">
+        <h3>2.2 Future Equity.</h3>
+        <p>In exchange for the Purchase Amount, the Investor receives the right to be issued equity in the Company in the future upon the occurrence of certain events, primarily an Equity Financing (defined below), subject to the terms of this Agreement.</p>
+      </div>
+
+      <div class="clause">
+        <h3>2.3 No Present Ownership.</h3>
+        <p>Until this SAFE converts into equity pursuant to Section 3, the Investor does not have shareholder voting rights, dividend rights, or other rights of a stockholder of the Company, except as expressly set out in this Agreement.</p>
+      </div>
+
+      <h2>3. Conversion upon Equity Financing</h2>
+
+      <div class="clause">
+        <h3>3.1 Equity Financing Defined.</h3>
+        <p>An “Equity Financing” means a bona fide transaction or series of transactions in which the Company issues and sells shares of its capital stock (typically preferred stock) for cash, at a fixed pre-money valuation, to one or more outside investors, primarily for capital-raising purposes.</p>
+      </div>
+
+      <div class="clause">
+        <h3>3.2 Pool Conversion Mechanics.</h3>
+        <p>Upon the first Equity Financing after the Effective Date, immediately prior to the closing of such Equity Financing:</p>
+        <p>(a) All outstanding friends & family SAFEs that are part of the Pool Amount (including this SAFE) will automatically convert into shares of the same series of capital stock issued in the Equity Financing (the “Financing Shares”).</p>
+        <p>(b) The number of Financing Shares issued to all friends & family SAFE investors in the pool (collectively) will be calculated such that, immediately after the Equity Financing, the holders of the friends & family SAFEs collectively own 10% of the Company’s fully diluted capitalization (including the Financing Shares and the shares issued in the Equity Financing), subject to customary exclusions or adjustments as determined in good faith by the Company’s Board of Directors.</p>
+        <p>(c) The Investor’s portion of those Financing Shares will be determined pro rata based on the Investor’s Purchase Amount relative to the actual aggregate amount invested in the Pool Amount (i.e., all friends & family SAFEs that are part of this $50,000 pool and that convert in that financing).</p>
+      </div>
+
+      <div class="clause">
+        <h3>3.3 Documentation.</h3>
+        <p>The Investor agrees to execute and deliver any documents reasonably required to effectuate the issuance of Financing Shares in connection with an Equity Financing, including any stock purchase agreements or investor rights agreements entered into by the other investors in such Equity Financing, provided that the Investor is treated in a manner that is not materially less favorable, in the aggregate, than other investors in the same class, taking into account the Investor’s investment size and stage.</p>
+      </div>
+
+      <h2>4. Liquidity Event and Dissolution</h2>
+
+      <div class="clause">
+        <h3>4.1 Liquidity Event.</h3>
+        <p>If, prior to the conversion of this SAFE under Section 3, there is a Liquidity Event (such as an acquisition of the Company, a merger, or a sale of substantially all of its assets), then, at the Company’s election and to the extent permitted by applicable law:</p>
+        <p>(a) This SAFE will convert into a right to receive a portion of the transaction consideration allocated to equity holders, on terms designed in good faith by the Board of Directors to reflect the Investor’s economic interest in the Pool Equity at that time; or</p>
+        <p>(b) This SAFE will be repurchased by the Company for an amount equal to the Purchase Amount, payable in the same form of consideration (or mix of cash and securities) received by stockholders in the Liquidity Event, to the extent reasonably practicable.</p>
+      </div>
+
+      <div class="clause">
+        <h3>4.2 Dissolution Event.</h3>
+        <p>If, prior to conversion or repayment under this Section 4, the Company voluntarily or involuntarily liquidates, dissolves, or winds up its business (a “Dissolution Event”), then, if there are assets legally available for distribution after payment of all senior obligations, the Company will pay the Investor an amount up to the Purchase Amount, on a pari passu basis with other SAFE holders, before any distribution to holders of common stock.</p>
+      </div>
+
+      <h2>5. Termination</h2>
+      <p>This SAFE will terminate upon the earliest to occur of:</p>
+      <ul>
+        <li>(a) The issuance of shares to the Investor on conversion of this SAFE in accordance with Section 3;</li>
+        <li>(b) The payment (or setting aside for payment) to the Investor of the amounts due under Section 4 in connection with a Liquidity Event or Dissolution Event; or</li>
+        <li>(c) A written agreement between the Company and the Investor to terminate this SAFE.</li>
+      </ul>
+      <p>Termination does not affect any rights or obligations that have already accrued.</p>
+
+      <h2>6. Company Representations</h2>
+      <p>The Company represents and warrants to the Investor that, as of the Effective Date:</p>
+
+      <div class="clause">
+        <h3>6.1 Organization and Authority.</h3>
+        <p>The Company is duly organized, validly existing, and in good standing under the laws of its jurisdiction of incorporation, and has the corporate power to execute, deliver, and perform its obligations under this Agreement.</p>
+      </div>
+
+      <div class="clause">
+        <h3>6.2 Authorization.</h3>
+        <p>All corporate action required to authorize the execution and delivery of this Agreement and the performance of the Company’s obligations hereunder has been duly taken. This Agreement constitutes a valid and binding obligation of the Company, enforceable against the Company in accordance with its terms, subject to applicable laws relating to bankruptcy, insolvency, and creditors’ rights.</p>
+      </div>
+
+      <div class="clause">
+        <h3>6.3 No Conflict.</h3>
+        <p>The execution and delivery of this Agreement by the Company does not violate the Company’s charter or bylaws or any material agreement to which the Company is a party.</p>
+      </div>
+
+      <h2>7. Investor Representations</h2>
+      <p>The Investor represents and warrants to the Company that, as of the Effective Date:</p>
+
+      <div class="clause">
+        <h3>7.1 Investment Intent.</h3>
+        <p>The Investor is acquiring this SAFE solely for investment purposes and not with a view to, or for resale in connection with, any “distribution” of securities within the meaning of applicable securities laws.</p>
+      </div>
+
+      <div class="clause">
+        <h3>7.2 Understanding of Risks.</h3>
+        <p>The Investor understands that investing in early-stage companies is highly speculative and involves a high degree of risk, including the risk of loss of the entire investment. The Investor is able to bear the economic risk of the investment and can afford a complete loss of the Purchase Amount.</p>
+      </div>
+
+      <div class="clause">
+        <h3>7.3 Sophistication.</h3>
+        <p>The Investor has such knowledge and experience in financial and business matters that the Investor is capable of evaluating the merits and risks of this investment, or has consulted with a professional advisor in making this investment decision.</p>
+      </div>
+
+      <div class="clause">
+        <h3>7.4 Compliance with Laws.</h3>
+        <p>The Investor is aware that this SAFE and the underlying securities have not been registered under the U.S. Securities Act of 1933 (or any state securities laws) and are being offered in reliance on exemptions from registration for private offerings. The Investor agrees that the SAFE and any shares issued upon conversion may not be sold, transferred, or otherwise disposed of without compliance with applicable securities laws.</p>
+      </div>
+
+      <div class="clause">
+        <h3>7.5 Status (if applicable).</h3>
+        <p><span class="placeholder">[Optional: The Investor is an “accredited investor” as defined under Regulation D of the Securities Act. / The Investor understands that the Company may rely on applicable “friends and family” or private offering exemptions and agrees to provide any reasonable information necessary to confirm eligibility.]</span></p>
+      </div>
+
+      <h2>8. Miscellaneous</h2>
+
+      <div class="clause">
+        <h3>8.1 Governing Law.</h3>
+        <p>This Agreement will be governed by and construed in accordance with the laws of the State of Texas, without giving effect to its conflict of laws principles.</p>
+      </div>
+
+      <div class="clause">
+        <h3>8.2 Entire Agreement.</h3>
+        <p>This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof and supersedes all prior or contemporaneous understandings, whether oral or written.</p>
+      </div>
+
+      <div class="clause">
+        <h3>8.3 Amendments.</h3>
+        <p>Any amendment or waiver of any provision of this Agreement must be in writing and signed by both the Company and the Investor.</p>
+      </div>
+
+      <div class="clause">
+        <h3>8.4 Assignment.</h3>
+        <p>The Investor may not assign this SAFE or any of its rights hereunder without the prior written consent of the Company, except to certain permitted transferees as may be allowed by applicable law and subject to the Company’s approval. The Company may not assign this Agreement without the Investor’s consent, except in connection with a permitted reorganization, merger, or similar transaction that does not adversely affect the Investor’s rights.</p>
+      </div>
+
+      <div class="clause">
+        <h3>8.5 Notices.</h3>
+        <p>All notices or communications under this Agreement must be in writing and sent to the parties at their addresses or emails set forth below (or at such other address or email as a party may designate in writing). Notices will be deemed given when delivered personally, sent by recognized overnight courier, or sent by email with confirmation of delivery.</p>
+      </div>
+
+      <div class="clause">
+        <h3>8.6 Counterparts; Electronic Signatures.</h3>
+        <p>This Agreement may be executed in counterparts, each of which will be deemed an original and all of which together will constitute one instrument. Signatures delivered by electronic means (including PDF and e-signature services) will be deemed effective as originals.</p>
+      </div>
+
+      <p><strong>IN WITNESS WHEREOF</strong>, the Company and the Investor have executed this SAFE as of the Effective Date.</p>
+
+      <div class="sig-blocks-row">
+        <div class="sig-block">
+          <h3>COMPANY:</h3>
+          <p class="sig-line">Blockchain Technology International LLC, d/b/a Voxe Desk</p>
+          <p class="sig-line">By: <span class="placeholder">_______________________________</span></p>
+          <p class="sig-line">Name: <span class="placeholder">_____________________________</span></p>
+          <p class="sig-line">Title: <span class="placeholder">_____________________________</span></p>
+          <p class="sig-line">Address: <span class="placeholder">___________________________</span></p>
+          <p class="sig-line">Email: <span class="placeholder">_____________________________</span></p>
+        </div>
+        <div class="sig-block">
+          <h3>INVESTOR:</h3>
+          <p class="sig-line"><span class="placeholder">[Investor Name]</span></p>
+          <p class="sig-line">Signature: <span class="placeholder">_________________________</span></p>
+          <p class="sig-line">Address: <span class="placeholder">___________________________</span></p>
+          <p class="sig-line">Email: <span class="placeholder">_____________________________</span></p>
+          <p class="sig-line">Date Signed: <span class="placeholder">_______________________</span></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="no-print">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 Voxe by MCP4. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function() {
+      var el = document.getElementById('effective-date');
+      if (el) {
+        var d = new Date();
+        el.textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      }
+    })();
+  </script>
+    <script src="../assets/js/theme.js"></script>
+</body>
+</html>

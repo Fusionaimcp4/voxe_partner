@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pitch Deck — Voxe</title>
+
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/images/icon-192.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="../assets/images/icon-192.png">
+  <meta name="theme-color" content="#0b0f0e">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .document-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .document-content h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary); }
+    .document-content h2 { font-size: 1.8rem; margin: 3rem 0 1.5rem; color: var(--text-primary); border-bottom: 1px solid rgba(120,252,214,0.18); padding-bottom: 0.75rem; }
+    .document-content h3 { font-size: 1.3rem; margin: 1.5rem 0 1rem; color: var(--accent-color); font-family: var(--sans); font-weight: 700; }
+    .document-content p { margin-bottom: 1.5rem; line-height: 1.8; }
+    .document-content ul { margin: 1.5rem 0; padding-left: 2rem; }
+    .document-content li { margin-bottom: 0.75rem; line-height: 1.6; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-color); text-decoration: none; margin-bottom: 2rem; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 1px; }
+    .back-link:hover { opacity: 0.8; }
+    .summary-box { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; }
+    .highlight-box { background: rgba(120,252,214,0.04); border-left: 3px solid var(--accent-color); padding: 1.5rem; margin: 2rem 0; border-radius: 0 10px 10px 0; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+    .comparison-table th, .comparison-table td { padding: 1rem; border: 1px solid var(--border-color); text-align: left; }
+    .comparison-table th { background: rgba(120,252,214,0.06); color: var(--accent-color); font-weight: 600; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; }
+    .comparison-table td { background: rgba(var(--card-rgb-2),0.4); }
+    .check { color: var(--green); }
+    .x-mark { color: var(--red); }
+    .funding-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .funding-card { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; }
+    .funding-card h4 { color: var(--accent-color); margin-bottom: 1rem; font-size: 1.1rem; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .metric-card { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; text-align: center; }
+    .metric-card .number { font-family: var(--serif); font-size: 1.8rem; color: var(--accent-color); margin-bottom: 0.5rem; }
+    .metric-card .label { color: var(--text-secondary); font-size: 0.85rem; font-family: var(--mono); letter-spacing: 0.5px; }
+    .contact-section { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 2rem; text-align: center; margin-top: 3rem; }
+    .contact-section h2 { border-bottom: none; margin-top: 0; }
+    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
+    .social-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s ease; }
+    .social-links a:hover { color: var(--accent-color); }
+    .doc-eyebrow { display: block; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/icon-192.png" alt="Voxe Logo">
+        <span>VOXE</span>
+      </a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="document-content">
+      <a href="../index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Investor Portal
+      </a>
+
+      <span class="eyebrow doc-eyebrow">Pitch Deck &amp; Overview</span>
+      <h1>Voxe</h1>
+      <p style="font-size: 1.25rem; color: var(--accent-color); margin: 0.5rem 0 1rem;">AI Customer Support Infrastructure</p>
+      <p style="margin-bottom: 1rem;"><a href="https://voxedesk.com" target="_blank" rel="noopener" style="color: var(--accent-color);">https://voxedesk.com</a></p>
+     
+      <h2>The Problem</h2>
+      <p>Customer support infrastructure is expensive, complex, and fragmented. Businesses must combine multiple tools:</p>
+      <ul>
+        <li>Helpdesk software</li>
+        <li>Chat widgets</li>
+        <li>CRM systems</li>
+        <li>Automation tools</li>
+        <li>Scheduling tools</li>
+        <li>AI chatbots</li>
+      </ul>
+      <div class="highlight-box">
+        <h3>Problems this creates</h3>
+        <ul>
+          <li>Long setup time</li>
+          <li>High costs (per-resolution pricing)</li>
+          <li>Disconnected systems</li>
+          <li>Limited automation</li>
+        </ul>
+        <p><strong>Most businesses cannot afford enterprise support infrastructure.</strong></p>
+      </div>
+
+      <h2>The Opportunity</h2>
+      <p>Customer communication is moving toward AI-first support.</p>
+      <div class="highlight-box">
+        <h3>Industry trends</h3>
+        <ul>
+          <li>AI agents replacing repetitive support tasks</li>
+          <li>Businesses needing real-time automation</li>
+          <li>Growing eCommerce and SaaS support demand</li>
+        </ul>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="number">$30B+</div>
+          <div class="label">Customer Support Software Market</div>
+        </div>
+        <div class="metric-card">
+          <div class="number">Fast-growing</div>
+          <div class="label">AI Support Automation (SaaS)</div>
+        </div>
+      </div>
+      <p>Millions of small businesses still lack modern support infrastructure.</p>
+
+      <h2>The Solution</h2>
+<div class="summary-box">
+  <h3>Voxe</h3>
+  <p><strong>An AI platform for automated customer operations.</strong>  
+  Provide your website URL and Voxe instantly deploys a fully operational support system powered by your knowledge and connected to live business data.</p>
+
+  <ul>
+    <li>AI customer support powered by website knowledge and custom knowledge bases</li>
+    <li>Integrated helpdesk for human escalation and conversation management</li>
+    <li>Real-time connections to business systems (orders, CRM, inventory)</li>
+    <li>Multi-channel delivery — web chat, email, SMS, WhatsApp, and phone — from one knowledge base</li>
+    <li>Automated workflows and appointment booking inside the conversation</li>
+  </ul>
+
+  <p><strong>Deployment takes minutes instead of weeks.</strong></p>
+</div>
+
+<h2>What Makes Voxe Different</h2>
+<p>Most AI chatbots can only answer questions from static knowledge bases. <strong>Voxe connects AI directly to business systems — and, once a customer is verified, acts on their behalf.</strong></p>
+
+<div class="highlight-box">
+  <h3>Operational AI in Action</h3>
+
+  <p><strong>Customer asks: “Where is my order?”</strong><br>
+  Voxe retrieves real-time order status from the company’s commerce system.</p>
+
+  <p><strong>Customer asks: “What did I purchase last time?”</strong><br>
+  Voxe accesses customer purchase history through CRM or sales data.</p>
+
+  <p><strong>Customer asks: “Is this product in stock?”</strong><br>
+  Voxe checks live inventory data before responding.</p>
+
+  <p><strong>Customer says: “My address autofilled wrong, can you fix it before it ships?”</strong><br>
+  Voxe verifies the order, confirms it hasn’t shipped, and updates the address directly — no ticket, no wait.</p>
+
+  <p><strong>Customer says: “Can you just cancel that order? Found it cheaper elsewhere.”</strong><br>
+  Voxe confirms the order is unpaid and cancels it on the spot.</p>
+
+  <p><strong>Result:</strong> Voxe becomes an <strong>AI-powered operational layer that verifies, decides, and acts</strong>—not just a chatbot answering FAQs. Anything requiring judgment — disputes, policy exceptions, paid-order changes — still escalates to a human with full context attached.</p>
+</div>
+
+<h2>Integrations</h2>
+<div class="highlight-box">
+  <h3>Key Integrations</h3>
+  <p>VoxeDesk · Chatwoot · WooCommerce · Shopify · HubSpot · Salesforce · Pipedrive · Google Calendar · Custom systems via MCP.</p>
+</div>
+
+      <h2>Product Progress</h2>
+      <p>Voxe is already operational, with the systems described above built and running today — not a prototype or a roadmap item. Demonstration environments have been deployed for multiple businesses to validate the system.</p>
+      <div class="highlight-box">
+        <p><strong>Voxe replaces multiple disconnected tools with a single AI-powered customer operations platform.</strong></p>
+      </div>
+      <h2>Business Model</h2>
+<p>Voxe operates as a SaaS platform with recurring subscription revenue and scalable usage-based expansion.</p>
+
+<div class="funding-grid">
+
+  <div class="funding-card">
+    <h4>Subscription Plans</h4>
+    <p>Tiered monthly plans that scale with business usage — increasing limits for AI requests, integrations, workflows, and helpdesk agents.</p>
+  </div>
+
+  <div class="funding-card">
+    <h4>Usage Expansion</h4>
+    <p>Additional API usage, automation capacity, and integrations can be expanded as customer support volume grows.</p>
+  </div>
+
+  <div class="funding-card">
+    <h4>Enterprise Licensing</h4>
+    <p>Custom deployments for larger organizations, including advanced integrations, white-label solutions, and dedicated infrastructure.</p>
+  </div>
+
+</div>
+
+<p><strong>Goal: scalable recurring revenue driven by platform adoption and growing automation usage.</strong></p>
+      <h2>Why Now</h2>
+      <p>Three technology shifts make Voxe possible now:</p>
+      <div class="highlight-box">
+        <p><strong>1. AI reasoning capabilities</strong><br>Large language models enable automated support.</p>
+        <p><strong>2. API-connected businesses</strong><br>Modern companies expose data through APIs.</p>
+        <p><strong>3. Automation demand</strong><br>Businesses want to reduce operational costs.</p>
+        <p><strong>AI support agents will become the default interface for customer communication.</strong></p>
+      </div>
+
+      <h2>Investment Opportunity</h2>
+      <p>Voxe is planning to raise capital to accelerate growth.</p>
+      <div class="highlight-box">
+        <h3>Use of funds</h3>
+        <ul>
+          <li>Compliance</li>
+          <li>Product development</li>
+          <li>Infrastructure scaling</li>
+          <li>Marketing & customer acquisition</li>
+          <li>Partnership development</li>
+        </ul>
+        <p><strong>Vision:</strong> Build the AI infrastructure layer for customer communication.</p>
+      </div>
+
+      <div class="contact-section">
+        <h2>Get in Touch</h2>
+        <p>We welcome conversations with investors and strategic partners aligned with our vision: giving businesses an AI support agent in minutes, powered by their products and services.</p>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="number">Platform</div>
+            <div class="label"><a href="https://voxedesk.com" target="_blank" rel="noopener" style="color: var(--accent-color);">voxedesk.com</a></div>
+          </div>
+          <div class="metric-card">
+            <div class="number">Contact</div>
+            <div class="label"><a href="mailto:support@voxedesk.com" style="color: var(--accent-color);">support@voxedesk.com</a></div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://voxedesk.com" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Voxe</a>
+          <a href="mailto:support@voxedesk.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="../assets/images/icon-192.png" alt="Voxe Logo">
+          <span>VOXE</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://voxedesk.com" target="_blank" class="social-link"><i class="fas fa-globe"></i></a>
+          <a href="mailto:support@voxedesk.com" class="social-link"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Voxe by MCP4. All rights reserved.</p>
+        <p class="disclaimer">This material is for informational purposes only and does not constitute an offer or solicitation to sell shares or securities.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script src="../assets/js/theme.js"></script>
+</body>
+</html>

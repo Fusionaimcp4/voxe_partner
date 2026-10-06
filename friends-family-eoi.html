@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expression of Interest – Friends & Family SAFE | Voxe Investor</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/images/icon-192.png">
+    <meta name="theme-color" content="#0b0f0e">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/icon-512.png" alt="Voxe Logo">
+                <span>VOXE</span>
+            </a>
+            <div class="nav-links">
+                <a href="friends-family.html">Friends & Family SAFE</a>
+                <a href="index.html" class="cta-button"><i class="fas fa-arrow-left"></i> Back to Portal</a>
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="eoi-page" class="container content-section eoi-standalone">
+            <div class="section-header">
+                <h2>Friends & Family Expression of Interest</h2>
+                <p class="section-description">Enter your invite access pass to submit your expression of interest.</p>
+            </div>
+
+            <div id="invite-gate" class="invite-gate-wrap">
+                <label for="invite-pass-input">Enter your invite access pass to continue.</label>
+                <input type="password" id="invite-pass-input" placeholder="Access pass" autocomplete="off" />
+                <button type="button" id="invite-unlock-btn" class="cta-button primary">Unlock</button>
+                <p id="invite-error" class="invite-error" aria-live="polite">Incorrect access pass. Please try again.</p>
+            </div>
+
+            <div id="friends-family-gated" class="friends-family-gated">
+                <div id="invite-config-error" class="config-error-msg" style="display: none;">
+                    Configuration error: invite pass was not set at build time. Set INVESTOR_INVITE_PASS in investor/.env and run <code>node scripts/inject-invite-pass.js</code>.
+                </div>
+
+                <div id="friends-family-content" class="eoi-page-content">
+                    <div class="content-block">
+                        <p>If you are interested in participating in the Friends & Family SAFE round, please complete the form below. We will review your information and follow up with the SAFE agreement. Submitting is non-binding.</p>
+                    </div>
+
+                    <div id="friends-family-form-wrap" class="eoi-form-wrap">
+                        <h4 class="eoi-form-title">Friends & Family Expression of Interest</h4>
+                        <div id="eoi-success-msg" class="eoi-success-msg" style="display: none;" role="status">
+                            Thank you for your interest.<br>
+                            We’ve recorded your details and will follow up with the SAFE agreement and payment instructions. Please do not send any funds until you receive the official documents and wiring details from us.
+                        </div>
+                        <form id="friends-family-eoi-form" class="eoi-form" action="#" method="post" novalidate>
+                            <div class="eoi-field">
+                                <label for="eoi-full-name">Full Name <span class="required">(required)</span></label>
+                                <input type="text" id="eoi-full-name" name="full_name" required autocomplete="name" />
+                            </div>
+                            <div class="eoi-field">
+                                <label for="eoi-email">Email Address <span class="required">(required)</span></label>
+                                <input type="email" id="eoi-email" name="email" required autocomplete="email" />
+                            </div>
+                            <div class="eoi-field">
+                                <label for="eoi-phone">Phone Number <span class="optional">(optional but useful)</span></label>
+                                <input type="tel" id="eoi-phone" name="phone" autocomplete="tel" />
+                            </div>
+                            <div class="eoi-field">
+                                <label for="eoi-location">City & Country / State <span class="required">(required)</span></label>
+                                <input type="text" id="eoi-location" name="location" required placeholder="e.g., San Francisco, CA" />
+                            </div>
+                            <div class="eoi-field">
+                                <label for="eoi-amount">Approximate amount you are considering investing (USD, max $5,000 per investor) <span class="required">(required)</span></label>
+                                <input type="text" id="eoi-amount" name="amount_usd" required placeholder="e.g., 1,000 – 5,000" maxlength="20" />
+                            </div>
+                            <div class="eoi-field">
+                                <label for="eoi-notes">Notes or questions <span class="optional">(optional)</span></label>
+                                <textarea id="eoi-notes" name="notes" rows="3"></textarea>
+                            </div>
+                            <div class="eoi-field eoi-field-checkbox">
+                                <label class="eoi-checkbox-label">
+                                    <input type="checkbox" id="eoi-risk-ack" name="risk_acknowledgment" required />
+                                    <span>I acknowledge that early-stage startup investments are inherently high risk. I should only invest money I can afford to lose.</span>
+                                </label>
+                            </div>
+                            <div id="eoi-form-error" class="eoi-form-error" style="display: none;" role="alert"></div>
+                            <button type="submit" class="cta-button primary" id="eoi-submit-btn">Submit Expression of Interest</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="friends-family.html" class="cta-button secondary"><i class="fas fa-arrow-left"></i> Back to Friends & Family SAFE</a>
+                <div class="footer-links">
+                    <a href="https://voxedesk.com" target="_blank" class="social-link" title="Voxe Platform"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:support@voxedesk.com" class="social-link" title="Support"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Voxe by MCP4. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/invite-config.js"></script>
+    <script src="assets/js/friends-family-form.js?v=2"></script>
+    <script>
+    (function() {
+      var STORAGE_KEY = 'friends_family_access';
+      var gateEl = document.getElementById('invite-gate');
+      var gatedEl = document.getElementById('friends-family-gated');
+      var contentEl = document.getElementById('friends-family-content');
+      var configErrorEl = document.getElementById('invite-config-error');
+      var inputEl = document.getElementById('invite-pass-input');
+      var unlockBtn = document.getElementById('invite-unlock-btn');
+      var errorEl = document.getElementById('invite-error');
+
+      function showGated(showConfigError) {
+        if (gateEl) gateEl.style.display = 'none';
+        if (gatedEl) gatedEl.classList.add('visible');
+        if (configErrorEl) configErrorEl.style.display = showConfigError ? 'block' : 'none';
+        if (contentEl) contentEl.style.display = showConfigError ? 'none' : 'block';
+      }
+
+      function hideGated() {
+        if (gateEl) gateEl.style.display = 'block';
+        if (gatedEl) gatedEl.classList.remove('visible');
+        if (errorEl) errorEl.classList.remove('visible');
+      }
+
+      function setError(visible) {
+        if (errorEl) errorEl.classList.toggle('visible', !!visible);
+      }
+
+      function sha256Hex(str) {
+        return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+          .then(function(buf) {
+            var arr = new Uint8Array(buf);
+            var hex = '';
+            for (var i = 0; i < arr.length; i++) hex += ('0' + arr[i].toString(16)).slice(-2);
+            return hex;
+          });
+      }
+
+      function checkPass() {
+        var expected = window.__INVITE_PASS_HASH__;
+        if (expected === undefined || expected === null) {
+          if (typeof console !== 'undefined' && console.warn) {
+            console.warn('[Voxe investor] INVESTOR_INVITE_PASS not set at build time. Gated section will show configuration error.');
+          }
+          showGated(true);
+          return;
+        }
+        var raw = (inputEl && inputEl.value) ? inputEl.value.trim() : '';
+        if (!raw) { setError(true); return; }
+        sha256Hex(raw).then(function(hash) {
+          if (hash === expected) {
+            try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (e) {}
+            setError(false);
+            showGated(false);
+            if (contentEl) contentEl.style.display = 'block';
+          } else {
+            setError(true);
+          }
+        }).catch(function() { setError(true); });
+      }
+
+      function init() {
+        if (!gateEl || !gatedEl) return;
+        var hasAccess = false;
+        try { hasAccess = localStorage.getItem(STORAGE_KEY) === 'true'; } catch (e) {}
+        var expected = window.__INVITE_PASS_HASH__;
+        if (hasAccess) {
+          showGated(false);
+          if (contentEl) contentEl.style.display = 'block';
+        } else if (expected === undefined || expected === null) {
+          showGated(true);
+          if (typeof console !== 'undefined' && console.warn) {
+            console.warn('[Voxe investor] INVESTOR_INVITE_PASS not set at build time.');
+          }
+        } else {
+          gatedEl.classList.remove('visible');
+        }
+        if (unlockBtn) unlockBtn.addEventListener('click', checkPass);
+        if (inputEl) inputEl.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkPass(); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+    </script>
+    <script src="assets/js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "voxe-investor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Investor portal static site + Friends & Family EOI API",
+  "scripts": {
+    "start": "node server.js",
+    "inject-invite": "node scripts/inject-invite-pass.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

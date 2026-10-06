@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Early Access SAFE (Invite Only) – Voxe Investor</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/images/icon-192.png">
+    <meta name="theme-color" content="#0b0f0e">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      /* === Friends & Family page: modern UI (content unchanged) === */
+      .friends-family-standalone { padding: 2rem 0 4rem; }
+      .friends-family-standalone > .section-header { text-align: center; margin-bottom: 2rem; }
+      .friends-family-standalone > .section-header .section-description { color: var(--text-secondary); font-size: 1rem; }
+
+      /* Invite gate — card */
+      #friends-family .invite-gate-wrap {
+        max-width: 420px; margin: 0 auto 3rem; padding: 2.5rem 2rem;
+        background: linear-gradient(160deg, rgba(var(--card-rgb-1), 0.95), rgba(var(--card-rgb-2), 0.98));
+        border: 1px solid rgba(0, 255, 182, 0.25); border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255,255,255,0.04);
+      }
+      #friends-family .invite-gate-wrap label {
+        display: block; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; font-weight: 500;
+      }
+      #friends-family .invite-gate-wrap input[type="password"] {
+        width: 100%; padding: 14px 18px; margin-bottom: 1rem;
+        font-size: 1rem; border-radius: 12px; border: 1px solid var(--border-color);
+        background: var(--bg-darker); color: var(--text-primary);
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      #friends-family .invite-gate-wrap input:focus {
+        outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0, 255, 182, 0.2);
+      }
+      #friends-family .invite-gate-wrap .cta-button.primary {
+        width: 100%; padding: 14px; font-size: 1rem; border-radius: 12px; font-weight: 600;
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      }
+      #friends-family .invite-gate-wrap .invite-error {
+        margin-top: 1rem; padding: 10px 14px; border-radius: 10px;
+        background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3);
+        color: #fca5a5; font-size: 0.9rem;
+      }
+
+      /* Gated content — readable width */
+      #friends-family-gated.visible { animation: ffFadeIn 0.4s ease; }
+      @keyframes ffFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      #friends-family-content { max-width: 720px; margin: 0 auto; }
+
+      /* Section header inside gated */
+      #friends-family-gated .section-header {
+        margin-bottom: 2.5rem; padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+      #friends-family-gated .section-header h2 {
+        font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary);
+      }
+      #friends-family-gated .section-subtext { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem; }
+
+      /* Content blocks — cards */
+      #friends-family-gated .content-block {
+        background: linear-gradient(145deg, rgba(var(--card-rgb-1), 0.6), rgba(var(--card-rgb-2), 0.8));
+        border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: 16px;
+        padding: 1.75rem 2rem; margin-bottom: 1.5rem;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      #friends-family-gated .content-block:hover {
+        border-color: rgba(0, 255, 182, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      }
+      #friends-family-gated .content-block h3 {
+        font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);
+        padding-left: 1rem; border-left: 4px solid var(--accent-color);
+      }
+      #friends-family-gated .content-block p { margin-bottom: 1rem; line-height: 1.7; color: var(--text-primary); }
+      #friends-family-gated .content-block ul { margin: 1rem 0; padding-left: 1.5rem; }
+      #friends-family-gated .content-block li { margin-bottom: 0.5rem; line-height: 1.6; }
+
+      /* Links */
+      #friends-family-gated .content-block .ext-link,
+      #friends-family-gated .content-block .doc-ref { color: var(--accent-color); text-decoration: none; }
+      #friends-family-gated .content-block .ext-link:hover,
+      #friends-family-gated .content-block .doc-ref:hover { text-decoration: underline; }
+      #friends-family-gated .content-block .ref-docs {
+        margin-top: 1.25rem; padding: 1.1rem 1.25rem;
+        background: rgba(var(--card-rgb-2), 0.9); border-radius: 12px;
+        border: 1px solid var(--border-color); font-size: 0.95rem;
+      }
+      #friends-family-gated .content-block .doc-ref { display: inline-flex; align-items: center; gap: 0.5rem; }
+
+      /* Contribution table */
+      #friends-family-gated .contribution-table {
+        width: 100%; border-collapse: separate; border-spacing: 0;
+        border-radius: 12px; overflow: hidden;
+        margin: 1.25rem 0; box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      }
+      #friends-family-gated .contribution-table th,
+      #friends-family-gated .contribution-table td {
+        padding: 14px 18px; text-align: left; border: none;
+      }
+      #friends-family-gated .contribution-table thead th {
+        background: linear-gradient(180deg, rgba(0, 255, 182, 0.2), rgba(0, 255, 182, 0.08));
+        color: var(--accent-color); font-weight: 600; font-size: 0.9rem;
+      }
+      #friends-family-gated .contribution-table tbody tr {
+        background: rgba(var(--card-rgb-2), 0.5); transition: background 0.2s;
+      }
+      #friends-family-gated .contribution-table tbody tr:nth-child(even) { background: rgba(var(--card-rgb-1), 0.4); }
+      #friends-family-gated .contribution-table tbody tr:hover { background: rgba(0, 255, 182, 0.08); }
+
+      /* Key terms */
+      #friends-family-gated .key-terms-block { border-left-color: var(--accent-color); }
+      #friends-family-gated .key-terms-list {
+        list-style: none; padding-left: 0;
+      }
+      #friends-family-gated .key-terms-list li {
+        padding-left: 1.5rem; position: relative; margin-bottom: 0.75rem;
+      }
+      #friends-family-gated .key-terms-list li::before {
+        content: ''; position: absolute; left: 0; top: 0.5em;
+        width: 6px; height: 6px; border-radius: 50%; background: var(--accent-color);
+      }
+
+      /* Content notes */
+      #friends-family-gated .content-note {
+        margin-top: 1rem; padding: 1rem 1.2rem;
+        background: rgba(var(--ink-rgb), 0.08); border-radius: 10px;
+        border: 1px solid rgba(var(--ink-rgb), 0.15);
+        font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;
+      }
+
+      /* EOI CTA block */
+      #friends-family-gated .content-block:last-of-type { margin-bottom: 0; }
+      #friends-family-gated .content-block a.cta-button.primary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        padding: 14px 28px; border-radius: 12px; font-weight: 600;
+        margin-top: 0.5rem; transition: transform 0.2s, box-shadow 0.2s;
+      }
+      #friends-family-gated .content-block a.cta-button.primary:hover {
+        transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 255, 182, 0.35);
+      }
+
+      /* Config error */
+      #friends-family-gated .config-error-msg {
+        padding: 1.25rem; border-radius: 12px;
+        background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3);
+      }
+
+      /* Footer on this page */
+      body .footer-content { border-top: 1px solid var(--border-color); padding-top: 1.5rem; margin-top: 2rem; }
+
+      /* CTA row: two buttons */
+      #friends-family-gated .cta-row {
+        display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 1rem;
+      }
+      #friends-family-gated .cta-row .cta-button {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+      }
+      #friends-family-gated .cta-row .cta-button.secondary {
+        background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+      }
+      #friends-family-gated .cta-row .cta-button.secondary:hover {
+        background: rgba(0, 255, 182, 0.15);
+      }
+
+      /* Note modal */
+      .note-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+      .note-modal[hidden] { display: none; }
+      .note-modal-overlay {
+        position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px);
+      }
+      .note-modal-content {
+        position: relative; max-width: 42rem; max-height: 90vh; overflow: auto;
+        background: linear-gradient(160deg, rgba(var(--card-rgb-1), 0.98), rgba(var(--card-rgb-2), 0.99));
+        border: 1px solid rgba(0, 255, 182, 0.2); border-radius: 20px;
+        padding: 2.5rem 2.75rem 3rem; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.04);
+      }
+      .note-modal-close {
+        position: absolute; top: 1.25rem; right: 1.25rem;
+        width: 40px; height: 40px; border: none; border-radius: 10px;
+        background: rgba(var(--ink-rgb), 0.15); color: var(--text-secondary);
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        transition: background 0.2s, color 0.2s;
+      }
+      .note-modal-close:hover { background: rgba(var(--ink-rgb), 0.25); color: var(--text-primary); }
+      .note-modal .content-block {
+        margin-bottom: 0; box-shadow: none; border: none; padding: 0;
+        background: transparent; max-width: 38em;
+        font-family: 'Lora', Georgia, 'Times New Roman', serif;
+      }
+      .note-modal .content-block h3 {
+        margin-top: 0; margin-bottom: 1.25rem; font-size: 1.1rem; font-weight: 600;
+        color: var(--text-primary); letter-spacing: 0.02em;
+        font-family: 'Lora', Georgia, serif;
+      }
+      .note-modal .content-block p {
+        margin-bottom: 1.25rem; line-height: 1.75; color: #e2e8f0;
+        font-size: 0.9rem; letter-spacing: 0.01em;
+      }
+      .note-modal .content-block p:last-child { margin-bottom: 0; }
+      .note-modal .content-block .note-signature {
+        margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid rgba(var(--ink-rgb), 0.25);
+        color: var(--text-primary); font-size: 0.85rem;
+      }
+      .note-modal .content-block .note-signature strong { color: var(--text-primary); }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/icon-512.png" alt="Voxe Logo">
+                <span>VOXE</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#overview">Overview</a>
+                <a href="index.html#documents">Documents</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="index.html" class="cta-button"><i class="fas fa-arrow-left"></i> Back to Portal</a>
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="friends-family" class="container content-section friends-family-standalone">
+            <div class="section-header">
+                <p class="section-description">Enter your invite access pass to view details.</p>
+            </div>
+
+            <div id="invite-gate" class="invite-gate-wrap">
+                <label for="invite-pass-input">Enter your invite access pass to view details.</label>
+                <input type="password" id="invite-pass-input" placeholder="Access pass" autocomplete="off" />
+                <button type="button" id="invite-unlock-btn" class="cta-button primary">Unlock</button>
+                <p id="invite-error" class="invite-error" aria-live="polite">Incorrect access pass. Please try again.</p>
+            </div>
+
+            <div id="friends-family-gated" class="friends-family-gated">
+                <div id="invite-config-error" class="config-error-msg" style="display: none;">
+                    Configuration error: invite pass was not set at build time. Set INVESTOR_INVITE_PASS in investor/.env and run <code>node scripts/inject-invite-pass.js</code>.
+                </div>
+
+                <div id="friends-family-content">
+                    <div class="section-header">
+                        <h2>SAFE Offering (Invite Only)</h2>
+                        <p class="section-subtext">This information is shared privately with invited early supporters. Please do not forward or share publicly.</p>
+                    </div>
+
+                    <div class="content-block">
+                      <h3>Overview of the Opportunity</h3>
+                      <p>This <strong>Early Access SAFE pool</strong> is the first part of a larger planned raise for Voxe. Early supporters can participate now; the proceeds help cover legal, compliance, platform, and marketing costs as we prepare for the full round.</p>
+                      <p><strong>Planned raise:</strong> This invite-only pool lets you invest before the broader funding round opens. Terms and structure for that larger round — including the funding portal or platform we use — will be shared with investors once finalized.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>What is a SAFE?</h3>
+                        <p>We are using a SAFE (Simple Agreement for Future Equity), based on industry-standard Y Combinator templates. A SAFE is:</p>
+                        <ul>
+                            <li>An agreement where you invest money now,</li>
+                            <li>In exchange for the right to receive equity later, when the company does a priced equity round or another defined trigger event.</li>
+                        </ul>
+                        <p><strong>Key characteristics:</strong></p>
+                        <ul>
+                            <li>It is not a loan.</li>
+                            <li>It has no interest rate and no fixed maturity date.</li>
+                            <li>The number of shares you ultimately receive is determined by the SAFE’s terms (such as valuation cap and/or discount) at the time of conversion.</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Friends & Family Pool: $50K = 10% Equity</h3>
+                        <p>For this invite-only round, we are setting aside a fixed pool of 10% of the company’s equity for a total of $50,000 in SAFE investments.</p>
+                        <p><strong>Economically, this means:</strong></p>
+                        <ul>
+                            <li>The entire $50,000 corresponds to 10% of the company.</li>
+                            <li>Each investor’s share of that 10% is pro-rata based on their contribution to the $50,000 pool.</li>
+                        </ul>
+                        <p><strong>Example:</strong> If you contribute 10% of the total pool (i.e., $5,000 out of $50,000), your SAFE will be structured to represent approximately 1% of the company at the time of conversion (10% of the 10% pool).</p>
+                        <p class="content-note">The final legal SAFE documents govern the exact conversion mechanics, but the intent is that the Friends & Family pool collectively owns approximately 10% of the company once the SAFE converts.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Contribution Examples</h3>
+                        <table class="contribution-table" aria-label="Contribution examples">
+                            <thead>
+                                <tr>
+                                    <th>Contribution</th>
+                                    <th>% of pool</th>
+                                    <th>% of company</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>$500</td><td>1%</td><td>0.1%</td></tr>
+                                <tr><td>$1,000</td><td>2%</td><td>0.2%</td></tr>
+                                <tr><td>$2,500</td><td>5%</td><td>0.5%</td></tr>
+                                <tr><td>$5,000</td><td>10%</td><td>1.0%</td></tr>
+                                <tr><td>$10,000</td><td>20%</td><td>2.0%</td></tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+
+                    <div class="content-block key-terms-block">
+                        <h3>Key Terms (Summary)</h3>
+                        <ul class="key-terms-list">
+                            <li><strong>Instrument:</strong> Y Combinator–style SAFE (Simple Agreement for Future Equity).</li>
+                            <li><strong>Total Friends & Family pool:</strong> $50,000 in aggregate.</li>
+                            <li><strong>Equity reserved for this pool:</strong> 10% of the company (collectively for all participants in this round).</li>
+                            <li><strong>Minimum / typical participation:</strong> Typical checks are expected in the $1,000 – $5,000 range.</li>
+                            <li><strong>Use of funds:</strong> Legal and compliance costs for a larger fundraising round; platform and technology costs related to that raise; targeted marketing and outreach to onboard additional investors and customers.</li>
+                            <li><strong>Documentation:</strong> Each participant will sign a formal SAFE agreement before funds are considered final.</li>
+                        </ul>
+                        <p class="content-note">(This summary is for convenience only. In the event of any inconsistency, the signed SAFE agreement will control.)</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Founder & Team Vesting</h3>
+                        <p>To align incentives with long-term company success, founder and key team equity will follow standard startup vesting:</p>
+                        <ul>
+                            <li>4-year vesting schedule,</li>
+                            <li>With a 1-year cliff, and</li>
+                            <li>Monthly vesting after the first year.</li>
+                        </ul>
+                        <p>This means founders and team members earn their equity over time, as they continue to build the company. It helps protect investors by reducing scenarios where someone can leave early while still owning a large, unearned stake.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Risk Disclosure</h3>
+                        <p>Investing in early-stage startups is inherently risky. You should only invest if you can afford to lose 100% of your investment. There is no guarantee of liquidity, dividends, or a future exit.</p>
+                        <p>This page is invite-only and shared for informational purposes. It is not a general solicitation or public offering. Any investment will be made only through formal legal documents (SAFE) that you should review carefully, and you are encouraged to consult your own legal and financial advisors.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Next Steps – Expression of Interest</h3>
+                        <p>If you are interested in participating or would like more details, please complete the short expression-of-interest form on the dedicated page.</p>
+                        <p><strong>After you submit the form:</strong></p>
+                        <ul>
+                            <li>We will review your information.</li>
+                            <li>We will share the SAFE agreement and payment instructions (account details) with you.</li>
+                            <li>Once your funds are received and the SAFE is fully executed, we will send you a confirmation and receipt.</li>
+                        </ul>
+                        <p class="content-note">Submitting the form is non-binding. It simply lets us organize interest, follow up with the correct documents, and manage the Friends & Family pool fairly.</p>
+                        <p class="cta-row">
+                            
+                            <a href="friends-family-eoi.html" class="cta-button primary"><i class="fas fa-paper-plane"></i> Submit Expression of Interest</a>
+                            <button type="button" id="open-note-btn" class="cta-button secondary"><i class="fas fa-envelope-open-text"></i> A Note from the Founder Yilak</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="note-modal" class="note-modal" role="dialog" aria-labelledby="note-modal-title" aria-modal="true" hidden>
+            <div class="note-modal-overlay"></div>
+            <div class="note-modal-content">
+                <button type="button" class="note-modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
+                <div class="content-block">
+                    <h3 id="note-modal-title">A Note to Friends & Family</h3>
+                    <p>Voxe started from a simple idea: customer support should not be slow, complicated, or expensive for businesses. While building other projects, I experienced firsthand how difficult it was to connect AI with real business systems in a reliable way. That challenge became the starting point for Voxe.</p>
+                    <p>Over the past several months, I've been working to turn that idea into a real platform. Voxe is now operational, with fully working system and businesses already implementing and testing the system. The next step is to grow the platform and bring it to more companies and users.</p>
+                    <p>This Friends & Family round is not just about raising capital — it's an opportunity for the people who know and trust me to be part of this journey early. Your support means a lot to me, whether through investment, advice, or simply sharing the vision with others.</p>
+                    <p>Thank you for taking the time to learn about what we're building.</p>
+                    <p class="note-signature"><strong>Yilak Kidane</strong><br>Founder,<a href="https://voxedesk.com/" target="_blank" rel="noopener" style="color: var(--accent-color); text-decoration: none;font-size: 1.1em; font-weight: 600;"> Voxe</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="cta-button secondary"><i class="fas fa-arrow-left"></i> Back to Investor Portal</a>
+                <div class="footer-links">
+                    <a href="https://voxedesk.com" target="_blank" class="social-link" title="Voxe Platform"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:support@voxedesk.com" class="social-link" title="Support"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Voxe by MCP4. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/invite-config.js"></script>
+    <script>
+    (function() {
+      var STORAGE_KEY = 'friends_family_access';
+      var gateEl = document.getElementById('invite-gate');
+      var gatedEl = document.getElementById('friends-family-gated');
+      var contentEl = document.getElementById('friends-family-content');
+      var configErrorEl = document.getElementById('invite-config-error');
+      var inputEl = document.getElementById('invite-pass-input');
+      var unlockBtn = document.getElementById('invite-unlock-btn');
+      var errorEl = document.getElementById('invite-error');
+
+      function showGated(showConfigError) {
+        if (gateEl) gateEl.style.display = 'none';
+        if (gatedEl) gatedEl.classList.add('visible');
+        if (configErrorEl) configErrorEl.style.display = showConfigError ? 'block' : 'none';
+        if (contentEl) contentEl.style.display = showConfigError ? 'none' : 'block';
+      }
+
+      function hideGated() {
+        if (gateEl) gateEl.style.display = 'block';
+        if (gatedEl) gatedEl.classList.remove('visible');
+        if (errorEl) errorEl.classList.remove('visible');
+      }
+
+      function setError(visible) {
+        if (errorEl) errorEl.classList.toggle('visible', !!visible);
+      }
+
+      function sha256Hex(str) {
+        return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+          .then(function(buf) {
+            var arr = new Uint8Array(buf);
+            var hex = '';
+            for (var i = 0; i < arr.length; i++) hex += ('0' + arr[i].toString(16)).slice(-2);
+            return hex;
+          });
+      }
+
+      function checkPass() {
+        var expected = window.__INVITE_PASS_HASH__;
+        if (expected === undefined || expected === null) {
+          if (typeof console !== 'undefined' && console.warn) {
+            console.warn('[Voxe investor] INVESTOR_INVITE_PASS not set at build time. Gated section will show configuration error.');
+          }
+          showGated(true);
+          return;
+        }
+        var raw = (inputEl && inputEl.value) ? inputEl.value.trim() : '';
+        if (!raw) { setError(true); return; }
+        sha256Hex(raw).then(function(hash) {
+          if (hash === expected) {
+            try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (e) {}
+            setError(false);
+            showGated(false);
+            if (contentEl) contentEl.style.display = 'block';
+          } else {
+            setError(true);
+          }
+        }).catch(function() { setError(true); });
+      }
+
+      function init() {
+        if (!gateEl || !gatedEl) return;
+        var hasAccess = false;
+        try { hasAccess = localStorage.getItem(STORAGE_KEY) === 'true'; } catch (e) {}
+        var expected = window.__INVITE_PASS_HASH__;
+        if (hasAccess) {
+          showGated(false);
+          if (contentEl) contentEl.style.display = 'block';
+        } else if (expected === undefined || expected === null) {
+          showGated(true);
+          if (typeof console !== 'undefined' && console.warn) {
+            console.warn('[Voxe investor] INVESTOR_INVITE_PASS not set at build time.');
+          }
+        } else {
+          gatedEl.classList.remove('visible');
+        }
+        if (unlockBtn) unlockBtn.addEventListener('click', checkPass);
+        if (inputEl) inputEl.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkPass(); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+
+    (function() {
+      var modal = document.getElementById('note-modal');
+      var openBtn = document.getElementById('open-note-btn');
+      var overlay = modal && modal.querySelector('.note-modal-overlay');
+      var closeBtn = modal && modal.querySelector('.note-modal-close');
+      function openModal() {
+        if (!modal) return;
+        modal.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+        closeBtn && closeBtn.focus();
+      }
+      function closeModal() {
+        if (!modal) return;
+        modal.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+        openBtn && openBtn.focus();
+      }
+      if (openBtn) openBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (overlay) overlay.addEventListener('click', closeModal);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && !modal.hasAttribute('hidden')) closeModal();
+      });
+    })();
+    </script>
+    <script src="assets/js/theme.js"></script>
+</body>
+</html>

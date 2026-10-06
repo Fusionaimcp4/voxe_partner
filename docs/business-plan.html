@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Business Plan — Voxe</title>
+
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/images/icon-192.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="../assets/images/icon-192.png">
+  <meta name="theme-color" content="#0b0f0e">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .document-content { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    .document-content h1 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary); }
+    .document-content h2 { font-size: 1.8rem; margin: 3rem 0 1.5rem; color: var(--text-primary); border-bottom: 1px solid rgba(120,252,214,0.18); padding-bottom: 0.75rem; }
+    .document-content h3 { font-size: 1.3rem; margin: 1.5rem 0 1rem; color: var(--accent-color); font-family: var(--sans); font-weight: 700; }
+    .document-content h4 { font-size: 1.05rem; margin: 1rem 0 0.5rem; color: var(--text-primary); font-family: var(--sans); font-weight: 700; }
+    .document-content p { margin-bottom: 1.5rem; line-height: 1.8; }
+    .document-content ul { margin: 1.5rem 0; padding-left: 2rem; }
+    .document-content li { margin-bottom: 0.75rem; line-height: 1.6; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-color); text-decoration: none; margin-bottom: 2rem; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 1px; }
+    .back-link:hover { opacity: 0.8; }
+    .section-box { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; }
+    .highlight-box { background: rgba(120,252,214,0.04); border-left: 3px solid var(--accent-color); padding: 1.5rem; margin: 2rem 0; border-radius: 0 10px 10px 0; }
+    .phase-box { background: var(--bg-darker); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; margin: 1rem 0; }
+    .phase-box h3 { color: var(--accent-color); margin-top: 0; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .metric-card { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; text-align: center; }
+    .metric-card .number { font-family: var(--serif); font-size: 1.8rem; color: var(--accent-color); margin-bottom: 0.5rem; }
+    .metric-card .label { color: var(--text-secondary); font-size: 0.85rem; font-family: var(--mono); letter-spacing: 0.5px; }
+    .model-box { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; }
+    .model-box h4 { color: var(--accent-color); margin-bottom: 1rem; }
+    .feature-list { list-style: none; padding: 0; }
+    .feature-list li { padding-left: 1.5rem; position: relative; }
+    .feature-list li:before { content: "•"; color: var(--accent-color); position: absolute; left: 0; }
+    .download-section { text-align: center; margin: 3rem 0; }
+    .download-button { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent-color); color: #06120e; padding: 1rem 2rem; border-radius: 100px; text-decoration: none; font-weight: 700; transition: all 0.3s ease; }
+    .download-button:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,255,182,0.3); }
+    .doc-eyebrow { display: block; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/icon-192.png" alt="Voxe Logo">
+        <span>VOXE</span>
+      </a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="document-content">
+      <a href="../index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Investor Portal
+      </a>
+
+      <span class="eyebrow doc-eyebrow">Business Plan</span>
+      <h1>Voxe Business Plan</h1>
+      <p style="font-size: 1.1rem; color: var(--accent-color); margin: 0.25rem 0 0.5rem;">AI Customer Support Infrastructure</p>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Founder: Yilak Kidane · Company: Voxe Desk · <a href="https://voxedesk.com" target="_blank" rel="noopener" style="color: var(--accent-color);">https://voxedesk.com</a></p>
+
+      <h2>1. Executive Summary</h2>
+      <p>Voxe is an AI-powered customer support infrastructure platform that enables businesses to deploy a fully functional AI + human helpdesk system in minutes.</p>
+      <p>By simply providing their website URL, businesses can automatically generate:</p>
+      <ul>
+        <li>an AI support agent</li>
+        <li>a knowledge-based chatbot</li>
+        <li>a helpdesk inbox</li>
+        <li>integrations with business systems</li>
+      </ul>
+      <p>Unlike traditional chatbots, Voxe AI agents can access real-time operational data through API integrations, allowing them to answer customer questions about orders, accounts, products, and services.</p>
+      <p>Voxe aims to become the AI infrastructure layer for customer communication, replacing fragmented support tools with a unified AI-first platform.</p>
+
+      <h2>2. The Problem</h2>
+      <p>Customer support software is difficult and expensive to deploy. Businesses must combine several tools to manage customer communication:</p>
+      <ul>
+        <li>helpdesk platforms</li>
+        <li>chat widgets</li>
+        <li>CRM systems</li>
+        <li>automation tools</li>
+        <li>scheduling tools</li>
+        <li>AI assistants</li>
+      </ul>
+      <div class="highlight-box">
+        <p>This fragmented infrastructure creates:</p>
+        <ul>
+          <li>high operational costs</li>
+          <li>complex system management</li>
+          <li>inconsistent customer experiences</li>
+        </ul>
+        <p><strong>Most small businesses cannot afford enterprise support solutions.</strong></p>
+      </div>
+
+      <h2>3. The Solution</h2>
+      <p>Voxe consolidates customer support infrastructure into a single AI-powered platform. The platform automatically converts a company’s website and documents into a working support environment.</p>
+      <div class="section-box">
+        <h3>Core Capabilities</h3>
+        <h4>AI Support Agents</h4>
+        <p>AI agents answer customer questions instantly using company knowledge and integrated data sources.</p>
+        <h4>Hybrid AI + Human Support</h4>
+        <p>AI handles common inquiries while complex issues are escalated to human agents through the helpdesk.</p>
+        <h4>Real-Time Data Access &amp; Secure Action Execution</h4>
+        <p>Through integrations, Voxe AI agents can retrieve operational data from business systems — order status from WooCommerce or Shopify, customer information from CRM platforms such as HubSpot, Salesforce, and Pipedrive, and product inventory from eCommerce stores. On connected e-commerce platforms, Voxe goes further: once a customer is verified, it can directly edit a shipping address, cancel an unpaid order, or process a refund or return that matches the store's stated policy, with anything requiring human judgment escalated instead of automated.</p>
+        <h4>Multi-Channel by Default</h4>
+        <p>Web chat, email, SMS, WhatsApp, and phone are all powered by the same knowledge base, so answers stay consistent no matter how a customer reaches out.</p>
+        <h4>Built-In Helpdesk</h4>
+        <p>The platform includes a helpdesk environment where teams can manage conversations, assign agents, and monitor support activity.</p>
+        <h4>Automated Scheduling</h4>
+        <p>Customers can book meetings directly within conversations through calendar integration.</p>
+      </div>
+
+      <h2>4. Market Opportunity</h2>
+      <p>The global customer service software market exceeds <strong>$30 billion</strong> annually. Growth is driven by:</p>
+      <ul>
+        <li>digital commerce</li>
+        <li>remote services</li>
+        <li>AI automation</li>
+      </ul>
+      <div class="highlight-box">
+        <h3>AI Customer Support Market</h3>
+        <p>AI support automation is one of the fastest-growing segments of SaaS. Businesses are increasingly adopting AI agents to reduce support costs and improve response times.</p>
+      </div>
+
+      <h2>5. Target Market</h2>
+      <p>Voxe focuses on businesses that need scalable support automation. Primary segments include:</p>
+      <ul>
+        <li>eCommerce businesses</li>
+        <li>SaaS companies</li>
+        <li>service providers</li>
+        <li>digital marketplaces</li>
+        <li>startups and small businesses</li>
+      </ul>
+      <p>These segments represent millions of potential customers globally.</p>
+
+      <h2>6. Competitive Landscape</h2>
+      <p>Major competitors include: <strong>Zendesk</strong>, <strong>Intercom</strong>, <strong>Freshdesk</strong>, <strong>Salesforce Service Cloud</strong>. These platforms are designed for enterprise organizations and require significant configuration.</p>
+      <div class="section-box">
+        <h3>Voxe Advantages</h3>
+        <ul>
+          <li><strong>Instant Setup</strong> — Businesses can deploy AI support systems in minutes.</li>
+          <li><strong>Real Data Access &amp; Action Execution</strong> — AI agents interact with real business systems through API integrations, and on connected e-commerce platforms can execute the request itself rather than just describing what a human could do (see Section 3).</li>
+          <li><strong>Unified Platform</strong> — Voxe combines several tools into one: AI agent, helpdesk, automation, integrations, scheduling.</li>
+          <li><strong>Cost Efficiency</strong> — Voxe avoids the traditional per-resolution pricing model used by competitors.</li>
+        </ul>
+      </div>
+
+      <h2>7. Product Strategy</h2>
+      <p>The Voxe product strategy focuses on three core principles.</p>
+      <ul>
+        <li><strong>AI-First Support</strong> — AI agents serve as the first line of support, reducing workload for human agents.</li>
+        <li><strong>Integration-Centered Automation</strong> — The platform connects directly to business systems to retrieve operational data.</li>
+        <li><strong>Hybrid Support Workflows</strong> — AI automation is combined with human oversight to maintain service quality.</li>
+      </ul>
+
+      <h2>8. Technology Architecture</h2>
+      <p>Voxe is built on a modular architecture designed for scalability.</p>
+      <ul>
+        <li><strong>AI Agent Layer</strong> — Handles customer conversations and reasoning.</li>
+        <li><strong>Knowledge Engine</strong> — Processes website content and documents into searchable knowledge.</li>
+        <li><strong>Integration Layer</strong> — Connects AI agents to external business systems through APIs.</li>
+        <li><strong>Workflow Engine</strong> — Automates operational tasks triggered by conversations.</li>
+        <li><strong>Helpdesk Platform</strong> — Manages human support interactions.</li>
+      </ul>
+
+      <h2>9. Business Model</h2>
+      <p>Voxe operates as a Software-as-a-Service platform.</p>
+      <div class="model-box">
+        <p><strong>Subscription Plans</strong> — Businesses pay monthly based on usage and features.</p>
+        <p><strong>Advanced Integrations</strong> — Custom integrations and automation workflows generate additional revenue.</p>
+        <p><strong>Enterprise Licensing</strong> — Large organizations may license Voxe infrastructure for internal use.</p>
+      </div>
+
+      <h2>10. Growth Strategy</h2>
+      <p>The Voxe growth strategy focuses on scalable distribution.</p>
+      <div class="highlight-box">
+        <ul>
+          <li><strong>Product-Led Growth</strong> — Businesses can instantly generate demos using their website content. This allows potential customers to experience the product before committing.</li>
+          <li><strong>Integration Ecosystem</strong> — Integrations with popular platforms expand distribution and increase adoption.</li>
+          <li><strong>Global Expansion</strong> — Emerging markets represent a major opportunity for affordable automation tools.</li>
+        </ul>
+      </div>
+
+      <h2>11. Development Roadmap</h2>
+      <p>Future development priorities include:</p>
+      <ul>
+        <li>expanded integrations</li>
+        <li>advanced AI reasoning capabilities</li>
+        <li>analytics and reporting tools</li>
+        <li>enterprise administration features</li>
+        <li>developer ecosystem</li>
+      </ul>
+
+      <h2>12. Financial Plan</h2>
+      <p>Voxe is currently in early-stage development. Revenue growth will focus on expanding the user base through SaaS subscriptions. The long-term goal is to achieve scalable recurring revenue through global adoption.</p>
+
+      <h2>13. Investment Opportunity</h2>
+      <p>Voxe is raising capital to accelerate development and market expansion.</p>
+      <div class="highlight-box">
+        <h3>Use of Funds</h3>
+        <p>Investment will support:</p>
+        <ul>
+          <li>product development</li>
+          <li>infrastructure scaling</li>
+          <li>marketing and customer acquisition</li>
+          <li>strategic partnerships</li>
+        </ul>
+      </div>
+
+      <h2>14. Long-Term Vision</h2>
+      <p>Voxe aims to become the AI infrastructure platform powering customer communication for businesses worldwide. As AI agents increasingly manage interactions between companies and customers, Voxe provides the platform enabling these interactions.</p>
+
+      
+
+      <div class="download-section">
+        <a href="contact.html" class="download-button">
+          <i class="fas fa-envelope"></i>
+          Contact for Full Business Plan (PDF)
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="../assets/images/icon-192.png" alt="Voxe Logo">
+          <span>VOXE</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://voxedesk.com" target="_blank" class="social-link"><i class="fas fa-globe"></i></a>
+          <a href="mailto:support@voxedesk.com" class="social-link"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Voxe by MCP4. All rights reserved.</p>
+        <p class="disclaimer">This material is for informational purposes only and does not constitute an offer or solicitation to sell shares or securities.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script src="../assets/js/theme.js"></script>
+</body>
+</html>

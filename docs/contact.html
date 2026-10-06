@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us — Voxe</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/images/icon-192.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="../assets/images/icon-192.png">
+  <meta name="theme-color" content="#0b0f0e">
+  <style>
+    .contact-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .contact-header { text-align: left; margin-bottom: 2rem; }
+    .contact-header h1 { font-size: 2.5rem; color: var(--text-primary); margin-bottom: 1rem; }
+    .contact-header p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; max-width: 800px; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
+    .contact-card { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; transition: transform 0.2s ease; }
+    .contact-card:hover { transform: translateY(-4px); }
+    .contact-card h2 { display: flex; align-items: center; gap: 0.75rem; font-size: 1.2rem; color: var(--text-primary); margin-bottom: 1rem; font-family: var(--sans); font-weight: 700; }
+    .contact-card h2 svg { width: 22px; height: 22px; color: var(--accent-color); }
+    .contact-card p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; min-height: 80px; }
+    .contact-email { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-color); text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; }
+    .contact-email:hover { opacity: 0.8; }
+    .contact-email svg { width: 18px; height: 18px; }
+    .general-inquiries { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin-top: 2rem; }
+    .availability-note { margin-top: 3rem; padding: 1.5rem; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+    .doc-eyebrow { display: block; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/icon-192.png" alt="Voxe Logo">
+        <span>VOXE</span>
+      </a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contact-content">
+      <div class="contact-header">
+        <span class="eyebrow doc-eyebrow">Get In Touch</span>
+        <h1>Contact Us</h1>
+        <p>We're here to help and eager to explore investment and partnership opportunities. Choose the appropriate channel below to get in touch.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h2>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            Investment & Partnerships
+          </h2>
+          <p>Strategic investors and partners interested in Voxe's AI customer support platform—discuss funding, distribution, or go-to-market collaboration.</p>
+          <a href="mailto:investors@voxedesk.com" class="contact-email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            investors@voxedesk.com
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <h2>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+            Partnership Opportunities
+          </h2>
+          <p>Technology partners, resellers, and agencies—integrate or distribute Voxe, or explore technical and commercial partnerships.</p>
+          <a href="mailto:partnerships@voxedesk.com" class="contact-email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            partnerships@voxedesk.com
+          </a>
+        </div>
+      </div>
+
+      <div class="general-inquiries">
+        <h2>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          General Inquiries & Support
+        </h2>
+        <p>Product questions, technical support, or sales: reach our team.</p>
+        <a href="mailto:support@voxedesk.com" class="contact-email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          support@voxedesk.com
+        </a>
+        <p style="margin-top: 1rem;"><a href="https://voxedesk.com/help" target="_blank" rel="noopener" style="color: var(--accent-color);">voxedesk.com</a> — Platform & Help Center</p>
+      </div>
+
+      <div class="availability-note">
+        <p>We aim to respond to all inquiries promptly. Investment and partnership discussions may require additional time for follow-up.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="../assets/images/icon-192.png" alt="Voxe Logo">
+          <span>VOXE</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://voxedesk.com" target="_blank" class="social-link"><i class="fas fa-globe"></i></a>
+          <a href="mailto:support@voxedesk.com" class="social-link"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Voxe by MCP4. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script src="../assets/js/theme.js"></script>
+</body>
+</html>

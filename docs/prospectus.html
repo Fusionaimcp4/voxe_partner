@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Investment Prospectus — Voxe</title>
+
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/images/icon-192.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="../assets/images/icon-192.png">
+  <meta name="theme-color" content="#0b0f0e">
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .doc-hero { padding: 3.5rem 0 2.5rem; text-align: center; background: radial-gradient(ellipse 120% 80% at 50% -10%, rgba(0,255,182,0.08), transparent 60%); }
+    .doc-hero .eyebrow { display:block; margin-bottom: 1rem; }
+    .doc-hero h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0.75rem; }
+    .doc-hero .company-line { font-size: 1rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto; line-height: 1.7; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-color); text-decoration: none; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 1px; }
+    .back-link:hover { opacity: 0.8; }
+
+    /* Contents rail */
+    .toc-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; max-width: 980px; margin: 0 auto; padding: 0 20px; }
+    .toc-pills a { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; padding: 7px 13px; border: 1px solid rgba(120,252,214,0.25); color: var(--white-dim); text-decoration: none; border-radius: 100px; transition: all 0.2s ease; }
+    .toc-pills a:hover { border-color: var(--brand-bright); color: var(--brand-bright); background: rgba(120,252,214,0.06); }
+
+    .document-content { max-width: 920px; margin: 0 auto; padding: 3rem 20px 5rem; }
+    .doc-section { padding-top: 4.5rem; margin-top: -4.5rem; }
+    .doc-section .sec-eyebrow { display: block; margin-bottom: 0.6rem; }
+    .document-content h2 { font-size: 1.9rem; margin: 0 0 1.25rem; color: var(--text-primary); padding-bottom: 0.75rem; border-bottom: 1px solid rgba(120,252,214,0.18); }
+    .document-content h3 { font-size: 1.3rem; margin: 1.75rem 0 0.9rem; color: var(--brand-bright); font-family: var(--sans); font-weight: 700; }
+    .document-content h4 { font-size: 1.05rem; margin: 1.1rem 0 0.5rem; color: var(--text-primary); font-family: var(--sans); font-weight: 700; }
+    .document-content p { margin-bottom: 1.1rem; line-height: 1.8; }
+    .document-content ul { margin: 1rem 0 1.5rem; padding-left: 1.5rem; }
+    .document-content li { margin-bottom: 0.55rem; line-height: 1.65; }
+    .document-content > section + section { margin-top: 3.5rem; }
+
+    .executive-summary { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-top: 2px solid var(--brand); border-radius: 12px; padding: 2rem 2.25rem; margin: 1.5rem 0 2rem; }
+
+    .market-stats, .metrics-grid, .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.1rem; margin: 1.75rem 0; }
+    .stat-card, .metric-card { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.4rem; text-align: center; }
+    .stat-card .number, .metric-card .number { font-family: var(--serif); font-size: 1.8rem; color: var(--brand-bright); margin-bottom: 0.4rem; }
+    .stat-card .label, .metric-card .label { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-secondary); line-height: 1.5; }
+
+    .highlight-box { background: rgba(120,252,214,0.04); border-left: 3px solid var(--brand-bright); padding: 1.5rem 1.75rem; margin: 1.75rem 0; border-radius: 0 10px 10px 0; }
+    .highlight-box h3 { margin-top: 0; }
+
+    .strategy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; margin: 1.75rem 0; }
+    .strategy-card { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; }
+    .strategy-card h4 { color: var(--brand-bright); margin-bottom: 0.75rem; font-size: 1.05rem; }
+    .strategy-card p { margin: 0; font-size: 0.92rem; }
+
+    /* Step rail for How It Works */
+    .step-rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.75rem 0; }
+    .step-card { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.7), rgba(var(--card-rgb-2),0.85)); border: 1px solid var(--border-color); border-top: 2px solid var(--brand); border-radius: 10px; padding: 1.4rem; }
+    .step-card .step-num { font-family: var(--serif); font-size: 1.7rem; color: var(--brand-bright); opacity: 0.4; margin-bottom: 0.5rem; }
+    .step-card h4 { margin: 0 0 0.4rem; font-size: 0.95rem; }
+    .step-card p { margin: 0; font-size: 0.84rem; }
+
+    /* Tag cloud for integrations/channels */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.75rem; }
+    .tag-chip { font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; padding: 6px 13px; border: 1px solid rgba(120,252,214,0.25); border-radius: 100px; color: var(--white-dim); }
+
+    /* Who grid */
+    .who-grid-doc { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.75rem 0; }
+    .who-card-doc { background: rgba(120,252,214,0.04); border: 1px solid rgba(120,252,214,0.16); border-radius: 10px; padding: 1.35rem; }
+    .who-card-doc h4 { margin: 0 0 0.5rem; font-size: 0.98rem; }
+    .who-card-doc p { margin: 0; font-size: 0.86rem; }
+
+    /* Pricing table */
+    table.pricing-table, table.comparison-table, table.growth-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+    table.pricing-table th, table.pricing-table td,
+    table.comparison-table th, table.comparison-table td,
+    table.growth-table th, table.growth-table td { padding: 0.85rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+    table.pricing-table th, table.comparison-table th, table.growth-table th { background: rgba(120,252,214,0.06); color: var(--brand-bright); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+    table.pricing-table td, table.comparison-table td, table.growth-table td { background: rgba(var(--card-rgb-2),0.4); color: var(--white-dim); }
+    .check { color: var(--green); }
+    .x-mark { color: var(--red); }
+    .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+    .table-wrap table { margin: 0; }
+
+    /* ARR chart */
+    .arr-chart { display: flex; align-items: flex-end; gap: 10px; margin: 1.5rem 0 0.5rem; padding: 0 0 1.5rem; max-width: 420px; height: 150px; }
+    .arr-bar { flex: 1; min-width: 44px; min-height: 28px; background: linear-gradient(to top, var(--brand-bright), rgba(0, 255, 182, 0.25)); border-radius: 6px 6px 0 0; position: relative; }
+    .arr-bar span { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 0.68rem; color: var(--white-dim); margin-bottom: 6px; white-space: nowrap; }
+    .arr-labels { display: flex; gap: 10px; max-width: 420px; margin-top: -0.5rem; }
+    .arr-labels span { flex: 1; min-width: 44px; font-family: var(--mono); font-size: 0.72rem; color: var(--text-secondary); text-align: center; }
+
+    .disclaimer-box { font-size: 0.85rem; color: var(--text-secondary); padding: 1.25rem 1.5rem; border: 1px solid var(--border-color); border-radius: 10px; margin-top: 3.5rem; line-height: 1.6; }
+
+    video.inline-video { width: 100%; border-radius: 10px; display: block; margin-top: 1rem; border: 1px solid var(--border-color); }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a href="../index.html" class="logo">
+        <img src="../assets/images/icon-192.png" alt="Voxe Logo">
+        <span>VOXE</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portal</a>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="doc-hero">
+      <span class="eyebrow">Investment Prospectus</span>
+      <h1>Voxe</h1>
+      <p class="company-line"><strong>Voxe Desk</strong> &nbsp;·&nbsp; AI-First Customer Support Infrastructure &nbsp;·&nbsp; <a href="https://voxedesk.com" target="_blank" rel="noopener" style="color: var(--accent-color);">voxedesk.com</a></p>
+    </div>
+
+    <nav class="toc-pills">
+      <a href="#summary">Summary</a>
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#who">Who It Serves</a>
+      <a href="#market">Market</a>
+      <a href="#product">Product</a>
+      <a href="#differentiation">Differentiation</a>
+      <a href="#business-model">Business Model</a>
+      <a href="#growth">Growth</a>
+      <a href="#raise">Capital Raise</a>
+      <a href="#vision">Vision</a>
+    </nav>
+
+    <div class="document-content">
+
+      <section id="summary" class="doc-section">
+        <span class="eyebrow sec-eyebrow">01 — Executive Summary</span>
+        <h2>What Voxe Is</h2>
+        <div class="executive-summary">
+          <p>Voxe is an AI-first customer support platform that converts a company's website and documents into a live AI + human helpdesk system. Businesses provide their website URL, and Voxe automatically builds an AI knowledge base, deploys a support chatbot, and creates a helpdesk inbox — connected to the business systems that matter, including e-commerce platforms, CRMs, and calendars.</p>
+          <p>Voxe's AI agents go beyond answering questions about orders, products, accounts, and support requests — once a customer is verified, they can securely execute the request itself, escalating anything that needs human judgment (see Section 3 for how). The platform is built for small and growing businesses that need enterprise-grade support without enterprise complexity, per-seat fees, or per-resolution pricing.</p>
+        </div>
+        <div class="stat-row">
+          <div class="stat-card"><div class="number">Minutes</div><div class="label">To deploy a support desk</div></div>
+          <div class="stat-card"><div class="number">5</div><div class="label">Channels unified (web, email, SMS, WhatsApp, phone)</div></div>
+          <div class="stat-card"><div class="number">AI + Human</div><div class="label">Hybrid support model</div></div>
+          <div class="stat-card"><div class="number">$30B+</div><div class="label">Global support software market</div></div>
+        </div>
+      </section>
+
+      <section id="problem" class="doc-section">
+        <span class="eyebrow sec-eyebrow">02 — The Problem</span>
+        <h2>Customer support infrastructure is broken for most businesses</h2>
+        <p>Current solutions such as Zendesk, Intercom, and Salesforce Service Cloud were built for enterprises with dedicated implementation teams. For everyone else, they create more problems than they solve:</p>
+        <ul>
+          <li><strong>Complexity</strong> — Setup requires weeks of configuration, integration work, and technical knowledge.</li>
+          <li><strong>Cost</strong> — Most platforms charge per agent seat or per resolution, so cost climbs as a business grows — exactly when margin matters most.</li>
+          <li><strong>Limited automation</strong> — Most AI chatbots can describe a policy or a product, but the moment a request requires actually doing something — editing an order, cancelling a purchase, processing a refund — they hand the customer to a human. A support bot that can't act on a request is a slightly better FAQ page, not a support tool.</li>
+          <li><strong>Fragmented infrastructure</strong> — Businesses stitch together a chatbot, a helpdesk, a CRM, automation tools, and a scheduler. Every seam is operational friction and extra cost.</li>
+        </ul>
+        <div class="highlight-box">
+          <p style="margin:0;"><strong>Most small and mid-sized businesses simply cannot afford, or cannot operate, enterprise support infrastructure.</strong></p>
+        </div>
+      </section>
+
+      <section id="solution" class="doc-section">
+        <span class="eyebrow sec-eyebrow">03 — The Voxe Solution</span>
+        <h2>One AI-powered support system, deployed from a URL</h2>
+        <p>Voxe unifies automation, human support, and operational data access into a single platform, automatically generated from a company's existing content.</p>
+
+        <h3>Core Capabilities</h3>
+        <div class="who-grid-doc">
+          <div class="who-card-doc">
+            <h4>Instant AI support deployment</h4>
+            <p>Voxe extracts knowledge from a company's website, generates a chatbot, and builds a helpdesk system — in minutes instead of weeks.</p>
+          </div>
+          <div class="who-card-doc">
+            <h4>Hybrid AI + human support</h4>
+            <p>AI agents handle common inquiries automatically; complex issues are routed to human agents through the integrated helpdesk, with full conversation context attached.</p>
+          </div>
+          <div class="who-card-doc">
+            <h4>Real-time business data access</h4>
+            <p>Through API integrations, Voxe's AI agents can check order status, inventory, and purchase history — so it answers "where is my order?" correctly, not generically.</p>
+          </div>
+          <div class="who-card-doc">
+            <h4>Multi-channel by default</h4>
+            <p>Web chat, email, SMS, WhatsApp, and phone are powered by the same knowledge base, so answers are consistent everywhere.</p>
+          </div>
+          <div class="who-card-doc">
+            <h4>Built-in helpdesk</h4>
+            <p>A fully integrated helpdesk lets teams manage conversations, assign agents, and monitor customer interactions from one inbox.</p>
+          </div>
+          <div class="who-card-doc">
+            <h4>Automated scheduling</h4>
+            <p>Customers can book meetings directly inside a conversation, through integrated calendar scheduling.</p>
+          </div>
+        </div>
+
+        <h3>Secure Action Execution</h3>
+        <p>The gap between an AI that talks about a task and one that completes it is identity verification. Before Voxe touches an order, it matches an order number to a second identifier — the account email or billing name — against the live store record. That check is enforced in the workflow logic itself, not a prompt instruction the AI could be argued past. If the identifiers don't match, Voxe won't confirm order details at all, and offers to route the conversation to a human instead.</p>
+        <div class="tag-cloud">
+          <span class="tag-chip">Shipping &amp; billing address edits</span>
+          <span class="tag-chip">Order cancellations</span>
+          <span class="tag-chip">Policy-matched refunds</span>
+          <span class="tag-chip">Return requests</span>
+          <span class="tag-chip">Shipment &amp; delivery tracking</span>
+          <span class="tag-chip">Identity verification</span>
+        </div>
+        <p>Write access is deliberately scoped to actions that are reversible, low-risk, or that clearly match a store's own stated policy — exact scope varies by integration. Anything that falls outside those conditions — a disputed charge, a partial refund outside policy terms, a change to paid order contents — is escalated to a human agent with the full order and conversation context already attached, rather than approved automatically.</p>
+      </section>
+
+      <section id="how-it-works" class="doc-section">
+        <span class="eyebrow sec-eyebrow">04 — How It Works</span>
+        <h2>From website URL to live support desk</h2>
+        <p>Deployment is designed to remove the integration project that competing platforms require.</p>
+        <div class="step-rail">
+          <div class="step-card"><div class="step-num">01</div><h4>Provide your URL</h4><p>Business submits its website — no manual content setup to begin.</p></div>
+          <div class="step-card"><div class="step-num">02</div><h4>Knowledge extraction</h4><p>The site and any uploaded documents (PDF, DOCX, text) are chunked, embedded, and indexed for semantic search.</p></div>
+          <div class="step-card"><div class="step-num">03</div><h4>AI agent deployed</h4><p>A chat widget, knowledge-backed chatbot, and helpdesk inbox go live, tuned to the business's own content and tone.</p></div>
+          <div class="step-card"><div class="step-num">04</div><h4>Connect live data &amp; actions</h4><p>Commerce, CRM, and calendar integrations let the AI look up — and on connected e-commerce platforms, directly update — real order, inventory, and account data, once the customer is verified.</p></div>
+          <div class="step-card"><div class="step-num">05</div><h4>Human escalation</h4><p>Routine, verifiable actions complete without a human. Conversations that need judgment — disputes, policy exceptions, anything ambiguous — hand off to a live agent in the helpdesk, with full context attached.</p></div>
+        </div>
+        <video class="inline-video" controls preload="none">
+          <source src="../Voxe_Desk__The_Power_Behind_Store_Data.mp4" type="video/mp4">
+        </video>
+      </section>
+
+      <section id="who" class="doc-section">
+        <span class="eyebrow sec-eyebrow">05 — Who Voxe Serves</span>
+        <h2>Primary customers and use cases</h2>
+        <p>Voxe is built for businesses that need real support automation but are priced out of, or over-served by, enterprise helpdesk platforms.</p>
+        <div class="who-grid-doc">
+          <div class="who-card-doc"><h4>SaaS &amp; startups</h4><p>Bursts of trial, billing, and onboarding questions handled instantly, with humans freed for complex or high-value conversations.</p></div>
+          <div class="who-card-doc"><h4>E-commerce &amp; online stores</h4><p>Order status, address changes, and cancellations — plus policy-matched refunds and returns on Shopify — verified and executed directly against live store data, not just described.</p></div>
+          <div class="who-card-doc"><h4>Solo founders &amp; small teams</h4><p>Businesses without a dedicated support function get 24/7 coverage without hiring a support team.</p></div>
+          <div class="who-card-doc"><h4>Agencies &amp; service businesses</h4><p>Manage support for multiple brands or clients from one unified, white-label-capable platform.</p></div>
+        </div>
+        <p>Typical requests range from a quick lookup — <em>"Where is my order?"</em>, <em>"Do you have this in stock?"</em> — to one Voxe completes itself once the customer is verified, like <em>"My address autofilled wrong, can you fix it before it ships?"</em> or <em>"Can you cancel that order, I found it cheaper elsewhere"</em> — no ticket required.</p>
+      </section>
+
+      <section id="market" class="doc-section">
+        <span class="eyebrow sec-eyebrow">06 — Market Opportunity</span>
+        <h2>A large, AI-reshaped market</h2>
+        <div class="market-stats">
+          <div class="stat-card"><div class="number">$30B+</div><div class="label">Global customer service software market</div></div>
+          <div class="stat-card"><div class="number">Fast-growing</div><div class="label">AI support automation segment</div></div>
+          <div class="stat-card"><div class="number">Millions</div><div class="label">Of SMBs underserved by enterprise tools</div></div>
+        </div>
+        <div class="highlight-box">
+          <h3>Target Market</h3>
+          <p style="margin:0;">Voxe focuses on small businesses, online stores, SaaS startups, service businesses, and digital marketplaces — segments that often lack access to affordable, capable support infrastructure. Growth in this market is driven by AI automation, digital commerce, and the shift toward AI agents as the default interface for customer communication.</p>
+        </div>
+      </section>
+
+      <section id="product" class="doc-section">
+        <span class="eyebrow sec-eyebrow">07 — Product &amp; Current State</span>
+        <h2>A working, continuously developed platform</h2>
+        <p>Voxe is in active production development, not a prototype. The platform is built on a modern, modular architecture:</p>
+        <ul>
+          <li><strong>AI Agent Layer</strong> — Handles customer conversations and reasoning, routed through a multi-LLM tool-calling layer that selects the right tool for each task.</li>
+          <li><strong>Knowledge Engine</strong> — Processes website content and uploaded documents into a searchable knowledge base using retrieval-augmented generation (RAG).</li>
+          <li><strong>Integration Layer</strong> — Connects the AI agent to business systems through APIs and the Model Context Protocol (MCP).</li>
+          <li><strong>Workflow Engine</strong> — Automates actions triggered by conversations, including booking and escalation.</li>
+          <li><strong>Helpdesk Platform</strong> — Manages human support interactions, assignment, and monitoring.</li>
+        </ul>
+
+        <h3>Live Integrations</h3>
+        <div class="tag-cloud">
+          <span class="tag-chip">Shopify</span>
+          <span class="tag-chip">WooCommerce</span>
+          <span class="tag-chip">HubSpot</span>
+          <span class="tag-chip">Salesforce</span>
+          <span class="tag-chip">Pipedrive</span>
+          <span class="tag-chip">Google Calendar</span>
+          <span class="tag-chip">Custom systems via MCP</span>
+        </div>
+        <p>For the e-commerce integrations, catalog data — products, pricing, stock — syncs into the knowledge base on a schedule, while order, fulfillment, and refund status are queried live at the moment a customer asks, because that data changes by the hour. The same connection carries the write actions: address edits, cancellations, and policy-matched refunds execute against the live order record, not a cached copy.</p>
+
+        <h3>Built-In Operational Maturity</h3>
+        <p>Beyond the AI product itself, Voxe runs on production-grade infrastructure: authenticated accounts with two-factor authentication, Stripe-based subscription billing with usage metering, automated error monitoring, and a containerized deployment pipeline. This is the kind of foundation that supports paying customers today and scales with growth, not a demo environment.</p>
+      </section>
+
+      <section id="differentiation" class="doc-section">
+        <span class="eyebrow sec-eyebrow">08 — Product Differentiation &amp; Competitive Landscape</span>
+        <h2>Why Voxe wins on deployment speed, data access, and cost</h2>
+        <p>Voxe competes with Zendesk, Intercom, Freshdesk, and Salesforce Service Cloud. These platforms are built for enterprise organizations and require significant configuration. Most of them, and most AI add-ons bolted onto them, stop at answering a question — Voxe is built to complete the task behind it. Voxe differs in several concrete ways:</p>
+        <div class="table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr><th>Capability</th><th>Traditional platforms</th><th>Voxe</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Time to deploy</td><td>Weeks of setup and configuration</td><td><span class="check"><i class="fas fa-check"></i></span> Minutes, from a website URL</td></tr>
+              <tr><td>AI data access</td><td>Static FAQ answers only</td><td><span class="check"><i class="fas fa-check"></i></span> Live order, inventory, and CRM data via API</td></tr>
+              <tr><td>Action execution</td><td>Routes every request to a human</td><td><span class="check"><i class="fas fa-check"></i></span> Executes verified, policy-scoped actions directly — address edits, cancellations, refunds, returns — before a ticket forms</td></tr>
+              <tr><td>Pricing model</td><td>Per-seat or per-resolution</td><td><span class="check"><i class="fas fa-check"></i></span> Flat subscription tiers, no per-resolution fees</td></tr>
+              <tr><td>Platform scope</td><td>Separate chatbot, helpdesk, CRM, automation tools</td><td><span class="check"><i class="fas fa-check"></i></span> Agent, helpdesk, workflows, integrations, and scheduling in one platform</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Voxe also incorporates a tool-calling architecture that dynamically selects specialized tools through a <a href="https://mcp4.ai/" target="_blank" rel="noopener" style="color: var(--accent-color); text-decoration: none;">NeuroSwitch</a>-powered routing layer to validate and execute tasks — improving reliability and reducing AI hallucinations compared to single-model chatbots.</p>
+      </section>
+
+      <section id="business-model" class="doc-section">
+        <span class="eyebrow sec-eyebrow">09 — Business Model</span>
+        <h2>Subscription SaaS, priced to avoid the per-resolution trap</h2>
+        <p>Voxe operates as a Software-as-a-Service platform with tiered monthly subscriptions. Unlike competitors that charge per ticket resolved, Voxe's plans scale with active conversations, agent seats, and integrations — not with support volume alone.</p>
+        <div class="table-wrap">
+          <table class="pricing-table">
+            <thead>
+              <tr><th>Plan</th><th>Price / mo</th><th>Active chats</th><th>Helpdesk agents</th><th>Knowledge bases</th><th>Integrations</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Free</td><td>$0</td><td>1</td><td>1</td><td>1</td><td>2</td></tr>
+              <tr><td>Starter</td><td>$49.99</td><td>2</td><td>2</td><td>2</td><td>3</td></tr>
+              <tr><td>Team</td><td>$119.99</td><td>5</td><td>3</td><td>5</td><td>5</td></tr>
+              <tr><td>Business</td><td>$229.99</td><td>10</td><td>5</td><td>10</td><td>10</td></tr>
+              <tr><td>Enterprise</td><td>Custom</td><td>Unlimited</td><td>Unlimited</td><td>Custom</td><td>Custom</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Revenue Sources</h3>
+        <ul>
+          <li><strong>Subscription plans</strong> — Monthly recurring revenue across five tiers, from Free to Enterprise.</li>
+          <li><strong>Usage expansion</strong> — Pay-as-you-go top-ups for AI usage beyond plan limits, aligned to actual API cost rather than punitive per-resolution fees.</li>
+          <li><strong>Enterprise licensing</strong> — Custom deployments, white-label options, and dedicated infrastructure for larger organizations.</li>
+        </ul>
+      </section>
+
+      <section id="growth" class="doc-section">
+        <span class="eyebrow sec-eyebrow">10 — Growth Opportunity</span>
+        <h2>A product-led path to scale</h2>
+        <p>The growth strategy centers on three levers:</p>
+        <div class="strategy-grid">
+          <div class="strategy-card"><h4>Product-led growth</h4><p>Businesses can generate a working demo instantly from their own website, enabling self-serve discovery and viral adoption before any sales conversation.</p></div>
+          <div class="strategy-card"><h4>Integration partnerships</h4><p>Each new commerce, CRM, or automation integration expands distribution and makes the platform more valuable to the next customer.</p></div>
+          <div class="strategy-card"><h4>Global expansion</h4><p>Emerging markets represent a large opportunity, where businesses need affordable automation and cannot staff large support teams.</p></div>
+        </div>
+        <h3>Illustrative ARR Trajectory</h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary);">The table and chart below are an illustrative growth model based on the published pricing tiers and an assumed blended ARPU — not reported traction or guaranteed results.</p>
+        <div class="table-wrap">
+          <table class="growth-table">
+            <thead><tr><th>Year</th><th>Customers</th><th>Illustrative ARR</th></tr></thead>
+            <tbody>
+              <tr><td>Year 1</td><td>200</td><td>$288K</td></tr>
+              <tr><td>Year 2</td><td>1,000</td><td>$1.44M</td></tr>
+              <tr><td>Year 3</td><td>5,000</td><td>$7.2M</td></tr>
+              <tr><td>Year 4</td><td>15,000</td><td>$21.6M</td></tr>
+              <tr><td>Year 5</td><td>40,000</td><td>$57.6M</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="arr-chart" aria-label="Illustrative ARR growth from Year 1 to Year 5">
+          <div class="arr-bar" style="height: 8%;"><span>$288K</span></div>
+          <div class="arr-bar" style="height: 18%;"><span>$1.44M</span></div>
+          <div class="arr-bar" style="height: 45%;"><span>$7.2M</span></div>
+          <div class="arr-bar" style="height: 75%;"><span>$21.6M</span></div>
+          <div class="arr-bar" style="height: 100%;"><span>$57.6M</span></div>
+        </div>
+        <div class="arr-labels"><span>Y1</span><span>Y2</span><span>Y3</span><span>Y4</span><span>Y5</span></div>
+        <p style="margin-top: 1.5rem;">Additional revenue expansion opportunities include advanced integrations, enterprise deployments, AI automation workflows, and white-label licensing — each increasing customer lifetime value over time.</p>
+      </section>
+
+      <section id="raise" class="doc-section">
+        <span class="eyebrow sec-eyebrow">11 — The Capital Raise</span>
+        <h2>What this investment supports</h2>
+        <p>Voxe is raising capital to accelerate product development and market expansion. The company is currently running an invite-only Friends &amp; Family SAFE round for early supporters, ahead of a broader funding round.</p>
+        <h3>Use of Funds</h3>
+        <ul>
+          <li><strong>Compliance</strong> — Legal and regulatory costs for a larger fundraising round.</li>
+          <li><strong>Infrastructure scaling</strong> — Platform and technology costs to support a growing customer base.</li>
+          <li><strong>Marketing &amp; user acquisition</strong> — Targeted outreach to onboard additional customers and investors.</li>
+          <li><strong>Partnership development</strong> — Expanding integration and distribution partnerships.</li>
+        </ul>
+        <div class="highlight-box">
+          <h3>Early Access SAFE</h3>
+          <p>Invited early supporters can review full terms — a Simple Agreement for Future Equity (SAFE), pool structure, and contribution examples — on the dedicated, invite-gated <a href="../friends-family.html" style="color: var(--accent-color);">Friends &amp; Family page</a>. For all other investment or partnership conversations, reach the team directly.</p>
+        </div>
+        <p><a href="contact.html" class="cta-button primary"><i class="fas fa-envelope"></i> Contact the Investor Relations Team</a></p>
+      </section>
+
+      <section id="vision" class="doc-section">
+        <span class="eyebrow sec-eyebrow">12 — Vision</span>
+        <h2>The AI infrastructure layer for customer communication</h2>
+        <p>As AI agents become the primary interface between businesses and their customers, Voxe aims to be the platform that powers those interactions — combining automation, human judgment, and live business data into one system, for businesses that could never have afforded enterprise support infrastructure before.</p>
+      </section>
+
+      <div class="disclaimer-box">
+        This prospectus is for informational purposes only and does not constitute an offer or solicitation to sell securities. Any investment will be made only through formal legal documents that investors should review carefully, ideally with their own legal and financial advisors. Forward-looking statements, including market sizing and growth projections, are estimates and illustrations, not guarantees of future performance.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="../assets/images/icon-192.png" alt="Voxe Logo">
+          <span>VOXE</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://voxedesk.com" target="_blank" class="social-link"><i class="fas fa-globe"></i></a>
+          <a href="mailto:support@voxedesk.com" class="social-link"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Voxe by MCP4. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+    <script src="../assets/js/theme.js"></script>
+</body>
+</html>

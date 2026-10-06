@@ -1,0 +1,4 @@
+# Deny web access to submissions (PII). PHP can still read/write via filesystem.
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>

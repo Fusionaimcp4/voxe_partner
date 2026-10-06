@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voxe — Investor Prospectus</title>
+    <meta name="description" content="Voxe is an AI-first customer support platform that deploys an AI + human helpdesk in minutes. Investment prospectus, business plan, and growth model for investors.">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/images/icon-192.png">
+    <meta name="theme-color" content="#0b0f0e">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      /* ── Section label (help-center style) ── */
+      .rail-label {
+        font-family: var(--mono); font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+        color: var(--brand-bright); margin-bottom: 1.75rem; display: flex; align-items: center; gap: 12px;
+        max-width: 1200px; margin-left: auto; margin-right: auto;
+      }
+      .rail-label::after { content: ''; flex: 1; height: 1px; background: rgba(120,252,214,0.18); }
+
+      /* ── Contents timeline nav ── */
+      .toc-nav { padding: 0 20px 0.5rem; }
+      .toc-timeline { display: flex; gap: 0; align-items: stretch; position: relative; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; }
+      .toc-timeline::before {
+        content: ''; position: absolute; left: 0; right: 0; top: 7px; height: 2px;
+        background: linear-gradient(90deg, var(--brand) 0%, var(--brand-bright) 50%, var(--brand-dim) 100%);
+        opacity: 0.5; z-index: 0;
+      }
+      .toc-node {
+        flex: 1; min-width: 110px; display: flex; flex-direction: column; align-items: center;
+        position: relative; z-index: 1; text-decoration: none; padding: 0 4px;
+      }
+      .toc-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(120,252,214,0.45); background: var(--navy); transition: all 0.25s ease; }
+      .toc-node:hover .toc-dot { background: var(--brand-bright); box-shadow: 0 0 14px rgba(0,255,182,0.5); border-color: var(--brand-bright); }
+      .toc-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.5px; text-align: center; margin-top: 10px; color: var(--white-dim); line-height: 1.4; transition: color 0.2s; }
+      .toc-node:hover .toc-label { color: var(--white); }
+
+      /* ── Executive snapshot stat row ── */
+      .snapshot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; max-width: 1200px; margin: 0 auto; }
+      .snapshot-card { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.9), rgba(var(--card-rgb-2),0.95)); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.5rem; text-align: center; }
+      .snapshot-card .num { font-family: var(--serif); font-size: 1.9rem; color: var(--brand-bright); margin-bottom: 0.4rem; }
+      .snapshot-card .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--white-dim); }
+
+      /* ── What Voxe Can Do — bento grid ── */
+      .what-voxe-section { margin-top: 1rem; }
+      .what-voxe-section .section-heading { font-size: 1.5rem; color: var(--brand-bright); margin-bottom: 1.75rem; text-align: center; font-family: var(--serif); }
+      .voxe-features-bento { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+      @media (min-width: 500px) { .voxe-features-bento { grid-template-columns: repeat(2, 1fr); } }
+      @media (min-width: 900px) {
+        .voxe-features-bento { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto auto; gap: 1.1rem; }
+        .voxe-feature-tile:nth-child(1) { grid-column: span 2; }
+        .voxe-feature-tile:nth-child(4) { grid-column: span 2; }
+        .voxe-feature-tile:nth-child(6) { grid-column: span 2; }
+      }
+      .voxe-feature-tile {
+        background: linear-gradient(145deg, rgba(var(--card-rgb-1), 0.9), rgba(var(--card-rgb-2), 0.95));
+        border: 1px solid var(--border-color); border-radius: 12px; padding: 1.3rem 1.4rem;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        position: relative; overflow: hidden;
+      }
+      .voxe-feature-tile::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+        background: linear-gradient(90deg, var(--brand-bright), transparent); opacity: 0; transition: opacity 0.2s ease;
+      }
+      .voxe-feature-tile:hover { transform: translateY(-3px); border-color: rgba(120, 252, 214, 0.4); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3); }
+      .voxe-feature-tile:hover::before { opacity: 1; }
+      .voxe-feature-tile .tile-icon {
+        width: 2.4rem; height: 2.4rem; border-radius: 9px; background: rgba(120, 252, 214, 0.1);
+        color: var(--brand-bright); display: flex; align-items: center; justify-content: center;
+        font-size: 1.05rem; margin-bottom: 0.9rem;
+      }
+      .voxe-feature-tile .tile-title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem; font-family: var(--sans); }
+      .voxe-feature-tile .tile-desc { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.5; }
+
+      /* ── How Voxe Works — step rail ── */
+      .works-rail { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; counter-reset: step; }
+      .works-step { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.7), rgba(var(--card-rgb-2),0.85)); border: 1px solid var(--border-color); border-top: 2px solid var(--brand); border-radius: 10px; padding: 1.5rem 1.4rem; position: relative; }
+      .works-step .step-num { font-family: var(--serif); font-size: 1.8rem; color: var(--brand-bright); opacity: 0.4; margin-bottom: 0.6rem; }
+      .works-step h4 { font-family: var(--sans); font-size: 0.96rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+      .works-step p { font-size: 0.85rem; line-height: 1.55; color: var(--text-secondary); margin: 0; }
+
+      /* ── Who it's for ── */
+      .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; max-width: 1200px; margin: 0 auto; }
+      .who-card { background: rgba(120,252,214,0.04); border: 1px solid rgba(120,252,214,0.18); border-radius: 10px; padding: 1.5rem; }
+      .who-card .who-icon { color: var(--brand-bright); font-size: 1.2rem; margin-bottom: 0.75rem; }
+      .who-card h4 { font-family: var(--sans); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary); }
+      .who-card p { font-size: 0.86rem; line-height: 1.55; margin: 0; }
+
+      .certificate-text { text-align: center; margin: 2rem 0; }
+      .certificate-text a { color: var(--accent-color); font-size: 1.2rem; font-weight: 600; text-decoration: none; transition: color 0.3s ease; }
+      .certificate-text a:hover { color: var(--text-primary); }
+      .contact-card a[href^="mailto"] { color: var(--brand-bright); text-decoration: none; font-weight: 600; transition: opacity 0.3s ease; }
+      .contact-card a[href^="mailto"]:hover { opacity: 0.8; }
+
+      /* ── Audio overview card ── */
+      .audio-card { display: flex; flex-direction: column; }
+      .audio-badge {
+        display: inline-flex; align-items: center; gap: 0.4rem; width: fit-content;
+        font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+        padding: 5px 11px; margin-bottom: 0.85rem;
+        border: 1px solid rgba(120,252,214,0.3); border-radius: 100px;
+        color: var(--brand-bright); background: rgba(120,252,214,0.08);
+      }
+      .audio-player { margin-top: 0.75rem; }
+      .audio-eq {
+        display: flex; align-items: flex-end; justify-content: center; gap: 5px;
+        height: 56px; margin-bottom: 1rem;
+        padding: 10px; border-radius: 8px;
+        background: rgba(120,252,214,0.04); border: 1px solid var(--border-color);
+      }
+      .audio-eq span {
+        width: 5px; height: 8px; border-radius: 3px;
+        background: var(--brand-bright); opacity: 0.35;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-play-state: paused;
+      }
+      /* Each bar runs its own irregular keyframe at its own duration, so the
+         combined pattern never visibly loops like a single repeated bounce. */
+      .audio-eq span:nth-child(1) { animation-name: eq-a; animation-duration: 1.8s; }
+      .audio-eq span:nth-child(2) { animation-name: eq-b; animation-duration: 2.6s; }
+      .audio-eq span:nth-child(3) { animation-name: eq-c; animation-duration: 1.4s; }
+      .audio-eq span:nth-child(4) { animation-name: eq-d; animation-duration: 2.3s; }
+      .audio-eq span:nth-child(5) { animation-name: eq-e; animation-duration: 2.9s; }
+      .audio-player.is-playing .audio-eq span { opacity: 1; animation-play-state: running; }
+      @keyframes eq-a { 0% { height: 8px; } 15% { height: 30px; } 35% { height: 14px; } 55% { height: 40px; } 75% { height: 20px; } 100% { height: 8px; } }
+      @keyframes eq-b { 0% { height: 10px; } 20% { height: 38px; } 40% { height: 16px; } 60% { height: 28px; } 80% { height: 12px; } 100% { height: 10px; } }
+      @keyframes eq-c { 0% { height: 8px; } 25% { height: 22px; } 45% { height: 42px; } 65% { height: 18px; } 85% { height: 30px; } 100% { height: 8px; } }
+      @keyframes eq-d { 0% { height: 12px; } 30% { height: 34px; } 50% { height: 10px; } 70% { height: 38px; } 90% { height: 16px; } 100% { height: 12px; } }
+      @keyframes eq-e { 0% { height: 8px; } 18% { height: 26px; } 38% { height: 12px; } 58% { height: 36px; } 78% { height: 20px; } 100% { height: 8px; } }
+      @media (prefers-reduced-motion: reduce) {
+        .audio-eq span { animation: none !important; height: 8px !important; opacity: 0.6 !important; }
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">
+                <img src="assets/images/icon-512.png" alt="Voxe Logo">
+                <span>VOXE</span>
+            </a>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#documents">Documents</a>
+                <a href="friends-family.html">Early Access</a>
+                <a href="#contact" class="cta-button primary">Contact Us</a>
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="container">
+            <div class="hero-content">
+                <span class="eyebrow">Investor Prospectus — 2026</span>
+                <h1>The AI infrastructure layer for <em>customer communication.</em></h1>
+                <p class="subtitle">Voxe is an AI-first customer support platform that converts a company's website and knowledge into a live AI + human helpdesk — one that can verify a customer and securely act on their order, not just answer questions about it, deployed in minutes rather than weeks. This portal contains the investment prospectus, business plan, and growth model for investors evaluating Voxe.</p>
+                <div class="hero-buttons">
+                    <a href="docs/prospectus.html" class="cta-button primary"><i class="fas fa-file-alt"></i> Read the Prospectus</a>
+                    <a href="#documents" class="cta-button secondary">Browse All Documents</a>
+                </div>
+                <div class="hero-stats">
+                    <span class="stat-pill">$30B+ Support Software Market</span>
+                    <span class="stat-pill">AI + Human Hybrid</span>
+                    <span class="stat-pill">Multi-Channel</span>
+                    <span class="stat-pill">SaaS · Subscription Revenue</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="hline"></div>
+
+        <section class="container" style="padding: 3rem 0 0;">
+            <div class="rail-label">Prospectus Contents</div>
+            <nav class="toc-nav">
+                <div class="toc-timeline">
+                    <a href="#overview" class="toc-node"><div class="toc-dot"></div><div class="toc-label">Overview</div></a>
+                    <a href="docs/prospectus.html#problem" class="toc-node"><div class="toc-dot"></div><div class="toc-label">Problem</div></a>
+                    <a href="#how-it-works" class="toc-node"><div class="toc-dot"></div><div class="toc-label">How It<br>Works</div></a>
+                    <a href="#who" class="toc-node"><div class="toc-dot"></div><div class="toc-label">Who It's<br>For</div></a>
+                    <a href="docs/prospectus.html#market" class="toc-node"><div class="toc-dot"></div><div class="toc-label">Market</div></a>
+                    <a href="docs/prospectus.html#business-model" class="toc-node"><div class="toc-dot"></div><div class="toc-label">Business<br>Model</div></a>
+                    <a href="docs/scalable-growth-model.html" class="toc-node"><div class="toc-dot"></div><div class="toc-label">Growth</div></a>
+                    <a href="docs/prospectus.html#raise" class="toc-node"><div class="toc-dot"></div><div class="toc-label">Capital<br>Raise</div></a>
+                </div>
+            </nav>
+        </section>
+
+        <section id="overview" class="container content-section">
+            <div class="section-header">
+                <span class="eyebrow">Why Voxe</span>
+                <h2>Customer support, rebuilt around AI agents</h2>
+                <p class="section-description">Connected to live business data and backed by a built-in helpdesk with intelligent human escalation, Voxe lets businesses automate customer operations at scale — answering questions and completing real support tasks — without per-seat or per-resolution pricing.</p>
+            </div>
+
+            <div class="snapshot-grid" style="margin-bottom: 3rem;">
+                <div class="snapshot-card"><div class="num">Minutes</div><div class="lbl">Time to deploy</div></div>
+                <div class="snapshot-card"><div class="num">5</div><div class="lbl">Channels unified</div></div>
+                <div class="snapshot-card"><div class="num">AI + Human</div><div class="lbl">Hybrid support model</div></div>
+                <div class="snapshot-card"><div class="num">$30B+</div><div class="lbl">Support software market</div></div>
+            </div>
+
+            <div class="what-voxe-section">
+                <h3 class="section-heading">What Voxe Can Do</h3>
+                <div class="voxe-features-bento">
+                    <div class="voxe-feature-tile">
+                        <div class="tile-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="tile-title">Instant deployment</div>
+                        <div class="tile-desc">Provide your website URL — get an AI support agent, knowledge base, and helpdesk in minutes, built from your own products and services.</div>
+                    </div>
+                    <div class="voxe-feature-tile">
+                        <div class="tile-icon"><i class="fas fa-book"></i></div>
+                        <div class="tile-title">Accurate answers</div>
+                        <div class="tile-desc">Knowledge auto-extracted from your website, plus uploaded documents, processed with retrieval-augmented generation (RAG).</div>
+                    </div>
+                    <div class="voxe-feature-tile">
+                        <div class="tile-icon"><i class="fas fa-comments"></i></div>
+                        <div class="tile-title">Multi-channel</div>
+                        <div class="tile-desc">Web chat, email, SMS, WhatsApp, and phone — one AI knowledge base powering every channel.</div>
+                    </div>
+                    <div class="voxe-feature-tile">
+                        <div class="tile-icon"><i class="fas fa-shield-halved"></i></div>
+                        <div class="tile-title">Secure order actions</div>
+                        <div class="tile-desc">Verifies the customer against the order, then edits the shipping address or cancels an unpaid order directly in Shopify or WooCommerce — and on Shopify, processes a policy-matched refund or return — not just looks it up. Anything that needs human judgment escalates instead.</div>
+                    </div>
+                    <div class="voxe-feature-tile">
+                        <div class="tile-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div class="tile-title">Appointment booking</div>
+                        <div class="tile-desc">Customers schedule meetings directly in the conversation via calendar integration.</div>
+                    </div>
+                    <div class="voxe-feature-tile">
+                        <div class="tile-icon"><i class="fas fa-headset"></i></div>
+                        <div class="tile-title">Built-in help desk</div>
+                        <div class="tile-desc">Smart escalation to human agents with full conversation context, plus monitoring and follow-ups so every conversation reaches resolution.</div>
+                    </div>
+                    <div class="voxe-feature-tile">
+                        <div class="tile-icon"><i class="fas fa-puzzle-piece"></i></div>
+                        <div class="tile-title">One platform</div>
+                        <div class="tile-desc">Agent, helpdesk, workflows, integrations, and scheduling — no tool sprawl.</div>
+                    </div>
+                    <div class="voxe-feature-tile">
+                        <div class="tile-icon"><i class="fas fa-store"></i></div>
+                        <div class="tile-title">Built for growing teams</div>
+                        <div class="tile-desc">Enterprise-grade support without enterprise complexity or per-seat cost.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="hline"></div>
+
+        <section id="how-it-works" class="container content-section">
+            <div class="section-header">
+                <span class="eyebrow">How It Works</span>
+                <h2>From website URL to live support desk</h2>
+                <p class="section-description">Five steps, start to finish — no integration project, no months-long rollout.</p>
+            </div>
+            <div class="works-rail">
+                <div class="works-step">
+                    <div class="step-num">01</div>
+                    <h4>Provide your URL</h4>
+                    <p>Businesses submit their website; no manual setup required to begin.</p>
+                </div>
+                <div class="works-step">
+                    <div class="step-num">02</div>
+                    <h4>Knowledge extraction</h4>
+                    <p>Voxe crawls the site and ingests uploaded documents into a searchable knowledge base via RAG.</p>
+                </div>
+                <div class="works-step">
+                    <div class="step-num">03</div>
+                    <h4>AI agent deployed</h4>
+                    <p>A chat widget, knowledge-backed chatbot, and helpdesk inbox go live, tuned to the business's own content.</p>
+                </div>
+                <div class="works-step">
+                    <div class="step-num">04</div>
+                    <h4>Connect live data &amp; actions</h4>
+                    <p>Commerce, CRM, and calendar integrations let the AI look up — and on connected e-commerce platforms, directly update — real order, inventory, and account data, once the customer is verified.</p>
+                </div>
+                <div class="works-step">
+                    <div class="step-num">05</div>
+                    <h4>Human escalation</h4>
+                    <p>Routine, verifiable actions complete without a human. Requests that need judgment — disputes, policy exceptions, anything ambiguous — hand off to a live agent with full context attached.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="who" class="container content-section" style="padding-top: 0;">
+            <div class="section-header">
+                <span class="eyebrow">Who It's For</span>
+                <h2>Built for teams priced out of enterprise tools</h2>
+                <p class="section-description">Voxe focuses on businesses that need real support automation but can't justify Zendesk- or Intercom-scale cost and complexity.</p>
+            </div>
+            <div class="who-grid">
+                <div class="who-card">
+                    <div class="who-icon"><i class="fas fa-rocket"></i></div>
+                    <h4>SaaS &amp; startups</h4>
+                    <p>Bursts of trial, billing, and onboarding questions handled instantly, with human agents freed for complex cases.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <h4>E-commerce</h4>
+                    <p>The order actions above (see "Secure order actions"), applied to online stores running Shopify or WooCommerce.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-icon"><i class="fas fa-user-tie"></i></div>
+                    <h4>Solo founders &amp; small teams</h4>
+                    <p>Businesses without a dedicated support team get 24/7 coverage without hiring.</p>
+                </div>
+                <div class="who-card">
+                    <div class="who-icon"><i class="fas fa-building"></i></div>
+                    <h4>Agencies &amp; service businesses</h4>
+                    <p>Manage support across multiple brands or clients from one unified platform.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="hline"></div>
+
+        <section id="documents" class="container content-section">
+            <div class="section-header">
+                <span class="eyebrow">Investor Library</span>
+                <h2>Investment &amp; Partnership Documents</h2>
+                <p class="section-description">Access our business materials to learn more about our vision, strategy, and product.</p>
+            </div>
+            <div class="documents-grid">
+                <div class="document-card">
+                    <h3>Investment Prospectus</h3>
+                    <p>The complete investor overview: problem, solution, market, product, business model, and the capital raise.</p>
+                    <a href="docs/prospectus.html" class="doc-link">View <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="document-card">
+                    <h3>Business Plan</h3>
+                    <p>Strategic roadmap and product execution plan.</p>
+                    <a href="docs/business-plan.html" class="doc-link">View <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="document-card">
+                    <h3>Pitch Deck &amp; Overview</h3>
+                    <p>Company overview, product, and business summary.</p>
+                    <a href="docs/pitch-deck.html" class="doc-link">View <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="document-card">
+                    <h3>Scalable SaaS Growth Model</h3>
+                    <p>Market opportunity, product-led growth, and illustrative ARR projections.</p>
+                    <a href="docs/scalable-growth-model.html" class="doc-link">View <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="document-card">
+                    <h3>Investment Terms</h3>
+                    <p>Investment and partnership inquiry information.</p>
+                    <a href="docs/safe.html" class="doc-link">View <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="document-card">
+                    <h3>Scaling Without Headcount</h3>
+                    <p>A short briefing on scaling customer operations with AI instead of proportional headcount growth.</p>
+                    <a href="Scaling_Without_Headcount.pdf" target="_blank" class="doc-link">Open PDF <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="product-demo" class="container content-section" style="padding-top: 0;">
+            <div class="section-header">
+                <span class="eyebrow">See It In Action</span>
+                <h2>Product Walkthroughs</h2>
+                <p class="section-description">Short videos showing Voxe deployed against real store data and the operational cost problem it addresses.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" style="padding: 1.25rem;">
+                    <h3>Voxe Desk — The Power Behind Store Data</h3>
+                    <video controls preload="none" style="width:100%; border-radius: 8px; display:block; margin-top: 0.75rem;">
+                        <source src="Voxe_Desk__The_Power_Behind_Store_Data.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="feature-card" style="padding: 1.25rem;">
+                    <h3>The Hidden Tax of AI Support</h3>
+                    <video controls preload="none" style="width:100%; border-radius: 8px; display:block; margin-top: 0.75rem;">
+                        <source src="The_Hidden_Tax_of_AI_Support (1).mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="feature-card audio-card" style="padding: 1.25rem;">
+                    <span class="audio-badge"><i class="fas fa-headphones"></i> Audio Overview</span>
+                    <h3>The Strategic Advantage of Infrastructure Pricing</h3>
+                    <div class="audio-player" id="audioOverview">
+                        <div class="audio-eq" aria-hidden="true">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <audio id="audioOverviewEl" controls preload="none" style="width:100%;">
+                            <source src="Why_companies_pay_to_throttle_their_AI.m4a" type="audio/mp4">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="hline"></div>
+
+        <section id="friends-family" class="container content-section">
+            <div class="section-header">
+                <span class="eyebrow">Early Access</span>
+                <p class="section-description">Invite-only SAFE round for early supporters. View full terms, pool details, and expression-of-interest form on the dedicated page.</p>
+            </div>
+            <div class="document-card friends-family-card">
+                <h3>Early Access SAFE</h3>
+                <p>Private invite-only round: pool = 10% equity. Key terms, contribution examples, and a short expression-of-interest form are on the Friends &amp; Family page. Access is gated by invite pass.</p>
+                <a href="friends-family.html" class="cta-button primary"><i class="fas fa-lock"></i> View Early Access Page</a>
+            </div>
+        </section>
+
+        <section id="contact" class="container content-section">
+            <div class="section-header">
+                <span class="eyebrow">Get In Touch</span>
+                <h2>Let's talk</h2>
+                <p class="section-description">Interested in investing or partnering? Our team is here to help.</p>
+            </div>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Investment &amp; Partnerships</h3>
+                    <p>Choose the appropriate channel to get in touch with us.</p>
+                    <a href="docs/contact.html" class="cta-button primary">Contact</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Schedule a Call</h3>
+                    <p>Book a meeting with our team to discuss opportunities.</p>
+                    <a href="docs/contact.html" class="cta-button primary">Book Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/icon-192.png" alt="Voxe Logo">
+                    <span>VOXE</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://voxedesk.com" target="_blank" class="social-link" title="Voxe Platform">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                    <a href="mailto:support@voxedesk.com" class="social-link" title="Support">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Voxe by MCP4. All rights reserved.</p>
+                <div class="footer-tags">
+                    <span class="footer-tag">AI-First Support</span>
+                    <span class="footer-tag">SaaS</span>
+                    <span class="footer-tag">Investor Relations</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      (function() {
+        var player = document.getElementById('audioOverview');
+        var audio = document.getElementById('audioOverviewEl');
+        if (!player || !audio) return;
+        var setPlaying = function(on) { player.classList.toggle('is-playing', on); };
+        audio.addEventListener('play', function() { setPlaying(true); });
+        audio.addEventListener('pause', function() { setPlaying(false); });
+        audio.addEventListener('ended', function() { setPlaying(false); });
+      })();
+    </script>
+    <script src="assets/js/theme.js"></script>
+</body>
+</html>
