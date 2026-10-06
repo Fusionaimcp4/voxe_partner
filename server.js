@@ -77,10 +77,22 @@ app.post('/api/friends-family-interest', function (req, res) {
   }
 
   const amountNum = typeof amount_usd === 'number' ? amount_usd : parseFloat(String(amount_usd).replace(/[^\d.-]/g, ''));
-  if (typeof amountNum === 'number' && !isNaN(amountNum) && amountNum > 5000) {
+  if (typeof amountNum !== 'number' || isNaN(amountNum)) {
     return res.status(400).json({
       ok: false,
-      error: 'Maximum amount per investor is $5,000.'
+      error: 'A valid Purchase Amount (USD) is required'
+    });
+  }
+  if (amountNum < 1000) {
+    return res.status(400).json({
+      ok: false,
+      error: 'Minimum Purchase Amount per investor is $1,000.'
+    });
+  }
+  if (amountNum > 5000) {
+    return res.status(400).json({
+      ok: false,
+      error: 'Maximum Purchase Amount per investor is $5,000.'
     });
   }
   const record = {

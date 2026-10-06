@@ -74,12 +74,20 @@
         return;
       }
       if (payload.amount_usd === '' || (typeof payload.amount_usd !== 'number' && !String(payload.amount_usd).trim())) {
-        showError(errorEl, 'Please indicate the approximate amount you are considering investing (USD).');
+        showError(errorEl, 'Please indicate the approximate Purchase Amount you are considering (USD).');
         return;
       }
       var amountNum = typeof payload.amount_usd === 'number' ? payload.amount_usd : parseAmount(payload.amount_usd);
-      if (amountNum != null && amountNum > 5000) {
-        showError(errorEl, 'Maximum amount per investor is $5,000.');
+      if (amountNum == null || isNaN(amountNum)) {
+        showError(errorEl, 'Please enter a valid Purchase Amount in USD.');
+        return;
+      }
+      if (amountNum < 1000) {
+        showError(errorEl, 'Minimum Purchase Amount per investor is $1,000.');
+        return;
+      }
+      if (amountNum > 5000) {
+        showError(errorEl, 'Maximum Purchase Amount per investor is $5,000.');
         return;
       }
 

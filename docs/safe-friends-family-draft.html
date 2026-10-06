@@ -13,7 +13,8 @@
   <style>
     .safe-doc { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
     .safe-doc h1 { font-size: 1.5rem; font-weight: 700; color: var(--accent-color); margin-bottom: 0.25rem; }
-    .safe-doc .subtitle { font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; }
+    .safe-doc .subtitle { font-size: 1rem; color: var(--text-secondary); margin-bottom: 1rem; }
+    .safe-doc .draft-banner { background: rgba(120,252,214,0.06); border: 1px solid rgba(120,252,214,0.25); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.6; }
     .safe-doc h2 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--text-primary); }
     .safe-doc h3 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; color: var(--text-primary); }
     .safe-doc p { margin-bottom: 1rem; line-height: 1.7; }
@@ -21,6 +22,7 @@
     .safe-doc ul { margin: 0.75rem 0 1rem; padding-left: 1.5rem; }
     .safe-doc li { margin-bottom: 0.35rem; line-height: 1.6; }
     .safe-doc .clause { margin-bottom: 1.5rem; }
+    .safe-doc .legal-note { font-size: 0.9rem; color: var(--text-secondary); border-left: 3px solid var(--accent-color); padding: 0.75rem 1rem; margin: 1rem 0; background: rgba(120,252,214,0.04); border-radius: 0 8px 8px 0; }
     .safe-doc .sig-blocks-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); }
     .safe-doc .sig-block { width: 48%; min-width: 260px; padding-top: 0; margin-top: 0; border-top: none; }
     .safe-doc .sig-block h3 { margin-bottom: 1rem; }
@@ -60,174 +62,230 @@
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 4L6 8L10 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Back to Friends & Family SAFE
       </a>
-      <p class="print-only"><strong>DRAFT – For discussion only. Do not sign without legal review.</strong></p>
+      <p class="print-only"><strong>DRAFT — SUBJECT TO LEGAL REVIEW. Do not sign without legal review.</strong></p>
 
       <h1>SAFE (Simple Agreement for Future Equity)</h1>
-      <p class="subtitle">Friends & Family Round – Voxe</p>
+      <p class="subtitle">Friends &amp; Family Early Access — Voxe</p>
+
+      <div class="draft-banner">
+        <strong>DRAFT — SUBJECT TO LEGAL REVIEW.</strong>
+        This document describes the approved business intent for the Friends &amp; Family Early Access SAFE. It is not a legally approved definitive agreement. It is not a standard Y Combinator SAFE. Y Combinator did not create or approve these economics. Blockchain Technology International LLC, operating as Voxe, is currently a limited liability company; the precise form of equity or equity-related interest issued on conversion is subject to legal review.
+      </div>
 
       <p class="intro">This SAFE (this “Agreement”) is made as of <span id="effective-date"></span> (the “Effective Date”) between:</p>
       <p><span class="placeholder">[Investor Name]</span>, an individual (the “Investor”), and</p>
-      <p>Blockchain Technology International LLC, a Texas limited liability company doing business as “Voxe Desk” (the “Company”).</p>
+      <p>Blockchain Technology International LLC, a Texas limited liability company operating as Voxe (“Voxe” or the “Company”).</p>
       <p>The Company and the Investor agree as follows:</p>
 
-      <h2>1. Purchase Amount; Friends & Family Pool</h2>
+      <h2>1. Purchase Amount; Offering Limits</h2>
 
       <div class="clause">
         <h3>1.1 Purchase Amount.</h3>
-        <p>The Investor is investing US $<span class="placeholder">[Investment Amount]</span> (the “Purchase Amount”) in the Company on the terms set out in this Agreement.</p>
+        <p>The Investor is investing US $<span class="placeholder">[Investment Amount]</span> (the “Purchase Amount”) in the Company on the terms set out in this Agreement. The Purchase Amount is the actual amount of money contributed by the Investor.</p>
+        <p>The Purchase Amount under this offering must be at least US $1,000 and not more than US $5,000 per investor.</p>
       </div>
 
       <div class="clause">
-        <h3>1.2 Friends & Family Pool.</h3>
-        <p>This SAFE is part of a limited friends & family round in which:</p>
+        <h3>1.2 Aggregate Offering Maximum.</h3>
+        <p>The Company will accept up to an aggregate of US $50,000 in Purchase Amounts under this Friends &amp; Family Early Access SAFE offering (the “Aggregate Offering Maximum”).</p>
+      </div>
+
+      <div class="clause">
+        <h3>1.3 No Current Valuation; No Fixed Ownership at Investment.</h3>
+        <p>This offering does not establish a current valuation of the Company. This Agreement does not promise, and the Investor is not purchasing, a stated ownership percentage of the Company at the time of investment.</p>
+      </div>
+
+      <h2>2. Early Supporter Conversion Amount</h2>
+
+      <div class="clause">
+        <h3>2.1 Multiplier.</h3>
+        <p>This offering uses a uniform Early Supporter Multiplier of five (5×).</p>
+      </div>
+
+      <div class="clause">
+        <h3>2.2 Conversion Amount.</h3>
+        <p>The “Early Supporter Conversion Amount” equals the Purchase Amount multiplied by five (5).</p>
+        <p>Examples (for illustration of the calculation only):</p>
         <ul>
-          <li>The Company will accept up to an aggregate of US $50,000 in SAFE investments (the “Pool Amount”), and</li>
-          <li>The SAFE investors in this pool will collectively be entitled to receive equity representing 10% of the Company’s fully diluted equity, as described in Section 3 (the “Pool Equity”).</li>
+          <li>US $1,000 Purchase Amount → US $5,000 Early Supporter Conversion Amount</li>
+          <li>US $2,000 → US $10,000</li>
+          <li>US $3,000 → US $15,000</li>
+          <li>US $4,000 → US $20,000</li>
+          <li>US $5,000 → US $25,000</li>
         </ul>
+        <p>The Early Supporter Conversion Amount is used solely for the future equity conversion calculation under this Agreement. It is not an amount paid, invested, or contributed by the Investor beyond the Purchase Amount.</p>
+      </div>
+
+      <h2>3. Nature of this SAFE</h2>
+
+      <div class="clause">
+        <h3>3.1 Not Debt.</h3>
+        <p>This SAFE is not a loan or other debt instrument. It does not accrue interest. It does not create an automatic repayment obligation merely because time passes.</p>
       </div>
 
       <div class="clause">
-        <h3>1.3 Pro Rata Share of Pool.</h3>
-        <p>The Investor’s economic interest in the Pool Equity is based on the proportion of the Investor’s Purchase Amount to the total Pool Amount. As a simple example:</p>
-        <p>If the Investor contributes US $5,000, and the Pool Amount is fully subscribed at US $50,000, the Investor’s economic interest in the Pool Equity is 10% of the Pool Equity, i.e., approximately 1% of the Company (10% of the 10% pool).</p>
-        <p>The exact number of shares and percentage ownership will be determined at the time of conversion under Section 3, according to this Agreement and the Company’s capitalization at that time.</p>
-      </div>
-
-      <h2>2. Nature of this SAFE</h2>
-
-      <div class="clause">
-        <h3>2.1 Not a Loan.</h3>
-        <p>This SAFE is not a loan. It does not accrue interest and does not have a fixed maturity date.</p>
+        <h3>3.2 Future Equity.</h3>
+        <p>In exchange for the Purchase Amount, the Investor receives the right to be issued equity (or another equity-related interest) in the Company in the future upon the occurrence of certain events, primarily a Qualified Equity Financing (defined below), subject to the terms of this Agreement and the Aggregate Program Ceiling.</p>
+        <p class="legal-note"><strong>For legal review:</strong> The Company is an LLC. The definitive agreement should specify the precise form of interest issued on conversion (for example, membership interests or other equity securities) consistent with the Company’s then-current legal and capitalization structure.</p>
       </div>
 
       <div class="clause">
-        <h3>2.2 Future Equity.</h3>
-        <p>In exchange for the Purchase Amount, the Investor receives the right to be issued equity in the Company in the future upon the occurrence of certain events, primarily an Equity Financing (defined below), subject to the terms of this Agreement.</p>
+        <h3>3.3 No Present Ownership.</h3>
+        <p>Until this SAFE converts pursuant to Section 4, the Investor does not have voting, distribution, or other ownership rights of an equity holder of the Company, except as expressly set out in this Agreement.</p>
       </div>
 
       <div class="clause">
-        <h3>2.3 No Present Ownership.</h3>
-        <p>Until this SAFE converts into equity pursuant to Section 3, the Investor does not have shareholder voting rights, dividend rights, or other rights of a stockholder of the Company, except as expressly set out in this Agreement.</p>
+        <h3>3.4 Custom Instrument.</h3>
+        <p>This Agreement is a custom Early Access SAFE. It is not a standard Y Combinator SAFE. It does not include a valuation cap, discount, or MFN as terms of this offering.</p>
       </div>
 
-      <h2>3. Conversion upon Equity Financing</h2>
+      <h2>4. Conversion upon Qualified Equity Financing</h2>
 
       <div class="clause">
-        <h3>3.1 Equity Financing Defined.</h3>
-        <p>An “Equity Financing” means a bona fide transaction or series of transactions in which the Company issues and sells shares of its capital stock (typically preferred stock) for cash, at a fixed pre-money valuation, to one or more outside investors, primarily for capital-raising purposes.</p>
-      </div>
-
-      <div class="clause">
-        <h3>3.2 Pool Conversion Mechanics.</h3>
-        <p>Upon the first Equity Financing after the Effective Date, immediately prior to the closing of such Equity Financing:</p>
-        <p>(a) All outstanding friends & family SAFEs that are part of the Pool Amount (including this SAFE) will automatically convert into shares of the same series of capital stock issued in the Equity Financing (the “Financing Shares”).</p>
-        <p>(b) The number of Financing Shares issued to all friends & family SAFE investors in the pool (collectively) will be calculated such that, immediately after the Equity Financing, the holders of the friends & family SAFEs collectively own 10% of the Company’s fully diluted capitalization (including the Financing Shares and the shares issued in the Equity Financing), subject to customary exclusions or adjustments as determined in good faith by the Company’s Board of Directors.</p>
-        <p>(c) The Investor’s portion of those Financing Shares will be determined pro rata based on the Investor’s Purchase Amount relative to the actual aggregate amount invested in the Pool Amount (i.e., all friends & family SAFEs that are part of this $50,000 pool and that convert in that financing).</p>
+        <h3>4.1 Qualified Equity Financing Defined.</h3>
+        <p>A “Qualified Equity Financing” means a bona fide future financing in which the Company issues equity securities for cash to one or more investors and establishes an applicable company valuation or equity price for that financing.</p>
+        <p>Ordinary founder issuances, compensatory equity, Growth Partner Program awards, internal reorganizations, or conversions of existing instruments do not, by themselves, automatically constitute a Qualified Equity Financing solely for purposes of establishing the financing valuation under this Agreement.</p>
+        <p class="legal-note"><strong>For legal review:</strong> Precise qualification thresholds (if any), excluded transactions, and the definition of “applicable company valuation or equity price” (including capitalization conventions) should be finalized in counsel-approved definitive language.</p>
       </div>
 
       <div class="clause">
-        <h3>3.3 Documentation.</h3>
-        <p>The Investor agrees to execute and deliver any documents reasonably required to effectuate the issuance of Financing Shares in connection with an Equity Financing, including any stock purchase agreements or investor rights agreements entered into by the other investors in such Equity Financing, provided that the Investor is treated in a manner that is not materially less favorable, in the aggregate, than other investors in the same class, taking into account the Investor’s investment size and stage.</p>
+        <h3>4.2 Conversion Mechanics — Business Intent.</h3>
+        <p>Upon the first Qualified Equity Financing after the Effective Date, this SAFE is intended to convert into equity of the Company using the Early Supporter Conversion Amount and the applicable company valuation or equity price established in that financing, subject to the Aggregate Program Ceiling in Section 5 and the definitive agreement.</p>
+        <p><strong>Illustrative calculation only (not a promise of ownership):</strong></p>
+        <ul>
+          <li>Purchase Amount: US $5,000</li>
+          <li>Early Supporter Conversion Amount: US $25,000</li>
+          <li>If the applicable company valuation established in the Qualified Equity Financing were US $2,500,000:</li>
+          <li>US $25,000 / US $2,500,000 ≈ 1.00%</li>
+        </ul>
+        <p>Actual conversion and resulting ownership depend on the definitive agreement, capitalization definitions, applicable financing terms, and the Aggregate Program Ceiling.</p>
       </div>
-
-      <h2>4. Liquidity Event and Dissolution</h2>
 
       <div class="clause">
-        <h3>4.1 Liquidity Event.</h3>
-        <p>If, prior to the conversion of this SAFE under Section 3, there is a Liquidity Event (such as an acquisition of the Company, a merger, or a sale of substantially all of its assets), then, at the Company’s election and to the extent permitted by applicable law:</p>
-        <p>(a) This SAFE will convert into a right to receive a portion of the transaction consideration allocated to equity holders, on terms designed in good faith by the Board of Directors to reflect the Investor’s economic interest in the Pool Equity at that time; or</p>
-        <p>(b) This SAFE will be repurchased by the Company for an amount equal to the Purchase Amount, payable in the same form of consideration (or mix of cash and securities) received by stockholders in the Liquidity Event, to the extent reasonably practicable.</p>
+        <h3>4.3 Documentation.</h3>
+        <p>The Investor agrees to execute documents reasonably required to effectuate conversion in connection with a Qualified Equity Financing, provided the Investor is treated in a manner not materially less favorable, in the aggregate, than other holders of this Friends &amp; Family Early Access SAFE program, taking into account investment size and the terms of this Agreement.</p>
+      </div>
+
+      <h2>5. Aggregate 10% Program Ceiling</h2>
+
+      <div class="clause">
+        <h3>5.1 Ceiling.</h3>
+        <p>The Friends &amp; Family Early Access SAFE program has a maximum aggregate conversion ceiling of ten percent (10%) (the “Aggregate Program Ceiling”).</p>
+        <p>The Aggregate Program Ceiling is not an amount of equity sold today. It is not a guarantee that Friends &amp; Family investors will receive 10% of the Company. It is the maximum aggregate ownership that this program may produce under its conversion mechanics, subject to the definitive agreement.</p>
       </div>
 
       <div class="clause">
-        <h3>4.2 Dissolution Event.</h3>
-        <p>If, prior to conversion or repayment under this Section 4, the Company voluntarily or involuntarily liquidates, dissolves, or winds up its business (a “Dissolution Event”), then, if there are assets legally available for distribution after payment of all senior obligations, the Company will pay the Investor an amount up to the Purchase Amount, on a pari passu basis with other SAFE holders, before any distribution to holders of common stock.</p>
+        <h3>5.2 Application of the Ceiling.</h3>
+        <p>The 5× Early Supporter Conversion Amount calculation applies normally until the Aggregate Program Ceiling becomes relevant. If the aggregate calculated ownership for all participating SAFEs under this offering would exceed the Aggregate Program Ceiling, the available program ownership is allocated among participating SAFE holders pro rata according to their Purchase Amounts.</p>
+        <p><strong>Illustrative allocation if the ceiling is triggered and the Aggregate Offering Maximum is fully subscribed:</strong> an Investor with a US $5,000 Purchase Amount represents US $5,000 / US $50,000 = 10% of aggregate Purchase Amounts and would receive 10% of the available program allocation under that simplified illustration (approximately 1% of the Company). This illustration is not guaranteed ownership outside the definitive conversion mechanics.</p>
       </div>
 
-      <h2>5. Termination</h2>
-      <p>This SAFE will terminate upon the earliest to occur of:</p>
+      <h2>6. Liquidity Event Before Conversion</h2>
+
+      <div class="clause">
+        <h3>6.1 Intended Treatment.</h3>
+        <p>If a qualifying acquisition or other Liquidity Event (as defined in the definitive agreement) occurs before conversion under Section 4, the intended business treatment is that the Investor receives the greater of:</p>
+        <ul>
+          <li>(a) the Investor’s actual Purchase Amount; or</li>
+          <li>(b) the amount the Investor would be entitled to receive under the agreed as-converted Early Supporter calculation,</li>
+        </ul>
+        <p>subject to the definitive agreement, applicable law, and the Aggregate Program Ceiling.</p>
+        <p>The 5× Early Supporter Multiplier does <strong>not</strong> create a guaranteed 5× cash return.</p>
+        <p class="legal-note"><strong>For legal review:</strong> Define “Liquidity Event,” as-converted calculation mechanics for an LLC sale or similar transaction, payment priority, and form of consideration in definitive counsel-approved terms.</p>
+      </div>
+
+      <h2>7. Dissolution</h2>
+
+      <div class="clause">
+        <h3>7.1 Intended Treatment.</h3>
+        <p>If the Company dissolves before conversion, the intended treatment is return of the Investor’s <strong>actual Purchase Amount</strong>, subject to available assets, creditor claims, senior obligations, applicable law, and the definitive agreement.</p>
+        <p>The 5× Early Supporter Multiplier does <strong>not</strong> create a right to receive five times the Purchase Amount upon dissolution.</p>
+      </div>
+
+      <h2>8. Termination</h2>
+      <p>This SAFE is intended to remain outstanding until the earliest to occur of:</p>
       <ul>
-        <li>(a) The issuance of shares to the Investor on conversion of this SAFE in accordance with Section 3;</li>
-        <li>(b) The payment (or setting aside for payment) to the Investor of the amounts due under Section 4 in connection with a Liquidity Event or Dissolution Event; or</li>
+        <li>(a) Conversion under Section 4;</li>
+        <li>(b) Payment (or setting aside for payment) under Section 6 or Section 7; or</li>
         <li>(c) A written agreement between the Company and the Investor to terminate this SAFE.</li>
       </ul>
-      <p>Termination does not affect any rights or obligations that have already accrued.</p>
+      <p>There is no automatic maturity or automatic repayment solely because time passes. Termination does not affect rights or obligations that have already accrued.</p>
 
-      <h2>6. Company Representations</h2>
+      <h2>9. Company Representations</h2>
       <p>The Company represents and warrants to the Investor that, as of the Effective Date:</p>
 
       <div class="clause">
-        <h3>6.1 Organization and Authority.</h3>
-        <p>The Company is duly organized, validly existing, and in good standing under the laws of its jurisdiction of incorporation, and has the corporate power to execute, deliver, and perform its obligations under this Agreement.</p>
+        <h3>9.1 Organization and Authority.</h3>
+        <p>The Company is duly organized, validly existing, and in good standing under the laws of its jurisdiction of formation, and has the power to execute, deliver, and perform its obligations under this Agreement.</p>
       </div>
 
       <div class="clause">
-        <h3>6.2 Authorization.</h3>
-        <p>All corporate action required to authorize the execution and delivery of this Agreement and the performance of the Company’s obligations hereunder has been duly taken. This Agreement constitutes a valid and binding obligation of the Company, enforceable against the Company in accordance with its terms, subject to applicable laws relating to bankruptcy, insolvency, and creditors’ rights.</p>
+        <h3>9.2 Authorization.</h3>
+        <p>All action required to authorize the execution and delivery of this Agreement and the performance of the Company’s obligations hereunder has been duly taken. This Agreement constitutes a valid and binding obligation of the Company, enforceable against the Company in accordance with its terms, subject to applicable laws relating to bankruptcy, insolvency, and creditors’ rights.</p>
       </div>
 
       <div class="clause">
-        <h3>6.3 No Conflict.</h3>
-        <p>The execution and delivery of this Agreement by the Company does not violate the Company’s charter or bylaws or any material agreement to which the Company is a party.</p>
+        <h3>9.3 No Conflict.</h3>
+        <p>The execution and delivery of this Agreement by the Company does not violate the Company’s governing documents or any material agreement to which the Company is a party.</p>
       </div>
 
-      <h2>7. Investor Representations</h2>
+      <h2>10. Investor Representations</h2>
       <p>The Investor represents and warrants to the Company that, as of the Effective Date:</p>
 
       <div class="clause">
-        <h3>7.1 Investment Intent.</h3>
+        <h3>10.1 Investment Intent.</h3>
         <p>The Investor is acquiring this SAFE solely for investment purposes and not with a view to, or for resale in connection with, any “distribution” of securities within the meaning of applicable securities laws.</p>
       </div>
 
       <div class="clause">
-        <h3>7.2 Understanding of Risks.</h3>
-        <p>The Investor understands that investing in early-stage companies is highly speculative and involves a high degree of risk, including the risk of loss of the entire investment. The Investor is able to bear the economic risk of the investment and can afford a complete loss of the Purchase Amount.</p>
+        <h3>10.2 Understanding of Risks.</h3>
+        <p>The Investor understands that investing in early-stage companies is highly speculative and involves a high degree of risk, including the risk of loss of the entire investment. The Investor is able to bear the economic risk of the investment and can afford a complete loss of the Purchase Amount. This Agreement does not guarantee ownership percentage, financial return, future valuation, financing, liquidity, or investment performance.</p>
       </div>
 
       <div class="clause">
-        <h3>7.3 Sophistication.</h3>
+        <h3>10.3 Sophistication.</h3>
         <p>The Investor has such knowledge and experience in financial and business matters that the Investor is capable of evaluating the merits and risks of this investment, or has consulted with a professional advisor in making this investment decision.</p>
       </div>
 
       <div class="clause">
-        <h3>7.4 Compliance with Laws.</h3>
-        <p>The Investor is aware that this SAFE and the underlying securities have not been registered under the U.S. Securities Act of 1933 (or any state securities laws) and are being offered in reliance on exemptions from registration for private offerings. The Investor agrees that the SAFE and any shares issued upon conversion may not be sold, transferred, or otherwise disposed of without compliance with applicable securities laws.</p>
+        <h3>10.4 Compliance with Laws.</h3>
+        <p>The Investor is aware that this SAFE and any underlying equity interests have not been registered under the U.S. Securities Act of 1933 (or any state securities laws) and are being offered in reliance on exemptions from registration for private offerings. The Investor agrees that the SAFE and any interests issued upon conversion may not be sold, transferred, or otherwise disposed of without compliance with applicable securities laws.</p>
       </div>
 
       <div class="clause">
-        <h3>7.5 Status (if applicable).</h3>
+        <h3>10.5 Status (if applicable).</h3>
         <p><span class="placeholder">[Optional: The Investor is an “accredited investor” as defined under Regulation D of the Securities Act. / The Investor understands that the Company may rely on applicable “friends and family” or private offering exemptions and agrees to provide any reasonable information necessary to confirm eligibility.]</span></p>
       </div>
 
-      <h2>8. Miscellaneous</h2>
+      <h2>11. Miscellaneous</h2>
 
       <div class="clause">
-        <h3>8.1 Governing Law.</h3>
+        <h3>11.1 Governing Law.</h3>
         <p>This Agreement will be governed by and construed in accordance with the laws of the State of Texas, without giving effect to its conflict of laws principles.</p>
       </div>
 
       <div class="clause">
-        <h3>8.2 Entire Agreement.</h3>
+        <h3>11.2 Entire Agreement.</h3>
         <p>This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof and supersedes all prior or contemporaneous understandings, whether oral or written.</p>
       </div>
 
       <div class="clause">
-        <h3>8.3 Amendments.</h3>
+        <h3>11.3 Amendments.</h3>
         <p>Any amendment or waiver of any provision of this Agreement must be in writing and signed by both the Company and the Investor.</p>
       </div>
 
       <div class="clause">
-        <h3>8.4 Assignment.</h3>
+        <h3>11.4 Assignment.</h3>
         <p>The Investor may not assign this SAFE or any of its rights hereunder without the prior written consent of the Company, except to certain permitted transferees as may be allowed by applicable law and subject to the Company’s approval. The Company may not assign this Agreement without the Investor’s consent, except in connection with a permitted reorganization, merger, or similar transaction that does not adversely affect the Investor’s rights.</p>
       </div>
 
       <div class="clause">
-        <h3>8.5 Notices.</h3>
+        <h3>11.5 Notices.</h3>
         <p>All notices or communications under this Agreement must be in writing and sent to the parties at their addresses or emails set forth below (or at such other address or email as a party may designate in writing). Notices will be deemed given when delivered personally, sent by recognized overnight courier, or sent by email with confirmation of delivery.</p>
       </div>
 
       <div class="clause">
-        <h3>8.6 Counterparts; Electronic Signatures.</h3>
+        <h3>11.6 Counterparts; Electronic Signatures.</h3>
         <p>This Agreement may be executed in counterparts, each of which will be deemed an original and all of which together will constitute one instrument. Signatures delivered by electronic means (including PDF and e-signature services) will be deemed effective as originals.</p>
       </div>
 
@@ -236,7 +294,7 @@
       <div class="sig-blocks-row">
         <div class="sig-block">
           <h3>COMPANY:</h3>
-          <p class="sig-line">Blockchain Technology International LLC, d/b/a Voxe Desk</p>
+          <p class="sig-line">Blockchain Technology International LLC, operating as Voxe</p>
           <p class="sig-line">By: <span class="placeholder">_______________________________</span></p>
           <p class="sig-line">Name: <span class="placeholder">_____________________________</span></p>
           <p class="sig-line">Title: <span class="placeholder">_____________________________</span></p>
@@ -258,7 +316,7 @@
   <footer class="no-print">
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2025 Voxe by MCP4. All rights reserved.</p>
+        <p>&copy; 2026 Voxe by MCP4. All rights reserved.</p>
       </div>
     </div>
   </footer>

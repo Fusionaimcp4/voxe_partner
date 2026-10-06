@@ -4,13 +4,53 @@
     <meta charset="UTF-8">
 <script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expression of Interest – Friends & Family SAFE | Voxe Investor</title>
+    <title>Expression of Interest – Growth Partner Program | Voxe Partner Portal</title>
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png">
     <link rel="apple-touch-icon" sizes="192x192" href="assets/images/icon-192.png">
     <meta name="theme-color" content="#0b0f0e">
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      /* Mirror Friends & Family EOI gate presentation */
+      #eoi-page .invite-gate-wrap {
+        max-width: 420px; margin: 0 auto 3rem; padding: 2.5rem 2rem;
+        background: linear-gradient(160deg, rgba(var(--card-rgb-1), 0.95), rgba(var(--card-rgb-2), 0.98));
+        border: 1px solid rgba(0, 255, 182, 0.25); border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255,255,255,0.04);
+      }
+      #eoi-page .invite-gate-wrap label {
+        display: block; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; font-weight: 500;
+      }
+      #eoi-page .invite-gate-wrap input[type="password"] {
+        width: 100%; padding: 14px 18px; margin-bottom: 1rem;
+        font-size: 1rem; border-radius: 12px; border: 1px solid var(--border-color);
+        background: var(--bg-darker); color: var(--text-primary);
+      }
+      #eoi-page .invite-gate-wrap .cta-button.primary {
+        width: 100%; padding: 14px; font-size: 1rem; border-radius: 12px; font-weight: 600;
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      }
+      #eoi-page.eoi-standalone { padding: 2rem 0 4rem; }
+      #eoi-page > .section-header { text-align: center; margin-bottom: 2rem; }
+      #growth-partners-content { max-width: 720px; margin: 0 auto; }
+      #growth-partners-gated .content-block {
+        background: linear-gradient(145deg, rgba(var(--card-rgb-1), 0.6), rgba(var(--card-rgb-2), 0.8));
+        border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: 16px;
+        padding: 1.75rem 2rem; margin-bottom: 1.5rem;
+      }
+      #growth-partners-gated .config-error-msg {
+        padding: 1.25rem; border-radius: 12px;
+        background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3);
+      }
+      .eoi-form select {
+        width: 100%; max-width: 480px; padding: 0.6rem 0.75rem;
+        border: 1px solid var(--border-color); border-radius: 6px;
+        background: var(--bg-darker); color: var(--text-primary);
+        font-size: 1rem; font-family: var(--sans);
+      }
+      .eoi-form select:focus { outline: none; border-color: var(--accent-color); }
+    </style>
 </head>
 <body>
     <header>
@@ -20,7 +60,7 @@
                 <span>VOXE</span>
             </a>
             <div class="nav-links">
-                <a href="friends-family.html">Friends & Family SAFE</a>
+                <a href="growth-partners.html">Growth Partner Program</a>
                 <a href="index.html" class="cta-button"><i class="fas fa-arrow-left"></i> Back to Portal</a>
                 <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
             </div>
@@ -30,7 +70,7 @@
     <main>
         <section id="eoi-page" class="container content-section eoi-standalone">
             <div class="section-header">
-                <h2>Friends & Family Expression of Interest</h2>
+                <h2>Growth Partner Expression of Interest</h2>
                 <p class="section-description">Enter your invite access pass to submit your expression of interest.</p>
             </div>
 
@@ -41,23 +81,22 @@
                 <p id="invite-error" class="invite-error" aria-live="polite">Incorrect access pass. Please try again.</p>
             </div>
 
-            <div id="friends-family-gated" class="friends-family-gated">
+            <div id="growth-partners-gated" class="friends-family-gated">
                 <div id="invite-config-error" class="config-error-msg" style="display: none;">
-                    Configuration error: invite pass was not set at build time. Set INVESTOR_INVITE_PASS in investor/.env and run <code>node scripts/inject-invite-pass.js</code>.
+                    Configuration error: invite pass was not set at build time. Set INVESTOR_INVITE_PASS in .env and run <code>node scripts/inject-invite-pass.js</code>.
                 </div>
 
-                <div id="friends-family-content" class="eoi-page-content">
+                <div id="growth-partners-content" class="eoi-page-content">
                     <div class="content-block">
-                        <p>If you are interested in participating in the Friends & Family SAFE round, please complete the form below. We will review your information and follow up with the SAFE agreement. Submitting is non-binding.</p>
+                        <p>If you are interested in discussing participation in the Equity-Eligible Growth Partner Program, please complete the form below. Submitting is non-binding.</p>
                     </div>
 
-                    <div id="friends-family-form-wrap" class="eoi-form-wrap">
-                        <h4 class="eoi-form-title">Friends & Family Expression of Interest</h4>
+                    <div id="growth-partner-form-wrap" class="eoi-form-wrap">
+                        <h4 class="eoi-form-title">Growth Partner Expression of Interest</h4>
                         <div id="eoi-success-msg" class="eoi-success-msg" style="display: none;" role="status">
-                            Thank you for your interest.<br>
-                            We’ve recorded your details and will follow up with the SAFE agreement and payment instructions. Please do not send any funds until you receive the official documents and wiring details from us.
+                            Thank you for your interest. We have recorded your details and will follow up.
                         </div>
-                        <form id="friends-family-eoi-form" class="eoi-form" action="#" method="post" novalidate>
+                        <form id="growth-partner-eoi-form" class="eoi-form" action="#" method="post" novalidate>
                             <div class="eoi-field">
                                 <label for="eoi-full-name">Full Name <span class="required">(required)</span></label>
                                 <input type="text" id="eoi-full-name" name="full_name" required autocomplete="name" />
@@ -67,29 +106,33 @@
                                 <input type="email" id="eoi-email" name="email" required autocomplete="email" />
                             </div>
                             <div class="eoi-field">
-                                <label for="eoi-phone">Phone Number <span class="optional">(optional but useful)</span></label>
+                                <label for="eoi-phone">Phone Number <span class="optional">(optional)</span></label>
                                 <input type="tel" id="eoi-phone" name="phone" autocomplete="tel" />
                             </div>
                             <div class="eoi-field">
-                                <label for="eoi-location">City & Country / State <span class="required">(required)</span></label>
-                                <input type="text" id="eoi-location" name="location" required placeholder="e.g., San Francisco, CA" />
+                                <label for="eoi-contribute">How you believe you can contribute to Voxe growth <span class="required">(required)</span></label>
+                                <textarea id="eoi-contribute" name="contribution" rows="3" required></textarea>
                             </div>
                             <div class="eoi-field">
-                                <label for="eoi-amount">Approximate Purchase Amount you are considering (USD; minimum $1,000, maximum $5,000 per investor) <span class="required">(required)</span></label>
-                                <input type="text" id="eoi-amount" name="amount_usd" required placeholder="e.g., 1,000 – 5,000" maxlength="20" min="1000" max="5000" />
+                                <label for="eoi-experience">Relevant experience / network <span class="optional">(optional)</span></label>
+                                <textarea id="eoi-experience" name="experience_network" rows="3"></textarea>
                             </div>
                             <div class="eoi-field">
-                                <label for="eoi-notes">Notes or questions <span class="optional">(optional)</span></label>
+                                <label for="eoi-interest">Interest <span class="required">(required)</span></label>
+                                <select id="eoi-interest" name="interest_type" required>
+                                    <option value="">Select…</option>
+                                    <option value="growth_partner">Growth Partner Program</option>
+                                    <option value="affiliate">Affiliate Program</option>
+                                    <option value="both">Both</option>
+                                </select>
+                            </div>
+                            <div class="eoi-field">
+                                <label for="eoi-notes">Additional comments <span class="optional">(optional)</span></label>
                                 <textarea id="eoi-notes" name="notes" rows="3"></textarea>
-                            </div>
-                            <div class="eoi-field eoi-field-checkbox">
-                                <label class="eoi-checkbox-label">
-                                    <input type="checkbox" id="eoi-risk-ack" name="risk_acknowledgment" required />
-                                    <span>I acknowledge that early-stage startup investments are inherently high risk. I should only invest money I can afford to lose.</span>
-                                </label>
                             </div>
                             <div id="eoi-form-error" class="eoi-form-error" style="display: none;" role="alert"></div>
                             <button type="submit" class="cta-button primary" id="eoi-submit-btn">Submit Expression of Interest</button>
+                            <p class="content-note" style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">Form submission is not connected yet. This page is a structural shell for later wiring.</p>
                         </form>
                     </div>
                 </div>
@@ -100,26 +143,25 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <a href="friends-family.html" class="cta-button secondary"><i class="fas fa-arrow-left"></i> Back to Friends & Family SAFE</a>
+                <a href="growth-partners.html" class="cta-button secondary"><i class="fas fa-arrow-left"></i> Back to Growth Partner Program</a>
                 <div class="footer-links">
                     <a href="https://voxedesk.com" target="_blank" class="social-link" title="Voxe Platform"><i class="fas fa-globe"></i></a>
                     <a href="mailto:support@voxedesk.com" class="social-link" title="Support"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Voxe by MCP4. All rights reserved.</p>
+                <p>&copy; 2026 Voxe by MCP4. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="assets/js/invite-config.js"></script>
-    <script src="assets/js/friends-family-form.js?v=2"></script>
     <script>
     (function() {
-      var STORAGE_KEY = 'friends_family_access';
+      var STORAGE_KEY = 'growth_partner_access';
       var gateEl = document.getElementById('invite-gate');
-      var gatedEl = document.getElementById('friends-family-gated');
-      var contentEl = document.getElementById('friends-family-content');
+      var gatedEl = document.getElementById('growth-partners-gated');
+      var contentEl = document.getElementById('growth-partners-content');
       var configErrorEl = document.getElementById('invite-config-error');
       var inputEl = document.getElementById('invite-pass-input');
       var unlockBtn = document.getElementById('invite-unlock-btn');
@@ -130,12 +172,6 @@
         if (gatedEl) gatedEl.classList.add('visible');
         if (configErrorEl) configErrorEl.style.display = showConfigError ? 'block' : 'none';
         if (contentEl) contentEl.style.display = showConfigError ? 'none' : 'block';
-      }
-
-      function hideGated() {
-        if (gateEl) gateEl.style.display = 'block';
-        if (gatedEl) gatedEl.classList.remove('visible');
-        if (errorEl) errorEl.classList.remove('visible');
       }
 
       function setError(visible) {
@@ -155,9 +191,6 @@
       function checkPass() {
         var expected = window.__INVITE_PASS_HASH__;
         if (expected === undefined || expected === null) {
-          if (typeof console !== 'undefined' && console.warn) {
-            console.warn('[Voxe investor] INVESTOR_INVITE_PASS not set at build time. Gated section will show configuration error.');
-          }
           showGated(true);
           return;
         }
@@ -185,9 +218,6 @@
           if (contentEl) contentEl.style.display = 'block';
         } else if (expected === undefined || expected === null) {
           showGated(true);
-          if (typeof console !== 'undefined' && console.warn) {
-            console.warn('[Voxe investor] INVESTOR_INVITE_PASS not set at build time.');
-          }
         } else {
           gatedEl.classList.remove('visible');
         }
@@ -200,6 +230,19 @@
       } else {
         init();
       }
+    })();
+
+    (function() {
+      var form = document.getElementById('growth-partner-eoi-form');
+      var errorEl = document.getElementById('eoi-form-error');
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (errorEl) {
+          errorEl.textContent = 'Form submission is not connected yet. This page is a structural shell for later wiring.';
+          errorEl.style.display = 'block';
+        }
+      });
     })();
     </script>
     <script src="assets/js/theme.js"></script>

@@ -47,12 +47,22 @@ if ($amount_num === null) {
   $amount_clean = preg_replace('/[^\d.-]/', '', (string) $amount_usd);
   $amount_num = $amount_clean !== '' && is_numeric($amount_clean) ? (float) $amount_clean : null;
 }
-if ($amount_num !== null && !is_nan($amount_num) && $amount_num > 5000) {
+if ($amount_num === null || is_nan($amount_num)) {
   http_response_code(400);
-  echo json_encode(['ok' => false, 'error' => 'Maximum amount per investor is $5,000.']);
+  echo json_encode(['ok' => false, 'error' => 'A valid Purchase Amount (USD) is required']);
   exit;
 }
-$amount_stored = ($amount_num !== null && !is_nan($amount_num)) ? $amount_num : trim((string) $amount_usd);
+if ($amount_num < 1000) {
+  http_response_code(400);
+  echo json_encode(['ok' => false, 'error' => 'Minimum Purchase Amount per investor is $1,000.']);
+  exit;
+}
+if ($amount_num > 5000) {
+  http_response_code(400);
+  echo json_encode(['ok' => false, 'error' => 'Maximum Purchase Amount per investor is $5,000.']);
+  exit;
+}
+$amount_stored = $amount_num;
 
 $phone = isset($body['phone']) ? trim((string) $body['phone']) : '';
 $notes = isset($body['notes']) ? trim((string) $body['notes']) : '';
@@ -98,97 +108,28 @@ if ($json === false || @file_put_contents($file, $json) === false) {
   exit;
 }
 
-// Try to generate a personalised SAFE PDF for this investor.
-// This is best-effort only; a failure here will NOT block the submission.
+// Personalized SAFE PDF generation is intentionally disabled.
+// Obsolete Friends & Family SAFE PDFs were removed from the repository
+// (formerly SAFE_Friends_Family.pdf; prior expected path docs/SAFE - Friends & Family.pdf).
+// Current draft for legal review: docs/safe-friends-family-draft.html
+// pdf_path remains in the response for API compatibility with the EOI client (always null).
 $pdf_path = null;
-try {
-  $pdf_path = generate_investor_safe_pdf($record);
-} catch (Throwable $e) {
-  // Swallow errors; optionally log with error_log($e->getMessage());
-}
 
 http_response_code(200);
 echo json_encode([
   'ok' => true,
   'id' => $record['id'],
-  // Relative or absolute path to the generated PDF on the server, if created.
   'pdf_path' => $pdf_path,
 ]);
 
 /**
- * Generate a personalised SAFE PDF using a template.
- *
- * Requirements (to be set up on your hosting):
- * - Place your template at: ../docs/SAFE - Friends & Family.pdf
- * - Install FPDI (and its FPDF dependency) via Composer so that
- *   ../vendor/autoload.php exists and provides \setasign\Fpdi\Fpdi.
- *
- * On success returns a web‑accessible path (e.g. /generated-safe/xyz.pdf),
- * otherwise null.
+ * Personalized SAFE PDF generation — DISABLED.
+ * No PDF template is shipped. Current draft: ../docs/safe-friends-family-draft.html
  *
  * @param array $record
  * @return string|null
  */
 function generate_investor_safe_pdf(array $record)
 {
-  $template = __DIR__ . '/../docs/SAFE - Friends & Family.pdf';
-  if (!is_file($template)) {
-    return null;
-  }
-
-  $autoloader = __DIR__ . '/../vendor/autoload.php';
-  if (!is_file($autoloader)) {
-    return null;
-  }
-
-  require_once $autoloader;
-
-  if (!class_exists('\setasign\Fpdi\Fpdi')) {
-    return null;
-  }
-
-  $outDir = __DIR__ . '/../generated-safe';
-  if (!is_dir($outDir) && !@mkdir($outDir, 0755, true)) {
-    return null;
-  }
-
-  // Build a safe file name based on the investor's name and record id.
-  $nameBase = preg_replace('/[^A-Za-z0-9_-]+/', '_', (string) ($record['full_name'] ?? 'investor'));
-  $nameBase = substr($nameBase, 0, 40);
-  if ($nameBase === '') {
-    $nameBase = 'investor';
-  }
-  $fileName = $nameBase . '-' . ($record['id'] ?? uniqid()) . '.pdf';
-  $outPath = $outDir . '/' . $fileName;
-  // Assuming the web root corresponds to the project root, ../generated-safe
-  // should be accessible at /generated-safe in the browser.
-  $webPath = '/generated-safe/' . $fileName;
-
-  $pdf = new \setasign\Fpdi\Fpdi();
-  $pageCount = $pdf->setSourceFile($template);
-
-  for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
-    $tplIdx = $pdf->importPage($pageNo);
-    $size = $pdf->getTemplateSize($tplIdx);
-
-    // Use the same size/orientation as the template page.
-    $pdf->AddPage($size['orientation'], [$size['width'], $size['height']]);
-    $pdf->useTemplate($tplIdx);
-
-    // On the first page, write the investor's name (and optionally other data).
-    if ($pageNo === 1) {
-      $pdf->SetFont('Helvetica', '', 12);
-      $pdf->SetTextColor(0, 0, 0);
-
-      // TODO: adjust these coordinates to match where the name should appear
-      // on your SAFE template (units are in user space units, usually mm).
-      $pdf->SetXY(40, 80);
-      $pdf->Write(6, (string) ($record['full_name'] ?? ''));
-    }
-  }
-
-  // Save the personalised SAFE to disk.
-  $pdf->Output($outPath, 'F');
-
-  return $webPath;
+  return null;
 }

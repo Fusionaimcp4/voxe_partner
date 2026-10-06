@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Partner Program (Invite Only) – Voxe Partner Portal</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/images/icon-192.png">
+    <meta name="theme-color" content="#0b0f0e">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+      /* Mirror Friends & Family page presentation (structure only) */
+      .friends-family-standalone { padding: 2rem 0 4rem; }
+      .friends-family-standalone > .section-header { text-align: center; margin-bottom: 2rem; }
+      .friends-family-standalone > .section-header .section-description { color: var(--text-secondary); font-size: 1rem; }
+
+      #growth-partners .invite-gate-wrap {
+        max-width: 420px; margin: 0 auto 3rem; padding: 2.5rem 2rem;
+        background: linear-gradient(160deg, rgba(var(--card-rgb-1), 0.95), rgba(var(--card-rgb-2), 0.98));
+        border: 1px solid rgba(0, 255, 182, 0.25); border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255,255,255,0.04);
+      }
+      #growth-partners .invite-gate-wrap label {
+        display: block; font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 1rem; font-weight: 500;
+      }
+      #growth-partners .invite-gate-wrap input[type="password"] {
+        width: 100%; padding: 14px 18px; margin-bottom: 1rem;
+        font-size: 1rem; border-radius: 12px; border: 1px solid var(--border-color);
+        background: var(--bg-darker); color: var(--text-primary);
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      #growth-partners .invite-gate-wrap input:focus {
+        outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(0, 255, 182, 0.2);
+      }
+      #growth-partners .invite-gate-wrap .cta-button.primary {
+        width: 100%; padding: 14px; font-size: 1rem; border-radius: 12px; font-weight: 600;
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      }
+      #growth-partners .invite-gate-wrap .invite-error {
+        margin-top: 1rem; padding: 10px 14px; border-radius: 10px;
+        background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3);
+        color: #fca5a5; font-size: 0.9rem;
+      }
+
+      #growth-partners-gated.visible { animation: gpFadeIn 0.4s ease; }
+      @keyframes gpFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      #growth-partners-content { max-width: 720px; margin: 0 auto; }
+
+      #growth-partners-gated .section-header {
+        margin-bottom: 2.5rem; padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+      #growth-partners-gated .section-header h2 {
+        font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary);
+      }
+      #growth-partners-gated .section-subtext { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem; }
+
+      #growth-partners-gated .content-block {
+        background: linear-gradient(145deg, rgba(var(--card-rgb-1), 0.6), rgba(var(--card-rgb-2), 0.8));
+        border: 1px solid rgba(var(--ink-rgb), 0.1); border-radius: 16px;
+        padding: 1.75rem 2rem; margin-bottom: 1.5rem;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      #growth-partners-gated .content-block:hover {
+        border-color: rgba(0, 255, 182, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      }
+      #growth-partners-gated .content-block h3 {
+        font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);
+        padding-left: 1rem; border-left: 4px solid var(--accent-color);
+      }
+      #growth-partners-gated .content-block p { margin-bottom: 1rem; line-height: 1.7; color: var(--text-primary); }
+      #growth-partners-gated .content-block ul { margin: 1rem 0; padding-left: 1.5rem; }
+      #growth-partners-gated .content-block li { margin-bottom: 0.5rem; line-height: 1.6; }
+
+      #growth-partners-gated .content-block .doc-ref { color: var(--accent-color); text-decoration: none; }
+      #growth-partners-gated .content-block .doc-ref:hover { text-decoration: underline; }
+      #growth-partners-gated .content-block .ref-docs {
+        margin-top: 1.25rem; padding: 1.1rem 1.25rem;
+        background: rgba(var(--card-rgb-2), 0.9); border-radius: 12px;
+        border: 1px solid var(--border-color); font-size: 0.95rem;
+      }
+      #growth-partners-gated .content-block .doc-ref { display: inline-flex; align-items: center; gap: 0.5rem; }
+
+      #growth-partners-gated .contribution-table {
+        width: 100%; border-collapse: separate; border-spacing: 0;
+        border-radius: 12px; overflow: hidden;
+        margin: 1.25rem 0; box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      }
+      #growth-partners-gated .contribution-table th,
+      #growth-partners-gated .contribution-table td {
+        padding: 14px 18px; text-align: left; border: none;
+      }
+      #growth-partners-gated .contribution-table thead th {
+        background: linear-gradient(180deg, rgba(0, 255, 182, 0.2), rgba(0, 255, 182, 0.08));
+        color: var(--accent-color); font-weight: 600; font-size: 0.9rem;
+      }
+      #growth-partners-gated .contribution-table tbody tr {
+        background: rgba(var(--card-rgb-2), 0.5); transition: background 0.2s;
+      }
+      #growth-partners-gated .contribution-table tbody tr:nth-child(even) { background: rgba(var(--card-rgb-1), 0.4); }
+      #growth-partners-gated .contribution-table tbody tr:hover { background: rgba(0, 255, 182, 0.08); }
+
+      #growth-partners-gated .content-note {
+        margin-top: 1rem; padding: 1rem 1.2rem;
+        background: rgba(var(--ink-rgb), 0.08); border-radius: 10px;
+        border: 1px solid rgba(var(--ink-rgb), 0.15);
+        font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;
+      }
+
+      #growth-partners-gated .content-block:last-of-type { margin-bottom: 0; }
+      #growth-partners-gated .content-block a.cta-button.primary {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        padding: 14px 28px; border-radius: 12px; font-weight: 600;
+        margin-top: 0.5rem; transition: transform 0.2s, box-shadow 0.2s;
+      }
+      #growth-partners-gated .content-block a.cta-button.primary:hover {
+        transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 255, 182, 0.35);
+      }
+
+      #growth-partners-gated .config-error-msg {
+        padding: 1.25rem; border-radius: 12px;
+        background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3);
+      }
+
+      body .footer-content { border-top: 1px solid var(--border-color); padding-top: 1.5rem; margin-top: 2rem; }
+
+      #growth-partners-gated .cta-row {
+        display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 1rem;
+      }
+      #growth-partners-gated .cta-row .cta-button {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+      }
+      #growth-partners-gated .cta-row .cta-button.secondary {
+        background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+      }
+      #growth-partners-gated .cta-row .cta-button.secondary:hover {
+        background: rgba(0, 255, 182, 0.15);
+      }
+
+      #growth-partners-gated .gp-docs-grid {
+        display: grid; gap: 0.85rem; margin-top: 1rem;
+      }
+      #growth-partners-gated .gp-docs-grid .doc-ref {
+        display: flex; align-items: center; gap: 0.5rem;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/icon-512.png" alt="Voxe Logo">
+                <span>VOXE</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#overview">Overview</a>
+                <a href="index.html#documents">Documents</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="index.html" class="cta-button"><i class="fas fa-arrow-left"></i> Back to Portal</a>
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to light theme" title="Switch to light theme"><i class="fas fa-sun"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="growth-partners" class="container content-section friends-family-standalone">
+            <div class="section-header">
+                <p class="section-description">Enter your invite access pass to view details.</p>
+            </div>
+
+            <div id="invite-gate" class="invite-gate-wrap">
+                <label for="invite-pass-input">Enter your invite access pass to view details.</label>
+                <input type="password" id="invite-pass-input" placeholder="Access pass" autocomplete="off" />
+                <button type="button" id="invite-unlock-btn" class="cta-button primary">Unlock</button>
+                <p id="invite-error" class="invite-error" aria-live="polite">Incorrect access pass. Please try again.</p>
+            </div>
+
+            <div id="growth-partners-gated" class="friends-family-gated">
+                <div id="invite-config-error" class="config-error-msg" style="display: none;">
+                    Configuration error: invite pass was not set at build time. Set INVESTOR_INVITE_PASS in .env and run <code>node scripts/inject-invite-pass.js</code>.
+                </div>
+
+                <div id="growth-partners-content">
+                    <div class="section-header">
+                        <h2>Voxe Equity-Eligible Growth Partner Program</h2>
+                        <p class="section-subtext"><strong>Draft — Subject to Definitive Agreement</strong> · Draft 1.0 — October 2026</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Program Overview</h3>
+                        <p>The Voxe Equity-Eligible Growth Partner Program is a selective performance-based program intended for individuals who can make a meaningful and measurable contribution to the growth of Voxe.</p>
+                        <p>The GPP is built around a simple principle:</p>
+                        <p class="content-note"><strong>Growth Partners who create measurable, attributable, and durable growth in Voxe may become eligible to earn ownership in the Company.</strong></p>
+                        <p>Participation in the GPP is by invitation or acceptance by Voxe.</p>
+                        <p>Submission of an Expression of Interest, participation in the Voxe Affiliate Program, referral of customers, discussions with Voxe, or receipt of GPP materials does not automatically make an individual a Growth Partner.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>How the Program Works</h3>
+                        <p>GPP, the Voxe Affiliate Program, and any Voxe investment opportunity are separate programs with separate purposes, terms, and rights.</p>
+                        <p>The program does not award equity based merely on time spent, marketing activity, leads generated, introductions made, promises of future contribution, social-media activity, or participation in the program.</p>
+                        <p>Instead, equity eligibility is based primarily on two measurable business outcomes:</p>
+                        <ol>
+                            <li><strong>Qualifying Active Paying Customers (“QAPCs”) attributable to the Growth Partner; and</strong></li>
+                            <li><strong>Attributable Annual Recurring Revenue (“Attributable ARR”) generated by those customers.</strong></li>
+                        </ol>
+                        <p>Both requirements must be satisfied for a Growth Partner to reach an applicable milestone.</p>
+                        <p>For purposes of GPP, customer milestones are based on <strong>Qualifying Active Paying Customers (“QAPCs”)</strong>, not total historical signups or lifetime customer acquisitions.</p>
+                        <p>In addition to the applicable QAPC requirement, each GPP milestone requires a minimum amount of <strong>Attributable Annual Recurring Revenue (“Attributable ARR”).</strong></p>
+                        <p>A milestone is not satisfied unless <strong>both</strong> the applicable QAPC requirement and Attributable ARR requirement have been satisfied and verified.</p>
+                        <p>Participation in GPP does not itself grant ownership in Voxe.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Program Documents</h3>
+                        <p>The Growth Partner Program Framework &amp; Terms and Definitions &amp; Attribution Rules provide the more detailed program rules.</p>
+                        <p>For a specific equity award, the applicable executed definitive agreement controls where it conflicts with general GPP materials.</p>
+                        <div class="ref-docs gp-docs-grid">
+                            <a href="docs/growth-partner-framework.html" class="doc-ref"><i class="fas fa-file-alt"></i> Growth Partner Program Framework &amp; Terms</a>
+                            <a href="docs/growth-partner-definitions.html" class="doc-ref"><i class="fas fa-file-alt"></i> Definitions &amp; Attribution Rules</a>
+                            <a href="docs/growth-partner-milestone-schedule.html" class="doc-ref"><i class="fas fa-file-alt"></i> Milestone &amp; Equity Schedule</a>
+                            <a href="docs/growth-partner-faq.html" class="doc-ref"><i class="fas fa-file-alt"></i> Growth Partner FAQ</a>
+                        </div>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Milestone Schedule</h3>
+                        <p>This schedule provides a concise reference for the standard performance milestones under the Voxe Equity-Eligible Growth Partner Program.</p>
+                        <p>Both requirements must be satisfied for a milestone to be achieved.</p>
+                        <table class="contribution-table" aria-label="Standard Growth Milestones">
+                            <thead>
+                                <tr>
+                                    <th>Milestone</th>
+                                    <th>QAPCs</th>
+                                    <th>Minimum Attributable ARR</th>
+                                    <th>Incremental Equity Eligibility</th>
+                                    <th>Cumulative Equity Eligibility</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Growth I</strong></td><td>100</td><td>$100,000</td><td>Up to <strong>0.50%</strong></td><td>Up to <strong>0.50%</strong></td></tr>
+                                <tr><td><strong>Growth II</strong></td><td>250</td><td>$250,000</td><td>Up to <strong>0.50%</strong></td><td>Up to <strong>1.00%</strong></td></tr>
+                                <tr><td><strong>Growth III</strong></td><td>500</td><td>$500,000</td><td>Up to <strong>1.00%</strong></td><td>Up to <strong>2.00%</strong></td></tr>
+                                <tr><td><strong>Growth IV</strong></td><td>1,000</td><td>$1,000,000</td><td>Up to <strong>1.00%</strong></td><td>Up to <strong>3.00%</strong></td></tr>
+                            </tbody>
+                        </table>
+                        <p>The standard maximum cumulative equity eligibility under GPP is <strong>up to 3.00%</strong>.</p>
+                        <p class="content-note">See the full <a href="docs/growth-partner-milestone-schedule.html" class="doc-ref">Milestone &amp; Equity Schedule</a> for verification, vesting, and related rules.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Affiliate Program (Separate)</h3>
+                        <p>GPP, the Voxe Affiliate Program, and any Voxe investment opportunity are separate programs with separate purposes, terms, and rights.</p>
+                        <p><strong>Contribution:</strong> attributable customer referrals or acquisitions.</p>
+                        <p><strong>Benefit:</strong> cash or other commissions according to the applicable Affiliate Program terms.</p>
+                        <p>Affiliate compensation does not constitute equity.</p>
+                        <p>Participation in the Affiliate Program does not automatically create GPP eligibility.</p>
+                        <p>A Growth Partner may separately participate in the Affiliate Program. Where a person participates in both programs, affiliate compensation and GPP milestone calculations remain separate.</p>
+                        <p>The commission rate, payout rules, tracking provider, qualification requirements, and other Affiliate Program terms are governed exclusively by the then-applicable Affiliate Program terms and may change independently of GPP.</p>
+                        <p class="content-note" id="affiliate-link-note">[Affiliate Program external link will be configured when the destination URL is set.]</p>
+                        <p class="cta-row" id="affiliate-link-row" hidden>
+                            <a id="affiliate-program-link" href="#" class="cta-button secondary" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Affiliate Program</a>
+                        </p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Investment / Early Access SAFE</h3>
+                        <p><strong>Contribution:</strong> investment capital.</p>
+                        <p><strong>Potential benefit:</strong> rights provided by the applicable investment agreement or SAFE.</p>
+                        <p>A Growth Partner is not required to invest in Voxe.</p>
+                        <p>Investment in Voxe does not satisfy GPP milestones or automatically make an investor a Growth Partner.</p>
+                        <p>An individual may potentially participate in more than one Voxe program, but rights under one program do not automatically create rights under another.</p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3>Expression of Interest</h3>
+                        <p>Submission of an Expression of Interest, participation in the Voxe Affiliate Program, referral of customers, discussions with Voxe, or receipt of GPP materials does not automatically make an individual a Growth Partner.</p>
+                        <p>A person may become a Growth Partner through direct invitation or acceptance by Voxe.</p>
+                        <p class="cta-row">
+                            <a href="growth-partner-eoi.html" class="cta-button primary"><i class="fas fa-paper-plane"></i> Submit Expression of Interest</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="cta-button secondary"><i class="fas fa-arrow-left"></i> Back to Investor Portal</a>
+                <div class="footer-links">
+                    <a href="https://voxedesk.com" target="_blank" class="social-link" title="Voxe Platform"><i class="fas fa-globe"></i></a>
+                    <a href="mailto:support@voxedesk.com" class="social-link" title="Support"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Voxe by MCP4. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/invite-config.js"></script>
+    <script src="assets/js/affiliate-config.js"></script>
+    <script>
+    (function() {
+      var STORAGE_KEY = 'growth_partner_access';
+      var gateEl = document.getElementById('invite-gate');
+      var gatedEl = document.getElementById('growth-partners-gated');
+      var contentEl = document.getElementById('growth-partners-content');
+      var configErrorEl = document.getElementById('invite-config-error');
+      var inputEl = document.getElementById('invite-pass-input');
+      var unlockBtn = document.getElementById('invite-unlock-btn');
+      var errorEl = document.getElementById('invite-error');
+
+      function showGated(showConfigError) {
+        if (gateEl) gateEl.style.display = 'none';
+        if (gatedEl) gatedEl.classList.add('visible');
+        if (configErrorEl) configErrorEl.style.display = showConfigError ? 'block' : 'none';
+        if (contentEl) contentEl.style.display = showConfigError ? 'none' : 'block';
+      }
+
+      function setError(visible) {
+        if (errorEl) errorEl.classList.toggle('visible', !!visible);
+      }
+
+      function sha256Hex(str) {
+        return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+          .then(function(buf) {
+            var arr = new Uint8Array(buf);
+            var hex = '';
+            for (var i = 0; i < arr.length; i++) hex += ('0' + arr[i].toString(16)).slice(-2);
+            return hex;
+          });
+      }
+
+      function checkPass() {
+        var expected = window.__INVITE_PASS_HASH__;
+        if (expected === undefined || expected === null) {
+          showGated(true);
+          return;
+        }
+        var raw = (inputEl && inputEl.value) ? inputEl.value.trim() : '';
+        if (!raw) { setError(true); return; }
+        sha256Hex(raw).then(function(hash) {
+          if (hash === expected) {
+            try { localStorage.setItem(STORAGE_KEY, 'true'); } catch (e) {}
+            setError(false);
+            showGated(false);
+            if (contentEl) contentEl.style.display = 'block';
+          } else {
+            setError(true);
+          }
+        }).catch(function() { setError(true); });
+      }
+
+      function init() {
+        if (!gateEl || !gatedEl) return;
+        var hasAccess = false;
+        try { hasAccess = localStorage.getItem(STORAGE_KEY) === 'true'; } catch (e) {}
+        var expected = window.__INVITE_PASS_HASH__;
+        if (hasAccess) {
+          showGated(false);
+          if (contentEl) contentEl.style.display = 'block';
+        } else if (expected === undefined || expected === null) {
+          showGated(true);
+        } else {
+          gatedEl.classList.remove('visible');
+        }
+        if (unlockBtn) unlockBtn.addEventListener('click', checkPass);
+        if (inputEl) inputEl.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkPass(); });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+
+    (function() {
+      var url = (window.__VOXE_AFFILIATE_PROGRAM_URL__ || '').trim();
+      var row = document.getElementById('affiliate-link-row');
+      var link = document.getElementById('affiliate-program-link');
+      var note = document.getElementById('affiliate-link-note');
+      if (url && row && link) {
+        link.href = url;
+        row.hidden = false;
+        if (note) note.style.display = 'none';
+      }
+    })();
+    </script>
+    <script src="assets/js/theme.js"></script>
+</body>
+</html>
