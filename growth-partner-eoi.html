@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 <script>(function(){try{if(localStorage.getItem("voxe-theme")==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}})();</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expression of Interest – Growth Partner Program | Voxe Partner Portal</title>
+    <title>Growth Partner Program Application | Voxe Partner Portal</title>
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/icon-192.png">
     <link rel="apple-touch-icon" sizes="192x192" href="assets/images/icon-192.png">
     <meta name="theme-color" content="#0b0f0e">
@@ -43,13 +43,6 @@
         padding: 1.25rem; border-radius: 12px;
         background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3);
       }
-      .eoi-form select {
-        width: 100%; max-width: 480px; padding: 0.6rem 0.75rem;
-        border: 1px solid var(--border-color); border-radius: 6px;
-        background: var(--bg-darker); color: var(--text-primary);
-        font-size: 1rem; font-family: var(--sans);
-      }
-      .eoi-form select:focus { outline: none; border-color: var(--accent-color); }
     </style>
 </head>
 <body>
@@ -70,8 +63,8 @@
     <main>
         <section id="eoi-page" class="container content-section eoi-standalone">
             <div class="section-header">
-                <h2>Growth Partner Expression of Interest</h2>
-                <p class="section-description">Enter your invite access pass to submit your expression of interest.</p>
+                <h2>Growth Partner Program Application</h2>
+                <p class="section-description">Enter your invite access pass to submit your Growth Partner Program expression of interest.</p>
             </div>
 
             <div id="invite-gate" class="invite-gate-wrap">
@@ -88,13 +81,14 @@
 
                 <div id="growth-partners-content" class="eoi-page-content">
                     <div class="content-block">
-                        <p>If you are interested in discussing participation in the Equity-Eligible Growth Partner Program, please complete the form below. Submitting is non-binding.</p>
+                        <p>This form is exclusively for expressing interest in the Equity-Eligible Growth Partner Program. Completing it indicates interest in discussing Growth Partner participation. Submitting is non-binding.</p>
+                        <p class="content-note" style="margin-top: 1rem;">Growth Partners may also participate in the Voxe Affiliate Program and earn applicable commissions on qualifying referred business. Affiliate commissions and Growth Partner equity eligibility are separate reward programs.</p>
                     </div>
 
                     <div id="growth-partner-form-wrap" class="eoi-form-wrap">
-                        <h4 class="eoi-form-title">Growth Partner Expression of Interest</h4>
+                        <h4 class="eoi-form-title">Growth Partner Program Expression of Interest</h4>
                         <div id="eoi-success-msg" class="eoi-success-msg" style="display: none;" role="status">
-                            Thank you for your interest. We have recorded your details and will follow up.
+                            Thank you for your interest in the Growth Partner Program. We have recorded your details and will follow up.
                         </div>
                         <form id="growth-partner-eoi-form" class="eoi-form" action="#" method="post" novalidate>
                             <div class="eoi-field">
@@ -118,20 +112,11 @@
                                 <textarea id="eoi-experience" name="experience_network" rows="3"></textarea>
                             </div>
                             <div class="eoi-field">
-                                <label for="eoi-interest">Interest <span class="required">(required)</span></label>
-                                <select id="eoi-interest" name="interest_type" required>
-                                    <option value="">Select…</option>
-                                    <option value="growth_partner">Growth Partner Program</option>
-                                    <option value="affiliate">Affiliate Program</option>
-                                    <option value="both">Both</option>
-                                </select>
-                            </div>
-                            <div class="eoi-field">
                                 <label for="eoi-notes">Additional comments <span class="optional">(optional)</span></label>
                                 <textarea id="eoi-notes" name="notes" rows="3"></textarea>
                             </div>
                             <div id="eoi-form-error" class="eoi-form-error" style="display: none;" role="alert"></div>
-                            <button type="submit" class="cta-button primary" id="eoi-submit-btn">Submit Expression of Interest</button>
+                            <button type="submit" class="cta-button primary" id="eoi-submit-btn">Submit Growth Partner Expression of Interest</button>
                             <p class="content-note" style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">Form submission is not connected yet. This page is a structural shell for later wiring.</p>
                         </form>
                     </div>
