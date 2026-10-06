@@ -1,57 +1,108 @@
 /**
- * Build script: reads INVESTOR_INVITE_PASS from .env and writes
- * assets/js/invite-config.js with a SHA-256 hash of the pass.
- * The raw pass is never written to the output; only the hash is used for comparison.
+ * Build script: reads invite passwords from .env / environment and writes
+ * client-side SHA-256 hashes only (never the raw passwords).
  *
- * Run from investor folder: node scripts/inject-invite-pass.js
- * Or from repo root: node investor/scripts/inject-invite-pass.js
+ * Investor (Friends & Family):
+ *   INVESTOR_INVITE_PASS → assets/js/invite-config.js
+ *   window.__INVITE_PASS_HASH__
+ *
+ * Growth Partner Program:
+ *   GROWTH_PARTNER_INVITE_PASS → assets/js/growth-partner-invite-config.js
+ *   window.__GROWTH_PARTNER_INVITE_PASS_HASH__
+ *
+ * Run: node scripts/inject-invite-pass.js
  */
 
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const investorDir = path.resolve(__dirname, '..');
-const envPath = path.join(investorDir, '.env');
-const outPath = path.join(investorDir, 'assets', 'js', 'invite-config.js');
+const rootDir = path.resolve(__dirname, '..');
+const envPath = path.join(rootDir, '.env');
+const investorOutPath = path.join(rootDir, 'assets', 'js', 'invite-config.js');
+const growthPartnerOutPath = path.join(rootDir, 'assets', 'js', 'growth-partner-invite-config.js');
 
-function loadEnv() {
+function loadEnvFile() {
+  const map = {};
   try {
-    if (fs.existsSync(envPath)) {
-      const content = fs.readFileSync(envPath, 'utf8');
-      for (const line of content.split('\n')) {
-        const trimmed = line.trim();
-        if (trimmed.startsWith('INVESTOR_INVITE_PASS=')) {
-          const value = trimmed.slice('INVESTOR_INVITE_PASS='.length).trim();
-          // Remove surrounding quotes if present
-          if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-            return value.slice(1, -1);
-          }
-          return value;
-        }
+    if (!fs.existsSync(envPath)) {
+      return map;
+    }
+    const content = fs.readFileSync(envPath, 'utf8');
+    for (const line of content.split('\n')) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) {
+        continue;
       }
+      const eq = trimmed.indexOf('=');
+      if (eq <= 0) {
+        continue;
+      }
+      const key = trimmed.slice(0, eq).trim();
+      let value = trimmed.slice(eq + 1).trim();
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+      map[key] = value;
     }
   } catch (e) {
     console.error('Error reading .env:', e.message);
   }
+  return map;
+}
+
+function resolvePass(envKey, fileMap) {
+  const fromProcess = process.env[envKey];
+  if (fromProcess !== undefined && fromProcess !== null && String(fromProcess).trim() !== '') {
+    return String(fromProcess);
+  }
+  const fromFile = fileMap[envKey];
+  if (fromFile !== undefined && fromFile !== null && String(fromFile).trim() !== '') {
+    return String(fromFile);
+  }
   return null;
 }
 
-const pass = process.env.INVESTOR_INVITE_PASS || loadEnv();
-let jsContent;
+function writeHashConfig(options) {
+  const { outPath, envKey, globalName, missingComment } = options;
+  const pass = resolvePass(envKey, loadEnvFile());
+  let jsContent;
 
-if (!pass || pass === '') {
-  console.warn('[investor] INVESTOR_INVITE_PASS not set in .env or env. invite-config.js will set hash to null; gated section will show configuration error.');
-  jsContent = `// Invite pass not configured at build time. Set INVESTOR_INVITE_PASS in investor/.env and re-run scripts/inject-invite-pass.js
-window.__INVITE_PASS_HASH__ = null;
-`;
-} else {
-  const hash = crypto.createHash('sha256').update(pass, 'utf8').digest('hex');
-  jsContent = `// Hash of invite pass (set at build time). Do not edit.
-window.__INVITE_PASS_HASH__ = "${hash}";
-`;
+  if (!pass) {
+    console.warn(
+      '[invite] ' + envKey + ' not set in .env or environment. ' +
+      path.basename(outPath) + ' will set hash to null (fail closed).'
+    );
+    jsContent =
+      missingComment + '\n' +
+      'window.' + globalName + ' = null;\n';
+  } else {
+    const hash = crypto.createHash('sha256').update(pass, 'utf8').digest('hex');
+    jsContent =
+      '// Hash of invite pass (set at build time). Do not edit.\n' +
+      'window.' + globalName + ' = "' + hash + '";\n';
+  }
+
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, jsContent, 'utf8');
+  console.log('[invite] ' + path.relative(rootDir, outPath).replace(/\\/g, '/') + ' written.');
 }
 
-fs.mkdirSync(path.dirname(outPath), { recursive: true });
-fs.writeFileSync(outPath, jsContent, 'utf8');
-console.log('[investor] invite-config.js written.');
+writeHashConfig({
+  outPath: investorOutPath,
+  envKey: 'INVESTOR_INVITE_PASS',
+  globalName: '__INVITE_PASS_HASH__',
+  missingComment:
+    '// Invite pass not configured at build time. Set INVESTOR_INVITE_PASS in .env and re-run scripts/inject-invite-pass.js'
+});
+
+writeHashConfig({
+  outPath: growthPartnerOutPath,
+  envKey: 'GROWTH_PARTNER_INVITE_PASS',
+  globalName: '__GROWTH_PARTNER_INVITE_PASS_HASH__',
+  missingComment:
+    '// Growth Partner invite pass not configured at build time. Set GROWTH_PARTNER_INVITE_PASS in .env and re-run scripts/inject-invite-pass.js'
+});

@@ -1,6 +1,8 @@
 .env
 .env.*
 !.env.example
+data/friends_family_investors.json
+data/growth_partner_applications.json
 node_modules/
 npm-debug.log*
 yarn-debug.log*

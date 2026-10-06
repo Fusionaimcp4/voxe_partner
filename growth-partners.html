@@ -182,7 +182,7 @@
 
             <div id="growth-partners-gated" class="friends-family-gated">
                 <div id="invite-config-error" class="config-error-msg" style="display: none;">
-                    Configuration error: invite pass was not set at build time. Set INVESTOR_INVITE_PASS in .env and run <code>node scripts/inject-invite-pass.js</code>.
+                    Configuration error: Growth Partner invite pass was not set at build time. Set GROWTH_PARTNER_INVITE_PASS in .env and run <code>node scripts/inject-invite-pass.js</code>.
                 </div>
 
                 <div id="growth-partners-content">
@@ -306,11 +306,12 @@
         </div>
     </footer>
 
-    <script src="assets/js/invite-config.js"></script>
+    <script src="assets/js/growth-partner-invite-config.js"></script>
     <script src="assets/js/affiliate-config.js"></script>
     <script>
     (function() {
-      var STORAGE_KEY = 'growth_partner_access';
+      // Separate from Friends & Family (friends_family_access / __INVITE_PASS_HASH__).
+      var STORAGE_KEY = 'growth_partner_program_access';
       var gateEl = document.getElementById('invite-gate');
       var gatedEl = document.getElementById('growth-partners-gated');
       var contentEl = document.getElementById('growth-partners-content');
@@ -318,6 +319,10 @@
       var inputEl = document.getElementById('invite-pass-input');
       var unlockBtn = document.getElementById('invite-unlock-btn');
       var errorEl = document.getElementById('invite-error');
+
+      function expectedHash() {
+        return window.__GROWTH_PARTNER_INVITE_PASS_HASH__;
+      }
 
       function showGated(showConfigError) {
         if (gateEl) gateEl.style.display = 'none';
@@ -341,8 +346,8 @@
       }
 
       function checkPass() {
-        var expected = window.__INVITE_PASS_HASH__;
-        if (expected === undefined || expected === null) {
+        var expected = expectedHash();
+        if (expected === undefined || expected === null || expected === '') {
           showGated(true);
           return;
         }
@@ -364,11 +369,12 @@
         if (!gateEl || !gatedEl) return;
         var hasAccess = false;
         try { hasAccess = localStorage.getItem(STORAGE_KEY) === 'true'; } catch (e) {}
-        var expected = window.__INVITE_PASS_HASH__;
-        if (hasAccess) {
+        var expected = expectedHash();
+        var configured = expected !== undefined && expected !== null && expected !== '';
+        if (hasAccess && configured) {
           showGated(false);
           if (contentEl) contentEl.style.display = 'block';
-        } else if (expected === undefined || expected === null) {
+        } else if (!configured) {
           showGated(true);
         } else {
           gatedEl.classList.remove('visible');

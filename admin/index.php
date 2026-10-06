@@ -2,14 +2,15 @@
 session_start();
 
 /**
- * Simple password-protected admin UI to view Friends & Family submissions.
+ * Simple password-protected admin UI to view portal submissions.
  *
  * Auth:
  * - Reads ADMIN_PASS from ../.env (or from the environment).
  * - Uses a PHP session flag to remember login.
  *
  * Data:
- * - Reads ../data/friends_family_investors.json and renders a table.
+ * - Friends & Family: ../data/friends_family_investors.json
+ * - Growth Partners: ../data/growth_partner_applications.json
  */
 
 function env_get($key)
@@ -82,9 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password'])) {
 
 $loggedIn = !empty($_SESSION['admin_logged_in']);
 
-function load_submissions()
+function load_json_submissions($relativePath)
 {
-  $file = __DIR__ . '/../data/friends_family_investors.json';
+  $file = __DIR__ . '/../' . $relativePath;
   if (!is_file($file) || !is_readable($file)) {
     return [];
   }
@@ -110,7 +111,13 @@ function load_submissions()
   return $data;
 }
 
-$submissions = $loggedIn ? load_submissions() : [];
+$activeTab = isset($_GET['tab']) ? (string) $_GET['tab'] : 'friends-family';
+if ($activeTab !== 'growth-partners') {
+  $activeTab = 'friends-family';
+}
+
+$ffSubmissions = $loggedIn ? load_json_submissions('data/friends_family_investors.json') : [];
+$gppSubmissions = $loggedIn ? load_json_submissions('data/growth_partner_applications.json') : [];
 
 ?>
 <!DOCTYPE html>
@@ -118,7 +125,7 @@ $submissions = $loggedIn ? load_submissions() : [];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Friends &amp; Family Submissions – Admin</title>
+  <title>Portal Submissions – Admin</title>
   <style>
     :root {
       color-scheme: dark light;
@@ -263,6 +270,31 @@ $submissions = $loggedIn ? load_submissions() : [];
       font-size: 14px;
       color: var(--muted);
     }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .tab {
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      background: transparent;
+    }
+    .tab:hover {
+      border-color: rgba(56, 189, 248, 0.55);
+      color: #e0f2fe;
+    }
+    .tab.active {
+      color: #0b1120;
+      border-color: transparent;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      font-weight: 500;
+    }
     .table-wrap {
       margin-top: 6px;
       border-radius: 12px;
@@ -305,14 +337,10 @@ $submissions = $loggedIn ? load_submissions() : [];
       font-size: 12px;
       color: var(--muted);
     }
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 2px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      font-size: 11px;
-      color: var(--muted);
+    .cell-wrap {
+      max-width: 220px;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
     @media (max-width: 640px) {
       .shell {
@@ -332,9 +360,9 @@ $submissions = $loggedIn ? load_submissions() : [];
   <div class="shell">
     <div class="header">
       <div class="title-wrap">
-        <div class="badge">Admin · Voxe Investor</div>
+        <div class="badge">Admin · Voxe Partner Portal</div>
         <div>
-          <h1>Friends &amp; Family submissions</h1>
+          <h1>Portal submissions</h1>
           <p class="subtitle">Password-protected view of expressions of interest.</p>
         </div>
       </div>
@@ -356,55 +384,113 @@ $submissions = $loggedIn ? load_submissions() : [];
           <?php endif; ?>
         </form>
       <?php else: ?>
-        <?php if (empty($submissions)): ?>
-          <p class="empty">No submissions have been recorded yet.</p>
-        <?php else: ?>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Date (UTC)</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Location</th>
-                  <th>Amount (USD)</th>
-                  <th>Notes</th>
-                  <th>ID</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach ($submissions as $row): ?>
+        <div class="tabs" role="tablist">
+          <a
+            href="?tab=friends-family"
+            class="tab<?php echo $activeTab === 'friends-family' ? ' active' : ''; ?>"
+            role="tab"
+            aria-selected="<?php echo $activeTab === 'friends-family' ? 'true' : 'false'; ?>"
+          >Friends &amp; Family</a>
+          <a
+            href="?tab=growth-partners"
+            class="tab<?php echo $activeTab === 'growth-partners' ? ' active' : ''; ?>"
+            role="tab"
+            aria-selected="<?php echo $activeTab === 'growth-partners' ? 'true' : 'false'; ?>"
+          >Growth Partners</a>
+        </div>
+
+        <?php if ($activeTab === 'friends-family'): ?>
+          <?php if (empty($ffSubmissions)): ?>
+            <p class="empty">No Friends &amp; Family submissions have been recorded yet.</p>
+          <?php else: ?>
+            <div class="table-wrap">
+              <table>
+                <thead>
                   <tr>
-                    <td class="mono">
-                      <?php
-                      $t = isset($row['submitted_at']) ? $row['submitted_at'] : '';
-                      echo htmlspecialchars($t, ENT_QUOTES, 'UTF-8');
-                      ?>
-                    </td>
-                    <td><?php echo htmlspecialchars((string) ($row['full_name'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><?php echo htmlspecialchars((string) ($row['email'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><?php echo htmlspecialchars((string) ($row['phone'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td><?php echo htmlspecialchars((string) ($row['location'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
-                    <td>
-                      <?php
-                      $amt = $row['amount_usd'] ?? '';
-                      echo htmlspecialchars((string) $amt, ENT_QUOTES, 'UTF-8');
-                      ?>
-                    </td>
-                    <td><?php echo nl2br(htmlspecialchars((string) ($row['notes'] ?? ''), ENT_QUOTES, 'UTF-8')); ?></td>
-                    <td class="mono">
-                      <?php echo htmlspecialchars((string) ($row['id'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>
-                    </td>
+                    <th>Date (UTC)</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Location</th>
+                    <th>Amount (USD)</th>
+                    <th>Notes</th>
+                    <th>ID</th>
                   </tr>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  <?php foreach ($ffSubmissions as $row): ?>
+                    <tr>
+                      <td class="mono">
+                        <?php
+                        $t = isset($row['submitted_at']) ? $row['submitted_at'] : '';
+                        echo htmlspecialchars($t, ENT_QUOTES, 'UTF-8');
+                        ?>
+                      </td>
+                      <td><?php echo htmlspecialchars((string) ($row['full_name'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td><?php echo htmlspecialchars((string) ($row['email'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td><?php echo htmlspecialchars((string) ($row['phone'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td><?php echo htmlspecialchars((string) ($row['location'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td>
+                        <?php
+                        $amt = $row['amount_usd'] ?? '';
+                        echo htmlspecialchars((string) $amt, ENT_QUOTES, 'UTF-8');
+                        ?>
+                      </td>
+                      <td><?php echo nl2br(htmlspecialchars((string) ($row['notes'] ?? ''), ENT_QUOTES, 'UTF-8')); ?></td>
+                      <td class="mono">
+                        <?php echo htmlspecialchars((string) ($row['id'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+          <?php endif; ?>
+        <?php else: ?>
+          <?php if (empty($gppSubmissions)): ?>
+            <p class="empty">No Growth Partner applications have been recorded yet.</p>
+          <?php else: ?>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date (UTC)</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Growth contribution</th>
+                    <th>Experience / network</th>
+                    <th>Comments</th>
+                    <th>ID</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($gppSubmissions as $row): ?>
+                    <tr>
+                      <td class="mono">
+                        <?php
+                        $t = isset($row['submitted_at']) ? $row['submitted_at'] : '';
+                        echo htmlspecialchars($t, ENT_QUOTES, 'UTF-8');
+                        ?>
+                      </td>
+                      <td><?php echo htmlspecialchars((string) ($row['full_name'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td><?php echo htmlspecialchars((string) ($row['email'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td><?php echo htmlspecialchars((string) ($row['phone'] ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td class="cell-wrap"><?php echo nl2br(htmlspecialchars((string) ($row['contribution'] ?? ''), ENT_QUOTES, 'UTF-8')); ?></td>
+                      <td class="cell-wrap"><?php echo nl2br(htmlspecialchars((string) ($row['experience_network'] ?? ''), ENT_QUOTES, 'UTF-8')); ?></td>
+                      <td class="cell-wrap"><?php echo nl2br(htmlspecialchars((string) ($row['notes'] ?? ''), ENT_QUOTES, 'UTF-8')); ?></td>
+                      <td class="mono">
+                        <?php echo htmlspecialchars((string) ($row['id'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+          <?php endif; ?>
         <?php endif; ?>
       <?php endif; ?>
     </div>
   </div>
 </body>
 </html>
-
