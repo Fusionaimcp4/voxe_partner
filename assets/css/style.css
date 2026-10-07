@@ -296,6 +296,18 @@ nav {
   gap: 1.25rem;
 }
 
+/* Product Walkthroughs: fixed 2×2 for video + audio symmetry */
+.walkthrough-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .walkthrough-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .feature-card, .stat-card, .metric-card, .document-card, .contact-card,
 .funding-card, .section-box, .phase-box, .model-box, .content-block,
 .strategy-card {
