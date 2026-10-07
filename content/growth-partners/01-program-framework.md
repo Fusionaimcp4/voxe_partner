@@ -4,7 +4,7 @@
 **Draft — Subject to Definitive Agreement**
 
 **Program:** Voxe Equity-Eligible Growth Partner Program (“GPP”)  
-**Company:** Blockchain Technology International LLC, operating as Voxe (“Voxe” or the “Company”)  
+**Company:** Blockchain Technology International LLC, operating as Voxe Desk (“Voxe Desk” or the “Company”)  
 **Version:** Draft 1.0 — October 2026
 
 ---
