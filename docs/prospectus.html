@@ -71,12 +71,11 @@
     .who-card-doc p { margin: 0; font-size: 0.86rem; }
 
     /* Pricing table */
-    table.pricing-table, table.comparison-table, table.growth-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+    table.pricing-table, table.comparison-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
     table.pricing-table th, table.pricing-table td,
-    table.comparison-table th, table.comparison-table td,
-    table.growth-table th, table.growth-table td { padding: 0.85rem 1rem; border: 1px solid var(--border-color); text-align: left; }
-    table.pricing-table th, table.comparison-table th, table.growth-table th { background: rgba(120,252,214,0.06); color: var(--brand-bright); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
-    table.pricing-table td, table.comparison-table td, table.growth-table td { background: rgba(var(--card-rgb-2),0.4); color: var(--white-dim); }
+    table.comparison-table th, table.comparison-table td { padding: 0.85rem 1rem; border: 1px solid var(--border-color); text-align: left; }
+    table.pricing-table th, table.comparison-table th { background: rgba(120,252,214,0.06); color: var(--brand-bright); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+    table.pricing-table td, table.comparison-table td { background: rgba(var(--card-rgb-2),0.4); color: var(--white-dim); }
     .check { color: var(--green); }
     .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
     .table-wrap table { margin: 0; }
@@ -298,13 +297,13 @@
           <li>Retention and expansion: whether customers stay and move to higher plans.</li>
           <li>Unit economics: measured customer acquisition cost, gross margin, and payback period.</li>
         </ul>
-        <p>Customer, revenue, and retention metrics are tracked against the milestones in Section 06.</p>
+        <p>Customer, revenue, and retention metrics are tracked against the go-to-market and capital milestones below.</p>
       </section>
 
       <section id="business-model" class="doc-section">
         <span class="eyebrow sec-eyebrow">06 — Business Model</span>
         <h2>Subscription SaaS, priced without per-resolution billing</h2>
-        <p>VoxeDesk is sold as a software subscription. Plans scale with active support chats, AI processing, Help Desk agent seats, knowledge bases, and integrations. Usage beyond a plan's included limits can be covered with top-up credits at exact API cost, not with per-resolution fees.</p>
+        <p>VoxeDesk is sold as a software subscription. Plans scale with active support chats, AI processing, Help Desk agent seats, knowledge bases, and integrations. Usage beyond a plan's included limits can be covered with top-up credits at exact Usage cost, not with per-resolution fees.</p>
         <div class="table-wrap">
           <table class="pricing-table">
             <caption style="caption-side: top; text-align: left; padding-bottom: 0.5rem; font-family: var(--mono); font-size: 0.8rem;">Paid subscription plans: monthly list prices (voxedesk.com/pricing)</caption>
@@ -322,26 +321,9 @@
         <h3>Revenue sources</h3>
         <ul>
           <li><strong>Subscription plans:</strong> monthly or yearly billing (yearly saves 8%), with included AI processing and limits.</li>
-          <li><strong>Usage top-ups:</strong> credits for AI usage beyond plan limits, billed at exact API cost.</li>
+          <li><strong>Usage top-ups:</strong> credits for AI usage beyond plan limits, billed at exact usage cost.</li>
           <li><strong>Enterprise:</strong> custom private deployments on the customer's own infrastructure, priced by implementation scope.</li>
         </ul>
-
-        <h3>Illustrative revenue milestones</h3>
-        <p>The table below shows what recurring revenue would look like at defined customer counts. It is an illustration of the arithmetic, not a forecast, and not current revenue.</p>
-        <div class="table-wrap">
-          <table class="growth-table">
-            <thead><tr><th>Milestone</th><th>Paying customers</th><th>Illustrative ARR</th></tr></thead>
-            <tbody>
-              <tr><td>Initial validation</td><td>10</td><td>$14,400</td></tr>
-              <tr><td>Early traction</td><td>25</td><td>$36,000</td></tr>
-              <tr><td>Repeatable acquisition</td><td>50</td><td>$72,000</td></tr>
-              <tr><td>Growth foundation</td><td>100</td><td>$144,000</td></tr>
-              <tr><td>Expansion</td><td>250</td><td>$360,000</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="content-note" style="font-size: 0.88rem; color: var(--text-secondary);"><strong>Assumptions:</strong> ARR = paying customers × $120 average monthly revenue × 12. The $120 figure is a blended planning assumption, not an observed average. Published plans range from $49.99 to $229.99 per month, so the average depends on the mix of plans customers choose. These milestones are not forecasts and do not describe current performance.</p>
-        <p>Customer-level economics are measured through acquisition cost, conversion, churn, gross margin, and payback. Longer-range scenarios are presented separately in the growth model, with stated assumptions.</p>
       </section>
 
       <section id="growth" class="doc-section">
@@ -374,7 +356,7 @@
           <li><strong>Operations:</strong> customer support, legal and compliance costs, and finance functions.</li>
         </ul>
         <h3>Milestones investors can track</h3>
-        <p>The revenue milestones in Section 06 are the primary measure. The company will report progress against the first paying customers, the repeatable acquisition channel, retention, and unit economics.</p>
+        <p>The company will report progress against the first paying customers, the repeatable acquisition channel, retention, and unit economics.</p>
         <div class="highlight-box">
           <h3>Early Friends &amp; Family program</h3>
           <p>An early, invite-only Friends &amp; Family SAFE program is open separately. It is not part of this prospectus, and its terms are only on its own invitation-only page: <a href="../friends-family.html" style="color: var(--accent-color);">Friends &amp; Family page</a>.</p>
@@ -404,7 +386,7 @@
       </section>
 
       <div class="disclaimer-box">
-        This prospectus is for informational purposes only and does not constitute an offer or solicitation to sell securities. Any investment will be made only through formal legal documents that investors should review carefully, ideally with their own legal and financial advisors. Forward-looking statements, including revenue milestones and illustrative scenarios, are assumptions and illustrations, not guarantees of future performance.
+        This prospectus is for informational purposes only and does not constitute an offer or solicitation to sell securities. Any investment will be made only through formal legal documents that investors should review carefully, ideally with their own legal and financial advisors. Forward-looking statements are assumptions and illustrations, not guarantees of future performance.
       </div>
     </div>
   </main>
