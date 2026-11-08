@@ -45,7 +45,7 @@ Then open **http://localhost:3333** (or the port in `PORT` env). The same origin
 
 ## PHP hosting (e.g. SiteGround)
 
-On static/PHP hosting (e.g. [investor.voxe.us](https://investor.voxe.us/)), the form posts to **api/friends-family-interest.php**. No Node server is needed.
+On static/PHP hosting (for example, the live portal at `partners.voxe.us`), the form posts to **api/friends-family-interest.php**. No Node server is needed.
 
 1. Upload the whole `investor` folder (including **api/** and **data/**) to your host.
 2. Ensure **data/** is writable by the web server (e.g. chmod 755 or 775 on `data`). The PHP script will create **data/friends_family_investors.json** on first submission.
