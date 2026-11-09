@@ -53,13 +53,6 @@
     .strategy-card h4 { color: var(--brand-bright); margin-bottom: 0.75rem; font-size: 1.05rem; }
     .strategy-card p { margin: 0; font-size: 0.92rem; }
 
-    /* Step rail for How It Works */
-    .step-rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.75rem 0; }
-    .step-card { background: linear-gradient(145deg, rgba(var(--card-rgb-1),0.7), rgba(var(--card-rgb-2),0.85)); border: 1px solid var(--border-color); border-top: 2px solid var(--brand); border-radius: 10px; padding: 1.4rem; }
-    .step-card .step-num { font-family: var(--serif); font-size: 1.7rem; color: var(--brand-bright); opacity: 0.4; margin-bottom: 0.5rem; }
-    .step-card h4 { margin: 0 0 0.4rem; font-size: 0.95rem; }
-    .step-card p { margin: 0; font-size: 0.84rem; }
-
     /* Tag cloud for integrations/channels */
     .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.75rem; }
     .tag-chip { font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; padding: 6px 13px; border: 1px solid rgba(120,252,214,0.25); border-radius: 100px; color: var(--white-dim); }
@@ -82,8 +75,6 @@
 
 
     .disclaimer-box { font-size: 0.85rem; color: var(--text-secondary); padding: 1.25rem 1.5rem; border: 1px solid var(--border-color); border-radius: 10px; margin-top: 3.5rem; line-height: 1.6; }
-
-    video.inline-video { width: 100%; border-radius: 10px; display: block; margin-top: 1rem; border: 1px solid var(--border-color); }
   </style>
 </head>
 <body>
@@ -154,7 +145,7 @@
         <div class="stat-row">
           <div class="stat-card"><div class="number">Minutes</div><div class="label">To deploy a support desk from a website URL</div></div>
           <div class="stat-card"><div class="number">7</div><div class="label">Channels live today, including web chat, email, SMS, WhatsApp, Telegram, and Line</div></div>
-          <div class="stat-card"><div class="number">AI + Human</div><div class="label">Hybrid support model with escalation</div></div>
+          <div class="stat-card"><div class="number">AI + Human</div><div class="label">Hybrid support with real-time monitoring and seamless escalation</div></div>
           <div class="stat-card"><div class="number">Subscription</div><div class="label">Plans with included limits, no per-resolution billing</div></div>
         </div>
       </section>
@@ -179,24 +170,6 @@
           <div class="who-card-doc"><h4>Solo founders and small teams</h4><p>Businesses without a dedicated support function that want coverage without hiring.</p></div>
         </div>
         <p>Demand rests on three shifts: customers expect instant answers at any hour, AI systems can now read business data and act on it within clear rules, and small businesses are adopting the same digital tools that larger companies use. Together they make a unified, affordable customer operations platform a practical need.</p>
-      </section>
-
-      <div class="hline"></div>
-
-      <section id="how-it-works" class="doc-section">
-        <span class="eyebrow sec-eyebrow">03 — The VoxeDesk Platform</span>
-        <h2>From website URL to live support desk</h2>
-        <p>VoxeDesk is the customer-facing software platform. It is designed to remove the integration project that many competing platforms require.</p>
-        <div class="step-rail">
-          <div class="step-card"><div class="step-num">01</div><h4>Provide your URL</h4><p>The business submits its website. No manual content setup is needed to begin.</p></div>
-          <div class="step-card"><div class="step-num">02</div><h4>Knowledge extraction</h4><p>The site and any uploaded documents (PDF, DOCX, text) are chunked, embedded, and indexed for semantic search.</p></div>
-          <div class="step-card"><div class="step-num">03</div><h4>AI agent deployed</h4><p>A chat widget, knowledge-backed chatbot, and helpdesk inbox go live, tuned to the business's own content and tone.</p></div>
-          <div class="step-card"><div class="step-num">04</div><h4>Connect live data &amp; actions</h4><p>Commerce, CRM, and calendar integrations let the AI look up real order, inventory, and account data, and on connected ecommerce platforms make verified changes.</p></div>
-          <div class="step-card"><div class="step-num">05</div><h4>Human escalation</h4><p>Routine, verifiable actions complete without a human. Conversations that need judgment hand off to a live agent, with full context attached.</p></div>
-        </div>
-        <video class="inline-video" controls preload="none">
-          <source src="../Voxe_Desk__The_Power_Behind_Store_Data.mp4" type="video/mp4">
-        </video>
       </section>
 
       <section id="product" class="doc-section">
